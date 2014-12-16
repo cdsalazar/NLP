@@ -1,0 +1,22 @@
+{John}  := John ; 
+{Mary}  := Mary ;
+{Charlie} := Charlie, Charles ;
+{Chris} := Chris ;
+{Pat} := Pat;
+
+{Person} := anybody, anyone ;
+{Person} := somebody, someone ;
+
+{Loves} := [lover] loves [beloved] ; 
+
+{Loves} := Who loves [beloved];
+{Loves} := Who does [lover] love;
+
+{Loves} := Does [lover] love [beloved];
+
+{Hates} := [hater] hates [hated] ; 
+
+{Hates} := Who hates [hated];
+{Hates} := Who does [hater] hate;
+
+{Hates} := Does [hater] hate [hated];

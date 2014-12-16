@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE test-suite>
+
+<!-- Tests parsing various things                -->
+
+<!-- R. James Firby                              -->
+<!-- July 2005                                   -->
+
+<!-- 
+	The detailed syntax for writing tests is likely to
+	change as DMAP evolves.  In particular, the output
+	format for printed references will have to change.
+-->
+		
+<test-suite name="Slot Nesting Tests">
+	
+	<test-context>edu.uchsc.ccp.opendmap.test.ParserTestContext</test-context>
+	<test-type name="test">edu.uchsc.ccp.opendmap.test.ParserTest</test-type>
+
+	<retain-case>true</retain-case>
+	<protege-project>../test/projects/newspaper/newspaper.pprj</protege-project>
+	<pattern-file>../test/projects/newspaper/newspaper.patterns</pattern-file>
+	
+	<test name="Test-1" includeSubsumed="true">
+		<input>I think Mary manages Kelly</input>
+		<output>{newspaper_00013.Mary} from 2 to 2</output>
+		<output>{newspaper_00020.Kelly} from 4 to 4</output>
+		<output>{Manager Supervision Relation [:FROM]={newspaper_00013.Mary} [:TO]={newspaper_00020.Kelly}} from 0 to 4</output>
+	</test>
+
+	<!-- This test fails because Kelly is not a manager and so cannot fill the :FROM slot -->
+	<test name="Test-1a" fail="true" includeSubsumed="true">
+		<input>I think Kelly manages Mary</input>
+		<output>{newspaper_00020.Kelly} from 2 to 2</output>
+		<output>{newspaper_00013.Mary} from 4 to 4</output>
+		<output>{Manager Supervision Relation [:FROM]={newspaper_00020.Kelly} [:TO]={newspaper_00013.Mary}} from 0 to 4</output>
+	</test>
+
+	<test name="Test-2" includeSubsumed="true">
+		<input>I think Mary manages the editor of Automotive</input>
+		<output>{newspaper_00013.Mary} from 2 to 2</output>
+		<output>{instance_00032.Automotive} from 7 to 7</output>
+		<output>{Editor [sections]={instance_00032.Automotive}} from 4 to 7</output>
+		<output>{Manager Supervision Relation [:FROM]={newspaper_00013.Mary} [:TO]={Editor [sections]={instance_00032.Automotive}}} from 0 to 7</output>
+	</test>
+
+	<test name="Test-3" includeSubsumed="true">
+		<input>I think Mary manages the editor of Local News</input>
+		<output>{newspaper_00013.Mary} from 2 to 2</output>
+		<output>{instance_00024.Local News} from 7 to 8</output>
+		<output>{Editor [sections]={instance_00024.Local News}} from 4 to 8</output>
+		<output>{Manager Supervision Relation [:FROM]={newspaper_00013.Mary} [:TO]={Editor [sections]={instance_00024.Local News}}} from 0 to 8</output>
+	</test>
+
+	<test name="Test-4" includeSubsumed="true">
+		<input>I think Mary manages the editor of LifeStyle</input>
+		<output>{newspaper_00013.Mary} from 2 to 2</output>
+		<output>{instance_00034.Lifestyle} from 7 to 7</output>
+		<output>{instance_00040.Sports} from 7 to 7</output>
+		<output>{Editor [sections]={instance_00040.Sports}} from 4 to 7</output>
+		<output>{Editor [sections]={instance_00034.Lifestyle}} from 4 to 7</output>
+		<output>{Manager Supervision Relation [:FROM]={newspaper_00013.Mary} [:TO]={Editor [sections]={instance_00040.Sports}}} from 0 to 7</output>
+		<output>{Manager Supervision Relation [:FROM]={newspaper_00013.Mary} [:TO]={Editor [sections]={instance_00034.Lifestyle}}} from 0 to 7</output>
+	</test>
+
+	<test name="Test-5" includeText="false" includeSubsumed="true">
+		<input>I think Mary manages Kim</input>
+		<output>{newspaper_00013.Mary} from 2 to 2</output>
+		<output>{newspaper_00021.Kim} from 4 to 4</output>
+		<output>{Manager Supervision Relation [:FROM]={newspaper_00013.Mary} [:TO]={newspaper_00021.Kim}} from 0 to 4</output>
+	</test>
+
+	<test name="Test-6" includeText="false" includeSubsumed="true">
+		<input>I think Mary manages the employee named Kim</input>
+		<output>{newspaper_00013.Mary} from 2 to 2</output>
+		<output>{newspaper_00021.Kim} from 7 to 7</output>
+		<output>{Employee [name]="Kim"} from 4 to 7</output>
+		<output>{Manager Supervision Relation [:FROM]={newspaper_00013.Mary} [:TO]={Employee [name]="Kim"}} from 0 to 7</output>
+	</test>
+
+</test-suite>

@@ -1,0 +1,117 @@
+<project name="dmap-tests" default="run-dmap-test" basedir="..">
+
+    <property file="ant/build.properties"/>
+    <property file="ant/dmap-tests.properties"/>
+ 
+    <path id="tests.classpath">
+        <pathelement location="${xerces.jar}"/>
+        <pathelement location="${protege.jar}"/>
+        <pathelement location="${dmap.jar}"/>
+        <pathelement location="${build}"/>
+        
+    </path>
+
+    <target name="run-dmap-test">
+        <java classname="edu.uchsc.ccp.testing.TestMain"
+              fork="true">
+            <classpath refid="tests.classpath"/>
+            <sysproperty key="org.xml.sax.driver" value="org.apache.xerces.parsers.SAXParser"/>
+            <arg value="${dmap-test-suite}"/>   
+        </java>
+    </target>
+
+    <target name="run-all-dmap-test">
+        <java classname="edu.uchsc.ccp.testing.TestMain"
+              fork="true">
+            <classpath refid="tests.classpath"/>
+            <sysproperty key="org.xml.sax.driver" value="org.apache.xerces.parsers.SAXParser"/>
+            <arg value="test/projects/newspaper/optional.xml"/>
+            <arg value="test/projects/newspaper/optional-npe-bug.xml"/> 
+            <arg value="test/projects/newspaper/kleene-star.xml"/> 
+        </java>
+    </target>
+
+    
+    <target name="build-love-hate-console">
+        <javac srcdir="${src}"
+             destdir="${build}"
+             debug="true"
+             deprecation="on">
+      		<include name="edu/uchsc/ccp/dmap/example/LoveHateConsole.java"/>
+            <classpath refid="tests.classpath"/>
+      	</javac>
+    </target>
+
+    
+        <target name="run-simple-batch-test" depends="build">
+        <java classname="edu.uchsc.ccp.dmap.example.SimpleBatchParserTest" 
+              fork="true" 
+              maxmemory="512m">
+<!--              dir="/data/lib/Protege/Protege_3.1">  -->
+            <classpath refid="tests.classpath"/>
+            <arg value="${src}/../test/projects/people-loving-people/people-loving-people.pprj"/>       
+            <arg value="${src}/../test/projects/people-loving-people/slot-inheritance-bug.patterns"/>   
+            <arg value="${src}/../test/projects/people-loving-people/slot-inheritance-bug.sentences"/>  
+            <!--<arg value="${src}/protege-projects/transport/transport.pprj"/>         -->
+<!--            <arg value="${src}/protege-projects/transport/transport.patterns"/>         -->
+<!--            <arg value="${src}/protege-projects/transport/transport.generifs"/>         -->
+
+<!--            <arg value="/data/lib/Protege/Protege_3.1/examples/newspaper/newspaper.pprj"/>  -->
+<!--            <arg value="/data/lib/Protege/Protege_3.1/examples/newspaper/newspaper.patterns"/>  -->
+<!--            <arg value="/data/lib/Protege/Protege_3.1/examples/newspaper/newspaper.sentences"/> -->
+
+        </java>
+        </target>
+
+    <target name="prepare" 
+            description="Creates the build directory" >
+        <echo message="Creating the required directories...." />
+        <mkdir dir="${build}" />
+    </target>
+
+    <target name="clean" 
+            description="Removes the build directory">
+        <delete dir="${build}" />
+    </target>
+
+   <target name="compile" depends="prepare"
+      		description="Compiles the Java source code">
+      	<echo message="Compiling the source code...."/>
+      	<javac srcdir="${src}"
+             destdir="${build}"
+             debug="true"
+             deprecation="on">
+      		<include name="edu/uchsc/ccp/dmap/example/SimpleBatchParserTest.java"/>
+            <classpath refid="tests.classpath"/>
+      	</javac>
+ 	</target>
+
+     <target name="build" 
+            depends="clean, compile"
+            description="Executes the targets needed to build the service.">
+    </target>
+
+   
+        
+
+    <target name="create-download-file">
+        <mkdir dir="${download-dir}/dmap-alpha"/>
+        <copy todir="${download-dir}/dmap-alpha/ant">
+           <fileset dir="ant"/>
+       </copy>
+        <copy todir="${download-dir}/dmap-alpha/src">
+           <fileset dir="src"/>
+       </copy>
+        <copy todir="${download-dir}/dmap-alpha/docs">
+           <fileset dir="docs"/>
+       </copy>
+       <copy todir="${download-dir}/dmap-alpha/dist">
+           <fileset dir="dist"/>
+       </copy>
+        <zip destfile="${download-dir}/dmap.zip"
+             basedir="${download-dir}">
+         </zip>
+    </target>
+            
+    
+</project>

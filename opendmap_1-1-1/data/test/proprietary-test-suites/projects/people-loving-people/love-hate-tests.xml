@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE test-suite>
+
+<test-suite name="Love-Hate-Tests">
+		
+	<test-context>edu.uchsc.ccp.dmap.example.LoveHateTester</test-context>
+	<test-type name="test">edu.uchsc.ccp.dmap.example.LoveHateTester</test-type>
+
+	<protege-project>test/projects/people-loving-people/people-loving-people.pprj</protege-project>
+	<pattern-file>test/projects/people-loving-people/love-hate-query.patterns</pattern-file>
+
+	<test name="test-1">
+		<input>Does John love Mary</input>
+		<output>Yes, John loves Mary.</output>
+	</test>
+
+	<test name="test-2">
+		<input>Does anyone love Mary</input>
+		<output>John loves Mary.</output>
+	</test>
+	
+	<test name="test-3">
+		<input>Who loves Mary</input>
+		<output>John loves Mary.</output>
+	</test>
+
+	<test name="test-4">
+		<input>Who does John love</input>
+		<output>John loves Mary.</output>
+	</test>
+
+	<test name="test-5">
+		<input>John loves Mary</input>
+		<output>Yes, I knew that John loves Mary.</output>
+	</test>
+
+	<test name="test-6">
+		<input>John loves Charles</input>
+		<output>I didn't know that.</output>
+	</test>
+	
+	<test name="test-7">
+		<input>Who loves somebody</input>
+		<output>Mary loves Pat.</output>
+		<output>Pat loves John.</output>
+		<output>John loves Mary.</output>
+	</test>
+
+	<test name="test-8">
+		<input>Who loves Pat</input>
+		<output>Mary loves Pat.</output>
+	</test>
+
+	<test name="test-9">
+		<input>Does Pat love anyone</input>
+		<output>Pat loves John.</output>
+	</test>
+
+	<test name="test-10">
+		<input>Does Pat love John</input>
+		<output>Yes, Pat loves John.</output>
+	</test>
+
+	<test name="test-11">
+		<input>Does Charles love John</input>
+		<output>Charlie is not known to love John.</output>
+	</test>
+
+	<test name="test-12">
+		<input>Does Charlie love anybody</input>
+		<output>Charlie is not known to love anyone.</output>
+	</test>
+
+	<test name="test-13">
+		<input>Does anybody love Charlie</input>
+		<output>Nobody is known to love Charlie.</output>
+	</test>
+
+	<test name="test-14">
+		<input>Does Charles hate anyone</input>
+		<output>Charlie is not known to hate anyone.</output>
+	</test>
+
+	<test name="test-15">
+		<input>Does someone hate Charles</input>
+		<output>Nobody is known to hate Charlie.</output>
+	</test>
+
+	<test name="test-16">
+		<input>Who hates Pat</input>
+		<output>John hates Pat.</output>
+	</test>
+
+	<test name="test-17">
+		<input>Who does Pat hate</input>
+		<output>Pat hates Mary.</output>
+	</test>
+
+	<test name="test-18">
+		<input>Does Mary hate anyone</input>
+		<output>Mary hates John.</output>
+	</test>
+
+	<test name="test-19">
+		<input>Who hates somebody</input>
+		<output>John hates Pat.</output>
+		<output>Pat hates Mary.</output>
+		<output>Mary hates John.</output>
+	</test>
+
+	<test name="test-20">
+		<input>Who hates Chris</input>
+		<output>Nobody is known to hate Chris.</output>
+	</test>
+
+	<test name="test-21">
+		<input>Does Chris hate anyone</input>
+		<output>Chris is not known to hate anyone.</output>
+	</test>
+
+	<test name="test-22">
+		<input>Chris hates John</input>
+		<output>I didn't know that.</output>
+	</test>
+
+</test-suite>

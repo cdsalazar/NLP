@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE test-suite>
+
+<!-- Slot instance bug from Philip Ogren         -->
+
+<!-- R. James Firby                              -->
+<!-- July 2005                                   -->
+
+<!-- 
+	The detailed syntax for writing tests is likely to
+	change as DMAP evolves.  In particular, the output
+	format for printed references will have to change.
+-->
+		
+<test-suite name="NullPointerException-Tests">
+
+	<test-context>edu.uchsc.ccp.dmap.test.ParserTestContext</test-context>
+        <test-type name="test">edu.uchsc.ccp.dmap.test.ParserTest</test-type>
+
+	<protege-project>test/projects/transport/protein-transport.pprj</protege-project>
+	<pattern-file>test/projects/transport/npe-bug.patterns</pattern-file>
+	<test name="Test-1" includeText="false" includeSubsumed="true">
+               <input>Src</input>
+               <output>{protein} from 0 to 0</output>
+        </test>
+	<test name="Test-2" includeText="false" includeSubsumed="true">
+               <input>Src relocated</input>
+               <output>{protein} from 0 to 0</output>
+        </test>
+	<test name="Test-3" includeText="false" includeSubsumed="true">
+               <input>Src relocated the</input>
+               <output>{protein} from 0 to 0</output>
+        </test>
+	<test name="Test-4" includeText="false" includeSubsumed="true">
+               <input>Src relocated the KDEL receptor</input>
+               <output>{protein} from 0 to 0</output>
+               <output>{protein} from 3 to 4</output>
+               <output>{transport [transporters]={protein} [transported_entities]={protein}</output> 
+       </test>
+</test-suite>

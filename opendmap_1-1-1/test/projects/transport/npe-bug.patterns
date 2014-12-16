@@ -1,0 +1,3 @@
+{protein} := Src ;
+{protein} := KDEL receptor;
+{transport}  := [transporters] relocated the [transported_entities] ; 

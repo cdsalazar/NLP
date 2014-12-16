@@ -1,0 +1,219 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<!--
+
+
+Generated from TeX source by tex2page, v 4p4k5
+(running on MzScheme 202, windows), 
+(c) Dorai Sitaram, 
+http://www.ccs.neu.edu/~dorai/tex2page/tex2page-doc.html
+
+
+-->
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<title>
+Testing Manual
+</title>
+<link rel="stylesheet" type="text/css" href="uchsc.css" title=default>
+<meta name=robots content="noindex,follow">
+</head>
+<body>
+<div class=navigation>[Go to <span><a href="testing-manual.html">first</a>, <a href="testing-manual-Z-H-3.html">previous</a></span><span>, <a href="testing-manual-Z-H-5.html">next</a></span> page<span>; &nbsp;&nbsp;</span><span><a href="testing-manual.html#%_toc_start">contents</a></span><span><span>; &nbsp;&nbsp;</span><a href="testing-manual-Z-H-5.html#%_index_start">index</a></span>]</div>
+<p></p>
+<a name="%_sec_5"></a>
+<h1><a href="testing-manual.html#%_toc_%_sec_5">5&nbsp;&nbsp;Creating a Custom XML Test Suite File</a></h1>
+<p>Test suites are typically written as XML files rather than as Java
+classes directly.  This makes it much simpler to add more tests
+and to find tests that fail.</p>
+<p>
+The general format for an XML test suite file is:
+</p>
+<pre class=verbatim> &lt;test-suite name=&quot;<i>name</i>&quot;&gt;
+  &lt;test-context&gt;<i>Java-Test-Context-Class-Name</i>&lt;/test-context&gt;
+  &lt;test-type name=&quot;<i>mytest</i>&quot;&gt;<i>Java-Test-Class-Name</i>&lt;/test-type&gt;
+  <i>...context values...</i>
+  <i>...test forms...</i>
+ &lt;/test-suite&gt;
+</pre>
+<p></p>
+<p>
+The overall test file format holds one &lt;test-suite&gt; declaration.
+This declaration must include a name that distinguishes it from
+other test suites. If the <tt>TestMain</tt><a name="%_idx_164"></a> class is used to load
+and run test suites, it will attempt to merge together test suites
+with the same name.  This allows a test suite to be split across
+multiple files if desired.</p>
+<p>
+The test suite may also include a <code class=verbatim>&lt;test-context&gt;</code> element
+that declares the class of object that should be used as the
+context for the tests in this suite.</p>
+<p>
+If the test suite includes any tests, it must also include one or
+more <code class=verbatim>&lt;test-type&gt;</code> definitions to map the test elements to
+Java <tt>Test</tt><a name="%_idx_166"></a> class names.</p>
+<p>
+Finally, the test suite may include context value definitions and
+the tests themselves.</p>
+<p>
+</p>
+<a name="%_sec_5.1"></a>
+<h2><a href="testing-manual.html#%_toc_%_sec_5.1">5.1&nbsp;&nbsp;Specifying the Test Context</a></h2>
+<p>The test context for a test suite is declared using the
+<code class=verbatim>&lt;test-context&gt;</code> XML element.  For example, the declaration
+needed in O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP test suites is:
+</p>
+<pre class=verbatim> &lt;test-context&gt;edu.uchsc.ccp.dmap.test.ParserTestContext&lt;/test-context&gt;
+</pre>
+<p>
+This tells the test suite that before it can run any tests, it
+must create an instance of the Java class
+<tt>ParserTestContext</tt><a name="%_idx_168"></a>.  This context object will then be
+passed to each test as it is run.</p>
+<p>
+Different test suites can, of course, use different context
+objects.  However, it is important that the test classes used by
+the suite understand the type of context being used.</p>
+<p>
+</p>
+<a name="%_sec_5.2"></a>
+<h2><a href="testing-manual.html#%_toc_%_sec_5.2">5.2&nbsp;&nbsp;Specifying the Test Types</a></h2>
+<p>The XML test forms that are to be included in the test suite file
+must be declared using the element:
+</p>
+<pre class=verbatim> &lt;test-type name=&quot;<i>mytest</i>&quot;&gt;<i>Java-Test-Class-Name</i>&lt;/test-type&gt;
+</pre>
+<p>
+This tells the test suite that XML <code class=verbatim>&lt;mytest&gt;</code> forms will be
+used to declare tests within this file and that <code class=verbatim>&lt;mytest&gt;</code>
+tests should be instantiated using the Java class named
+<i>Java-Test-Class-Name</i>.</p>
+<p>
+For example, in O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP test files the following declarations are
+often used:
+</p>
+<pre class=verbatim> &lt;test-type name=&quot;test&quot;&gt;edu.uchsc.ccp.dmap.test.ParserTest&lt;/test-type&gt;
+ &lt;test-type name=&quot;pattern&quot;&gt;edu.uchsc.ccp.dmap.test.PatternTest&lt;/test-type&gt;
+</pre>
+<p>
+The first tells the enclosing test suite that tests declared using
+<code class=verbatim>&lt;test&gt;</code> should be instantiated as  <tt>ParserTest</tt><a name="%_idx_170"></a>
+objects and tests declared using <code class=verbatim>&lt;pattern&gt;</code> should be
+instantiated as <tt>PatternTest</tt><a name="%_idx_172"></a> objects.</p>
+<p>
+For example, since <tt>ParserTest</tt><a name="%_idx_174"></a> and <tt>PatternTest</tt><a name="%_idx_176"></a>
+extend the <tt>InputOutputTest</tt><a name="%_idx_178"></a> class, a test suite that
+includes both of the declarations above might include tests like:
+</p>
+<pre class=verbatim> &lt;test name=&quot;Test-1&quot; includeText=&quot;true&quot; includeSubsumed=&quot;true&quot;&gt;
+   &lt;input&gt;John loves Mary&lt;/input&gt;
+   &lt;output&gt;&quot;John&quot; from 0 to 0&lt;/output&gt;
+   &lt;output&gt;John from 0 to 0&lt;/output&gt;
+   &lt;output&gt;&quot;loves&quot; from 1 to 1&lt;/output&gt;
+   &lt;output&gt;&quot;Mary&quot; from 2 to 2&lt;/output&gt;
+   &lt;output&gt;Mary from 2 to 2&lt;/output&gt;
+   &lt;output&gt;Loves [lover]=John [beloved]=Mary from 0 to 2&lt;/output&gt;
+ &lt;/test&gt;
+
+ &lt;pattern name=&quot;Test-5&quot;&gt;
+   &lt;input&gt;(Kelly Mary)+&lt;/input&gt;
+   &lt;output&gt;&quot;Kelly&quot; . (&quot;Kelly&quot; &quot;Mary&quot;)&lt;/output&gt;
+   &lt;output&gt;&quot;Kelly&quot; . ((&quot;Kelly&quot; &quot;Mary&quot;) (&quot;Kelly&quot; &quot;Mary&quot;)+)&lt;/output&gt;
+ &lt;/pattern&gt;
+</pre>
+<p></p>
+<p>
+Any number of <code class=verbatim>&lt;test-type&gt;</code> forms can be included in a test
+suite to declare that different sorts of tests will be defined.
+The same Java class can be used in multiple <code class=verbatim>&lt;test-type&gt;</code>
+forms if the same types of tests are defined using different XML
+elements.</p>
+<p>
+If no <code class=verbatim>&lt;test-type&gt;</code> elements are included in the test suite,
+then no tests will be defined by the elements it contains.  All
+internal XML elements will default to context value definitions.</p>
+<p>
+</p>
+<a name="%_sec_5.3"></a>
+<h2><a href="testing-manual.html#%_toc_%_sec_5.3">5.3&nbsp;&nbsp;Declaring Context Values</a></h2>
+<p>Any top-level XML elements found in a test suite that have not
+been declared as test types, are assumed to be declaring values
+that will be used by the context object.  Everything within the
+element is turned into a string and added to the test suite as a
+value with the name of the element.</p>
+<p>
+For example, in O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP test suites, the following values often
+appear:
+</p>
+<pre class=verbatim> &lt;protege-project&gt;protege-project-file-name&lt;/protege-project&gt;
+ &lt;pattern-file&gt;pattern-file-name&lt;/pattern-file&gt;
+</pre>
+<p>
+These specify that that the included file names should be made
+available by the test suite as values named
+&#8220;<tt>protege-project</tt>&#8221; and &#8220;<tt>pattern-file</tt>&#8221;.  If
+more than one element of the same type is included in the suite,
+all of the values with that name will be represented as a
+collection.</p>
+<p>
+As mentioned above, the <tt>getValue</tt><a name="%_idx_180"></a> and
+<tt>getValues</tt><a name="%_idx_182"></a> methods can be used in the
+<tt>initialize</tt><a name="%_idx_184"></a> method of the context object to
+get access to these values.</p>
+<p>
+Any number of context values with any number of names can be
+included in an XML test suite.</p>
+<p>
+<b>Note:</b> once a specific test context has been decided upon
+for a particular type of test suite, a DTD for that particular
+type of suite can be defined and used with an editor to help flag
+inappropriate context value definitions.</p>
+<p>
+</p>
+<a name="%_sec_5.4"></a>
+<h2><a href="testing-manual.html#%_toc_%_sec_5.4">5.4&nbsp;&nbsp;Writing the Tests</a></h2>
+<p>Tests within the testing framework all have the basic form:
+</p>
+<pre class=verbatim> &lt;mytest name=&quot;<i>name</i>&quot; [fail=&quot;<i>true</i>&quot;]&gt;
+   ...
+ &lt;/mytest&gt;
+</pre>
+<p>
+Where <tt>mytest</tt> is defined using a
+<code class=verbatim>&lt;test-type name=&quot;mytest&quot;&gt;</code> element earlier in the test suite file.</p>
+<p>
+All tests must be given a <tt>name</tt> attribute and may be
+declared as tests that are supposed to fail using the
+<tt>fail</tt> attribute.</p>
+<p>
+The internal elements that should appear inside a test depend on
+the internals of the <tt>Test</tt><a name="%_idx_186"></a> class paired with the test type
+in the <code class=verbatim>&lt;test-type&gt;</code> element that defines it.</p>
+<p>
+Additional attributes may also be used by some types of test
+class.</p>
+<p>
+Examples of test classes and test suite files can be found in:
+</p>
+<pre class=verbatim> edu.uchsc.ccp.dmap.test - Package holding OpenDMAP test classes
+ test                    - Directory holding OpenDMAP test suites
+</pre>
+<p>
+and
+</p>
+<pre class=verbatim> edu.uchsc.ccp.example.LoveHateTester
+ test/projects/people-loving-people/love-hate-test.xml
+</pre>
+<p>
+
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<div class=navigation>[Go to <span><a href="testing-manual.html">first</a>, <a href="testing-manual-Z-H-3.html">previous</a></span><span>, <a href="testing-manual-Z-H-5.html">next</a></span> page<span>; &nbsp;&nbsp;</span><span><a href="testing-manual.html#%_toc_start">contents</a></span><span><span>; &nbsp;&nbsp;</span><a href="testing-manual-Z-H-5.html#%_index_start">index</a></span>]</div>
+<p></p>
+</body>
+</html>

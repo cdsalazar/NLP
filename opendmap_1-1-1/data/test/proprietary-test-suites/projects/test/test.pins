@@ -1,0 +1,54 @@
+; Sat May 06 17:20:01 CDT 2006
+; 
+;+ (version "3.1")
+;+ (build "Build 210")
+
+([Blender] of  %3ADMAP-CONCEPT
+
+	(%3APATTERN "[color]? (blender | blenders)"))
+
+([Blue] of  Color
+)
+
+([Green] of  Color
+)
+
+([KB_957725_Instance_2] of  %3APAL-CONSTRAINT
+
+	(%3APAL-NAME "TV-1"))
+
+([KB_957725_Instance_3] of  %3APAL-CONSTRAINT
+
+	(%3APAL-NAME "TV-2"))
+
+([KB_957725_Instance_6] of  %3APAL-CONSTRAINT
+
+	(%3APAL-NAME "Red"))
+
+([KB_957725_Instance_7] of  %3APAL-CONSTRAINT
+
+	(%3APAL-NAME "Blue"))
+
+([KB_957725_Instance_8] of  %3APAL-CONSTRAINT
+
+	(%3APAL-NAME "Green"))
+
+([Object] of  %3ADMAP-CONCEPT
+)
+
+([Radio] of  %3ADMAP-CONCEPT
+)
+
+([Red] of  Color
+)
+
+([TV] of  %3ADMAP-CONCEPT
+)
+
+([TV-1] of  TV
+
+	(color [Green]))
+
+([TV-2] of  TV
+
+	(color [Red]))

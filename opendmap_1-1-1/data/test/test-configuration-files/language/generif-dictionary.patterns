@@ -1,0 +1,73 @@
+// Generif patterns
+
+// Words patterns
+
+{w-is} := is, are, was, were;
+
+//{w-transport} := relocate, relocated, relocates, relocation, relocating;
+{w-transport} := export, exported, exports, exportation, exporting, relocated;
+
+{w-transport-p} := exported;
+
+//{w-transport-two-way} := move, moved, moves, moving, movement;
+//{w-transport-two-way} := shuttle, shuttled, shuttles, shuttling;
+//{w-transport-two-way} := transport, transported, transports, transporting, transportation;
+//{w-transport-two-way} := carry, carried, carries, carrying;
+
+{w-transport-two-way} := translocate, translocated, translocates, translocating, translocation;
+
+{w-transport-two-way-p} := translocated;
+
+//{w-anchor} := anchor, anchored, anchors, anchoring, anchoring of;
+//{w-anchor} := hold, held, holds, holding, holding of;
+//{w-anchor} := attach, attached, attaches, attaching, attachment of;
+
+//{w-activate} := activate, activated, activates, activating, activation of;
+
+// Value patterns
+
+//{i-role-inhibit} := attenuate, attenuates, attenuated, attenuating, attenuation of;
+//{i-role-inhibit} := inhibit, inhibits, inhibited, inhibiting, inhibition of;
+//{i-role-inhibit} := suppress, suppresses, suppressed, suppressing, suppression of;
+
+//{i-role-stimulate} := stimulate, stimulates, stimulated, stimulating, stimulation of;
+//{i-role-stimulate} := facilitate, facilitates, facilitated, facilitating, facilitation of;
+//{i-role-stimulate} := encourage, encourages, encouraged, encouraging, encouragment of;
+//{i-role-stimulate} := catalyze, catalyzes, catalyzed, catalyzing, catalyzation of;
+
+//{i-role-initiate} := initiate, initiates, initiated, initiating, initiation of;
+//{i-role-initiate} := start, starts, started, starting;
+
+//{i-role-terminate} := terminate, terminates, terminated, terminating, termination of;
+//{i-role-terminate} := stop, stops, stopped, stopping;
+//{i-role-terminate} := shut down, shuts down, shutting down;
+
+//{i-role-enable} := enable, enables, enabled, enabling, enablement of;
+//{i-role-enable} := allow, allows, allowed, allowing;
+
+//{i-role-disable} := disable, disables, disabled, disabling, disablement of;
+//{i-role-disable} := prevent, prevents, prevented, preventing, prevention of;
+
+//{i-role-mediate} := mediate, mediates, mediated, mediating, mediation of;
+//{i-role-mediate} := help, helps, helped, helping;
+
+//{i-role-participate} := participate in, participates in, participated in, participating in, participation in;
+//{i-role-participate} := (play | plays | played | playing | has | had) a role in;
+
+//{i-role-regulate} := regulate, regulates, regulated, regulating, regulation of;
+
+
+//{i-belief-true} := does, can;
+
+//{i-belief-false} := does not, is unable to, cannot;
+
+//{i-belief-maybe} := could, might, seems to, may, may be involved in;
+
+
+//{i-frequency-always} := continuously, continually, always;
+
+//{i-frequency-never} := never;
+
+//{i-frequency-sometimes} := sometimes, often, seldom;
+
+

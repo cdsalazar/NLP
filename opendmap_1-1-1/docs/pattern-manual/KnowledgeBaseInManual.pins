@@ -1,0 +1,148 @@
+; Tue Aug 14 09:46:21 MDT 2007
+; 
+;+ (version "3.2.1")
+;+ (build "Build 365")
+
+([generif_Instance_1] of  %3APAL-CONSTRAINT
+)
+
+([i-b-cell] of  cell
+)
+
+([i-bclxl] of  molecule
+)
+
+([i-c2c12-cell] of  cell
+)
+
+([i-calmodulin] of  molecule
+)
+
+([i-car] of  molecule
+)
+
+([i-cdk2-cyclin-a] of  molecule
+)
+
+([i-cdk2-cyclin-e] of  molecule
+)
+
+([i-clathrin] of  molecule
+)
+
+([i-coligin] of  molecule
+)
+
+([i-crel] of  molecule
+)
+
+([i-crm1] of  molecule
+)
+
+([i-cytochrome-c] of  molecule
+)
+
+([i-daxx] of  molecule
+)
+
+([i-deaf1] of  molecule
+)
+
+([i-dnup214] of  molecule
+)
+
+([i-dnup88] of  molecule
+)
+
+([i-exportin5] of  molecule
+)
+
+([i-gs15] of  molecule
+)
+
+([i-gs28] of  molecule
+)
+
+([i-hela-cell] of  cell
+)
+
+([i-hif-1alpha] of  molecule
+)
+
+([i-imp1] of  molecule
+)
+
+([i-jaz] of  molecule
+)
+
+([i-kdel] of  molecule
+)
+
+([i-lim-kinase] of  molecule
+)
+
+([i-limitin] of  molecule
+)
+
+([i-mcl1] of  molecule
+)
+
+([i-mkl1] of  molecule
+)
+
+([i-mnk] of  molecule
+)
+
+([i-mt1-mmp] of  molecule
+)
+
+([i-nes] of  molecule
+)
+
+([i-nrf-2alpha] of  molecule
+)
+
+([i-nrf-2beta] of  molecule
+)
+
+([i-nuclear-export] of  protein+transport
+)
+
+([i-nuclear-import] of  protein+transport
+)
+
+([i-p57kip2] of  molecule
+)
+
+([i-pag608] of  molecule
+)
+
+([i-pkcdelta] of  molecule
+)
+
+([i-pxr] of  molecule
+)
+
+([i-rela] of  molecule
+)
+
+([i-src] of  molecule
+)
+
+([i-syntaxin4] of  molecule
+)
+
+([i-syntaxin5] of  molecule
+)
+
+([i-tfii-i] of  molecule
+)
+
+([i-tyk2] of  molecule
+)
+
+([i-ykt6] of  molecule
+)
+
+([i-yy1-factor] of  molecule
+)

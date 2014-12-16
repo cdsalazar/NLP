@@ -1,0 +1,35 @@
+
+build=build
+
+src=src
+
+dist=dist
+
+dmap.jar=${dist}/dmap.jar
+
+lib=lib
+xerces.jar=${lib}/xercesImpl.jar
+
+javacc-home=c:/Program Files/javacc-3.2
+javacc.jar=${javacc-home}/bin/lib/javacc.jar
+
+javacc=${javacc-home}/bin/javacc
+#jjtree=${javacc-home}/bin/jjtree
+
+#Project documentation directory
+docs=docs
+
+data=data
+
+protege-home=c:/Program Files/Protege_3.1_beta
+
+protege.jar=${protege-home}/protege.jar
+protegex.jar=${protege-home}/plugins/edu.stanford.smi.protegex.standard_extensions/standard_extensions.jar
+
+protege-src=/data/lib/Protege/src/Protege 3.0/src
+
+JAVA_HOME=C:/Program Files/Java/jdk1.5.0_04/lib
+
+src.includes = src/
+jars.compile.order = 
+bin.includes = src/

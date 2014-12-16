@@ -1,0 +1,8 @@
+
+// These patterns extend the ptrans DB to cover
+//  cellular components needs for the sample generifs
+
+{c-nucleus} := nucleus;
+{c-endoplasmic-reticulum} := endoplasmic reticulum;
+{c-golgi-apparatus} := golgi apparatus;
+{c-mitochondrion} := mitochondria;

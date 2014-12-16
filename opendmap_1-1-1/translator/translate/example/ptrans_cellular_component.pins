@@ -1,0 +1,196 @@
+; Thu Dec 01 15:01:49 MST 2005
+; 
+;+ (version "3.0")
+;+ (build "Build 141")
+
+([c-conditional] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"if"
+		"If"
+		"once"
+		"Once"
+		"As soon as"
+		"as soon as"
+		"Find"
+		"find"))
+
+([c-if] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"if"
+		"If"
+		"once x is"
+		"Once x is"
+		"As soon as"
+		"as soon as"
+		"Find"
+		"find"))
+
+([c-loop] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"For"
+		"for"
+		"While"
+		"while"
+		"Loop through"
+		"loop through"
+		"Find"
+		"find"
+		"Do x while y"
+		"do x while y"))
+
+([c-for] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"For"
+		"for"
+		"Loop through"
+		"loop through"
+		"Find variable x in"
+		"find variable x in"))
+
+([c-while] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"While"
+		"while"))
+
+([c-do] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"Do x while y"
+		"do x while y"))
+
+([c-math-operation] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"add"
+		"Add"
+		"increment"
+		"Increment"
+		"increase"
+		"Increase"
+		"subract"
+		"Subtract"
+		"decrease"
+		"Decrease"
+		"decrement"
+		"Decrement"
+		"multiply"
+		"Multiply"
+		"divide"
+		"Divide"
+		"less than"
+		"Less than"
+		"lower than"
+		"Lower than"
+		"smaller than"
+		"Smaller than"
+		"greater than"
+		"Greater than"
+		"higher than"
+		"Higher than"
+		"larger than"
+		"Larger than"
+		"bigger than"
+		"Bigger than"
+		"less than or equal"
+		"Less than or equal"
+		"lower than or equal"
+		"Lower than or equal"
+		"smaller than or equal"
+		"Smaller than or equal"
+		"greater than or equal"
+		"Greater than or equal"
+		"higher than or equal"
+		"Higher than or equal"
+		"larger than or equal"
+		"Larger than or equal"
+		"bigger than or equal"
+		"Bigger than or equal"
+		"modulo"
+		"Modulo"))
+
+([c-add] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"add"
+		"Add"
+		"increment"
+		"Increment"
+		"increase"
+		"Increase"))
+
+([c-subtract] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"subract"
+		"Subtract"
+		"decrease"
+		"Decrease"
+		"decrement"
+		"Decrement"))
+
+([c-multiply] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"multiply"
+		"Multiply"))
+
+([c-divide] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"divide"
+		"Divide"))
+
+([c-less-than] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"less than"
+		"Less than"
+		"lower than"
+		"Lower than"
+		"smaller than"
+		"Smaller than"))
+
+([c-greater-than] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"greater than"
+		"Greater than"
+		"higher than"
+		"Higher than"
+		"larger than"
+		"Larger than"
+		"bigger than"
+		"Bigger than"))
+
+([c-greater-than-equal] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"greater than or equal"
+		"Greater than or equal"
+		"higher than or equal"
+		"Higher than or equal"
+		"larger than or equal"
+		"Larger than or equal"
+		"bigger than or equal"
+		"Bigger than or equal"))
+
+([c-less-than-equal] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"less than or equal"
+		"Less than or equal"
+		"lower than or equal"
+		"Lower than or equal"
+		"smaller than or equal"
+		"Smaller than or equal"))
+
+([c-modulo] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"modulo"
+		"Modulo"))

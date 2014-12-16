@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<configuration>
+	
+	<RetainCase>false</RetainCase>
+	
+	<ProtegeProject name="language">
+		<ProjectFile>language/generif.pprj</ProjectFile>
+		<PatternFile>language/generif-entity.patterns</PatternFile>
+		<PatternFile>language/generif-dictionary.patterns</PatternFile>
+		<PatternFile>language/generif-process.patterns</PatternFile>
+		<!-- PatternFile>generif/language/generif.patterns</PatternFile -->
+	</ProtegeProject>
+	
+	<ProtegeProject name="translate">
+		<ProjectFile>translate/translate.pprj</ProjectFile>
+		<PatternSlot>patterns</PatternSlot>
+		<PatternFile>translate/translate.patterns</PatternFile>
+	</ProtegeProject>
+	
+	<Association type="isa">
+		<Parent project="language" frame="c-cell-part"/>
+		<Child project="translate" frame="c-translate"/>
+	</Association>
+
+
+
+</configuration>

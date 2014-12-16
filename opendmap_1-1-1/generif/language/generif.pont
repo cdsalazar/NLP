@@ -1,0 +1,455 @@
+; Fri Oct 31 12:49:53 MST 2014
+; 
+;+ (version "3.4.1")
+;+ (build "Build 537")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot verb
+		(type SYMBOL)
+;+		(allowed-parents w-verb-active w-verb-passive)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot role
+		(type INSTANCE)
+;+		(allowed-classes c-process-role-type)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot object
+		(type INSTANCE)
+;+		(allowed-classes c-object)
+		(create-accessor read-write))
+	(single-slot belief
+		(type INSTANCE)
+;+		(allowed-classes c-belief-type)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot patient
+		(type INSTANCE)
+;+		(allowed-classes c-molecule)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot destination
+		(type INSTANCE)
+;+		(allowed-classes c-cell-part)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot synonym
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot component
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot agent
+		(type INSTANCE)
+;+		(allowed-classes c-molecule)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot locale
+		(type INSTANCE)
+;+		(allowed-classes c-locale)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot function
+		(type INSTANCE)
+;+		(allowed-classes c-biofunction)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot process
+		(type INSTANCE)
+;+		(allowed-classes c-bioprocess)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot cell
+		(type INSTANCE)
+;+		(allowed-classes c-cell-type)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot protein
+		(type INSTANCE)
+;+		(allowed-classes c-protein)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot cause
+		(type INSTANCE)
+;+		(allowed-classes c-biofunction)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source
+		(type INSTANCE)
+;+		(allowed-classes c-cell-part)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot english-plural
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot english-singular
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot location
+		(type INSTANCE)
+;+		(allowed-classes c-cell-type)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot effect
+		(type INSTANCE)
+;+		(allowed-classes c-biofunction)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot frequency
+		(type INSTANCE)
+;+		(allowed-classes c-frequency-type)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-object
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot english-plural
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot english-singular
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-molecule
+	(is-a c-object)
+	(role concrete))
+
+(defclass c-protein
+	(is-a c-molecule)
+	(role concrete))
+
+(defclass c-protein-receptor
+	(is-a c-molecule)
+	(role concrete)
+	(single-slot protein
+		(type INSTANCE)
+;+		(allowed-classes c-protein)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-cell-type
+	(is-a c-object)
+	(role concrete))
+
+(defclass c-cell-part
+	(is-a c-object)
+	(role concrete))
+
+(defclass w-dictionary
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass w-is
+	(is-a w-dictionary)
+	(role concrete))
+
+(defclass w-anchor
+	(is-a w-dictionary)
+	(role concrete))
+
+(defclass w-activate
+	(is-a w-dictionary)
+	(role concrete))
+
+(defclass w-verb-active
+	(is-a w-dictionary)
+	(role concrete))
+
+(defclass w-transport
+	(is-a w-verb-active)
+	(role concrete))
+
+(defclass w-transport-two-way
+	(is-a w-transport)
+	(role concrete))
+
+(defclass w-verb-passive
+	(is-a w-dictionary)
+	(role concrete))
+
+(defclass w-transport-p
+	(is-a w-verb-passive)
+	(role concrete))
+
+(defclass w-transport-two-way-p
+	(is-a w-transport-p)
+	(role concrete))
+
+(defclass c-bioprocess
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-transport
+	(is-a c-bioprocess)
+	(role concrete)
+	(single-slot patient
+		(type INSTANCE)
+;+		(allowed-classes c-molecule)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot destination
+		(type INSTANCE)
+;+		(allowed-classes c-cell-part)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot verb
+		(type SYMBOL)
+;+		(allowed-parents w-verb-active w-verb-passive)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source
+		(type INSTANCE)
+;+		(allowed-classes c-cell-part)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot locale
+		(type INSTANCE)
+;+		(allowed-classes c-locale)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot frequency
+		(type INSTANCE)
+;+		(allowed-classes c-frequency-type)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-transport-two-way
+	(is-a c-transport)
+	(role concrete))
+
+(defclass c-activate
+	(is-a c-bioprocess)
+	(role concrete)
+	(single-slot patient
+		(type INSTANCE)
+;+		(allowed-classes c-molecule)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-grow
+	(is-a c-bioprocess)
+	(role concrete)
+	(single-slot cell
+		(type INSTANCE)
+;+		(allowed-classes c-cell-type)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-anchor
+	(is-a c-bioprocess)
+	(role concrete)
+	(single-slot patient
+		(type INSTANCE)
+;+		(allowed-classes c-molecule)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot location
+		(type INSTANCE)
+;+		(allowed-classes c-cell-type)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-discrete-value
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot english-plural
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot english-singular
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-frequency-type
+	(is-a c-discrete-value)
+	(role concrete))
+
+(defclass c-belief-type
+	(is-a c-discrete-value)
+	(role concrete))
+
+(defclass c-process-role-type
+	(is-a c-discrete-value)
+	(role concrete))
+
+(defclass c-biofunction
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-biofunction-agent
+	(is-a c-biofunction)
+	(role concrete)
+	(single-slot agent
+		(type INSTANCE)
+;+		(allowed-classes c-molecule)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot effect
+		(type INSTANCE)
+;+		(allowed-classes c-biofunction)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot cause
+		(type INSTANCE)
+;+		(allowed-classes c-biofunction)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-biofunction-role
+	(is-a c-biofunction)
+	(role concrete)
+	(single-slot agent
+		(type INSTANCE)
+;+		(allowed-classes c-molecule)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot cause
+		(type INSTANCE)
+;+		(allowed-classes c-biofunction)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-biofunction-simple
+	(is-a c-biofunction-role)
+	(role concrete)
+	(single-slot process
+		(type INSTANCE)
+;+		(allowed-classes c-bioprocess)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-locale
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot english-plural
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot english-singular
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-biobelief
+	(is-a USER)
+	(role concrete)
+	(single-slot agent
+		(type INSTANCE)
+;+		(allowed-classes c-molecule)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot belief
+		(type INSTANCE)
+;+		(allowed-classes c-belief-type)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-biobelief-part
+	(is-a c-biobelief)
+	(role concrete)
+	(single-slot component
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass c-biobelief-function
+	(is-a c-biobelief)
+	(role concrete)
+	(single-slot function
+		(type INSTANCE)
+;+		(allowed-classes c-biofunction)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass g-grammar
+	(is-a USER)
+	(role concrete))
+
+(defclass g-np
+	(is-a g-grammar)
+	(role concrete)
+	(single-slot synonym
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot object
+		(type INSTANCE)
+;+		(allowed-classes c-object)
+		(create-accessor read-write)))
+
+(defclass g-np-conjunct
+	(is-a g-np)
+	(role concrete))
+
+(defclass g-np-disjunct
+	(is-a g-np)
+	(role concrete))
+
+(defclass g-pp
+	(is-a g-grammar)
+	(role concrete)
+	(multislot object
+		(type INSTANCE)
+;+		(allowed-classes c-object)
+		(create-accessor read-write)))
+
+(defclass g-pp-patient
+	(is-a g-pp)
+	(role concrete))
+
+(defclass g-pp-source
+	(is-a g-pp)
+	(role concrete))
+
+(defclass g-pp-destination
+	(is-a g-pp)
+	(role concrete))
+
+(defclass g-pp-agent
+	(is-a g-pp)
+	(role concrete))
+
+(defclass g-pp-location
+	(is-a g-pp)
+	(role concrete))

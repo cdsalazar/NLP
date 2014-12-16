@@ -1,0 +1,224 @@
+; Thu Dec 01 15:01:49 MST 2005
+; 
+;+ (version "3.0")
+;+ (build "Build 141")
+
+([c-cell-surface] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"cell surface"
+		"cell associated"
+		"cell bound"))
+
+([c-cellular-component] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"canalicular membrane"
+		"chromatoid bodies"
+		"detergent-resistant fraction"
+		"endomembranes"
+		"focal adhesions"
+		"granulated bodies"
+		"inter-membrane space"
+		"intracellular"
+		"lipid droplets"
+		"macropinosomes"
+		"microsomes"
+		"residual bodies"
+		"ribosomes"
+		"storage granules"))
+
+([c-cytoplasm] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"cytoplasm"
+		"cytoplasmic"
+		"cytoplasmic compartment"
+		"intra-cytoplasmic compartment"
+		"nuclear-cytoplasmic"
+		"nucleo-cytoplasmic"
+		"nucleocytoplasmic"))
+
+([c-cytoplasmic-vesicle] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"cytoplasmic vesicle"
+		"AQP2-bearing vesicles"
+		"clathrin coat"
+		"clathrin-coated vesicle"
+		"endocytic vesicles"
+		"Golgi-derived vesicles"
+		"HERG-containing vesicles"
+		"phagosomes"
+		"same pit"
+		"synaptic vesicle"
+		"vesicle"
+		"vesicles"))
+
+([c-cytoskeleton] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"cytoskeleton"
+		"actin filaments"
+		"centrosome"
+		"centrosomes"
+		"microtubule"
+		"microtubules"))
+
+([c-cytosol] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"cytosol"
+		"cytosolic"))
+
+([c-early-endosome] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"early endocytic endosomes"
+		"early sorting endosomes"
+		"clathrin-derived early endosomes"))
+
+([c-endoplasmic-reticulum] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"endoplasmic reticulum"
+		"er"
+		"transitional er"))
+
+([c-endosome] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"endosome"
+		"endosomal oligosaccharide transporter"
+		"endosomal"
+		"endosomes"
+		"perinuclear recycling endosome"
+		"sorting endosome"))
+
+([c-er-golgi-intermediate-compartment] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"ER-Golgi intermediate compartment"
+		"ERGIC"
+		"endoplasmic reticulum-Golgi intermediate compartment"
+		"pre-Golgi intermediate compartment"))
+
+([c-extracellular-space] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"extracellular space"
+		"intercellular space"
+		"extracellular"
+		"extracellular enviroment"))
+
+([c-golgi-apparatus] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"golgi"
+		"golgi apparatus"
+		"golgi complex"
+		"Golgi ribbon"))
+
+([c-golgi-cis-face] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"forming face"
+		"golgi cis-face"
+		"cis-golgi"
+		"cis-golgi cisterna"))
+
+([c-golgi-trans-face] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"Golgi trans face"
+		"maturing face"
+		"trans-Golgi network"))
+
+([c-late-endosome] of  STANDARD-CLASS-WITH-PATTERNS
+)
+
+([c-lysosome] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"lysosome"
+		"lysosomal cysteine-type endopeptidase"
+		"lysosomal protein stabilization"
+		"acrosomes"
+		"lysosomal"
+		"lysosomes"
+		"phagolysosome"))
+
+([c-membrane] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "membrane"))
+
+([c-mitochondrial-inner-membrane] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"mitochondrial inner membrane"
+		"inner mitochondrial membrane"))
+
+([c-mitochondrial-membrane] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"mitochondrial membrane"
+		"mitochondrial membranes"))
+
+([c-mitochondrial-outer-membrane] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"mitochondrial outer membrane"
+		"outer mitochondrial membrane"))
+
+([c-mitochondrion] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"mitochondrion"
+		"mitochondria"
+		"mitochondria-associated material"
+		"mitochondrial"
+		"mitochondrial surface"
+		"mitochondrial aggregates"))
+
+([c-nucleus] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"nuclear"
+		"cell nuclei"
+		"cell nucleus"
+		"nuclear nucleoplasm"
+		"NPC"
+		"nuclear compartments"
+		"nuclear envelop"
+		"nuclear pore"
+		"nuclear rim"
+		"nuclear-cytoplasmic"
+		"nuclei"
+		"nucleo-cytoplasmic"
+		"nucleocytoplasmic"
+		"nucleolus"
+		"perinuclear area"
+		"perinuclear membranes"
+		"perinuclear region"
+		"supranuclear region"))
+
+([c-plasma-membrane] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"plasma membrane"
+		"bacterial inner membrane"
+		"cell membrane"
+		"cytoplasmic membrane"
+		"juxtamembrane"
+		"plasma membrane cation-transporting ATPase"
+		"plasma membrane copper transporter"
+		"plasma membrane long-chain fatty acid transporter"
+		"plasmalemma"
+		"basolateral surface"
+		"caveolae"
+		"lipid bilayer"
+		"lipid microdomains"
+		"lipid raft"
+		"lipid rafts"
+		"specialized plasma membrane caveolae"
+		"surface membrane"))

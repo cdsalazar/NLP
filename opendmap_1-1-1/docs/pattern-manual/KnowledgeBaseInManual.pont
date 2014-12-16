@@ -1,0 +1,174 @@
+; Tue Aug 14 09:46:21 MDT 2007
+; 
+;+ (version "3.2.1")
+;+ (build "Build 365")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot protein1
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot transported
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot transporter
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot listed-protein
+		(type SYMBOL)
+;+		(allowed-parents molecule+or+molecular+complex)
+		(cardinality 2 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot source
+		(type INSTANCE)
+;+		(allowed-classes cellular+component)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot protein2
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot destination
+		(type INSTANCE)
+;+		(allowed-classes cellular+component)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass biological+process
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass protein+transport
+	(is-a biological+process)
+	(role concrete)
+	(single-slot source
+		(type INSTANCE)
+;+		(allowed-classes cellular+component)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot transporter
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot transported
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot destination
+		(type INSTANCE)
+;+		(allowed-classes cellular+component)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass protein-protein+interaction
+	(is-a biological+process)
+	(role concrete)
+	(single-slot protein1
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot protein2
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass biological+entity
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass cellular+component
+	(is-a biological+entity)
+	(role concrete))
+
+(defclass molecule+or+molecular+complex
+	(is-a biological+entity)
+	(role concrete))
+
+(defclass molecular+complex
+	(is-a molecule+or+molecular+complex)
+	(role concrete))
+
+(defclass molecule
+	(is-a molecule+or+molecular+complex)
+	(role concrete))
+
+(defclass macromolecule
+	(is-a molecule)
+	(role concrete))
+
+(defclass protein
+	(is-a macromolecule)
+	(role concrete))
+
+(defclass nucleic+acid
+	(is-a macromolecule)
+	(role concrete))
+
+(defclass dummy+class
+	(is-a nucleic+acid)
+	(role concrete))
+
+(defclass small+molecule
+	(is-a molecule)
+	(role concrete))
+
+(defclass cell
+	(is-a biological+entity)
+	(role concrete))
+
+(defclass grammar
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass aux-verb
+	(is-a grammar)
+	(role concrete))
+
+(defclass interact-verb
+	(is-a grammar)
+	(role concrete))
+
+(defclass interact-noun
+	(is-a grammar)
+	(role concrete))
+
+(defclass interact-predicate
+	(is-a grammar)
+	(role concrete))
+
+(defclass determiner
+	(is-a grammar)
+	(role concrete))
+
+(defclass preposition
+	(is-a grammar)
+	(role concrete))
+
+(defclass transport-verb
+	(is-a grammar)
+	(role concrete))

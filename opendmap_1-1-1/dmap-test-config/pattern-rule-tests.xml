@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<!DOCTYPE test-suite>
+
+<!-- Tests of the JJTree grammar and the pattern -->
+<!-- conversion routines.                        -->
+
+<!-- R. James Firby                              -->
+<!-- July 2005                                   -->
+		
+<test-suite name="Pattern Rule Tests">
+	
+	<test-context>edu.uchsc.ccp.dmap.test.ParserTestContext</test-context>
+	<test-type name="pattern-rule">edu.uchsc.ccp.dmap.test.PatternRuleTest</test-type>
+
+	<protege-project>dmap-test-config/projects/newspaper/newspaper.pprj</protege-project>
+
+	<pattern-rule name="Test-1">
+		<input>{a} := Kelly;</input>
+		<output>"Kelly"</output>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-2">
+		<input>{a} := Kelly, Mary;</input>
+		<output>"Kelly"</output>
+		<output>"Mary"</output>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-3">
+		<input>{a} := Kelly Mary;</input>
+		<output>("Kelly" "Mary")</output>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-4">
+		<input>{a} := Kelly+;</input>
+		<output>"Kelly"+</output>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-5">
+		<input>{a} := (Kelly Mary)+;</input>
+		<output>("Kelly" "Mary")+</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-6">
+		<input>{a} := Kelly Mary+;</input>
+		<output>("Kelly" "Mary"+)</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-7">
+		<input>{a} := Kelly+ Mary;</input>
+		<output>("Kelly"+ "Mary")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-8">
+		<input>{a} := Kelly+ Mary+;</input>
+		<output>("Kelly"+ "Mary"+)</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-9">
+		<input>{a} := Kelly Mary Bob;</input>
+		<output>("Kelly" "Mary" "Bob")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-10">
+		<input>{a} := Kelly (Mary Bob);</input>
+		<output>("Kelly" ("Mary" "Bob"))</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-11">
+		<input>{a} := Kelly (Mary Bob)+;</input>
+		<output>("Kelly" ("Mary" "Bob")+)</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-12">
+		<input>{a} := (Kelly (Mary) Bob)+;</input>
+		<output>("Kelly" "Mary" "Bob")+</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-13">
+		<input>{a} := (Kelly (Mary)+ Bob);</input>
+		<output>("Kelly" "Mary"+ "Bob")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-14">
+		<input>{a} := (Kelly Mary)* Bob;</input>
+		<output>(("Kelly" "Mary")* "Bob")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-15">
+		<input>{a} := (Kelly Mary)* Bob+;</input>
+		<output>(("Kelly" "Mary")* "Bob"+)</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-16" fail="true">
+		<input>{a} := Kelly*+;</input>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-17">
+		<input>{a} := (Kelly*)+;</input>
+		<output>("Kelly"*)+</output>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-18" fail="true">
+		<input>{a} := Kelly+*;</input>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-19">
+		<input>{a} := (Kelly+)*;</input>
+		<output>("Kelly"+)*</output>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-20">
+		<input>{a} := Kelly?;</input>
+		<output>"Kelly"?</output>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-21">
+		<input>{a} := Kelly? Mary?;</input>
+		<output>("Kelly"? "Mary"?)</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-22">
+		<input>{a} := Kelly Mary?;</input>
+		<output>("Kelly" "Mary"?)</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-23" fail="true">
+		<input>{a} := Kelly??;</input>
+	</pattern-rule>
+
+	<pattern-rule name="Test-24">
+		<input>{a} := (Kelly?)?;</input>
+		<output>("Kelly"?)?</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-25">
+		<input>{a} := (((Kelly?)*)+)?;</input>
+		<output>((("Kelly"?)*)+)?</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-26">
+		<input>{a} := Kelly | Mary;</input>
+		<output>("Kelly" | "Mary")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-27">
+		<input>{a} := Kelly? | Mary+;</input>
+		<output>("Kelly"? | "Mary"+)</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-28">
+		<input>{a} := (Kelly? | Mary)+;</input>
+		<output>("Kelly"? | "Mary")+</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-29">
+		<input>{a} := (Kelly? | Mary | Bob)+;</input>
+		<output>("Kelly"? | "Mary" | "Bob")+</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-30">
+		<input>{a} := (Kelly? | (Mary | Bob)+);</input>
+		<output>("Kelly"? | ("Mary" | "Bob")+)</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-31">
+		<input>{a} := (Kelly? | (Mary | Bob))+;</input>
+		<output>("Kelly"? | ("Mary" | "Bob"))+</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-32">
+		<input>{a} := Kelly | Mary Bob;</input>
+		<output>(("Kelly" | "Mary") "Bob")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-33">
+		<input>{a} := Kelly Mary | Bob;</input>
+		<output>("Kelly" ("Mary" | "Bob"))</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-34">
+		<input>{a} := Kelly | Mary | Bob;</input>
+		<output>("Kelly" | "Mary" | "Bob")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-35">
+		<input>{a} := (Kelly | Mary) Bob;</input>
+		<output>(("Kelly" | "Mary") "Bob")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-36">
+		<input>{a} := Kelly +;</input>
+		<output>"Kelly"+</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-37">
+		<input>{a} := (Kelly | Mary)? Bob;</input>
+		<output>(("Kelly" | "Mary")? "Bob")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-38">
+		<input>{a} := "Kelly" "Mary";</input>
+		<output>("Kelly" "Mary")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-39">
+		<input>{a} := "Kelly"+ "Mary";</input>
+		<output>("Kelly"+ "Mary")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-40">
+		<input>{a} := "Kelly""Mary";</input>
+		<output>("Kelly" "Mary")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-41">
+		<input>{a} := "Kelly"?"Mary";</input>
+		<output>("Kelly"? "Mary")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-42">
+		<input>{a} := "Kelly"?""Mary"";</input>
+		<output>("Kelly"? "Mary")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-43">
+		<input>{a} := "Kelly"?"""Mary""";</input>
+		<output>("Kelly"? "Mary")</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-44">
+		<input>{a} := "Kelly Mary";</input>
+		<output>"Kelly Mary"</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-45" fail="true">
+		<input>{a} := "Kelly Mary"?+;</input>
+	</pattern-rule>
+
+	<pattern-rule name="Test-46">
+		<input>{a} := ("Kelly Mary"?)+;</input>
+		<output>("Kelly Mary"?)+</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-47">
+		<input>{a} := "Kelly?";</input>
+		<output>"Kelly?"</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-48">
+		<input>{a} := "Kelly?, Mary | Bob";</input>
+		<output>"Kelly?, Mary | Bob"</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-49">
+		<input>{a} := "Kelly ([foo] {bar})";</input>
+		<output>"Kelly ([foo] {bar})"</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-50">
+		<input>{a} := "Kelly ([foo] {bar})";</input>
+		<output>"Kelly ([foo] {bar})"</output>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-51">
+	  <input>{a}:= "cell proliferation", 'cell proliferation', "Krohn's disease", 'Krohn\'s disease';</input>
+	  <output>"cell proliferation"</output>
+	  <output>"cell proliferation"</output>
+	  <output>"Krohn's disease"</output>
+	  <output>"Krohn's disease"</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-52">
+	  <input>{a}:= 'so-called "cryrogentic" techniques', 'Groucho said, "I have Krohn\'s disease, and he has mine."';</input>
+	  <output>"so-called \"cryrogentic\" techniques"</output>
+	  <output>"Groucho said, \"I have Krohn's disease, and he has mine.\""</output>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-53">
+		<input>{a}:= "\141\142\143\n\\\015";</input>
+		<output>"abc\n\\r"</output>
+	</pattern-rule>
+	
+	<pattern-rule name="Test-54">
+		<input>{a}:= r"abc";</input>
+		<output>r"abc"</output>		
+	</pattern-rule>
+
+	<pattern-rule name="Test-55">
+		<input>{a}:= r"cell\w+proliferation", r'cell\w+proliferation', r"binding\w+sites?\w+\d+";</input>
+		<output>r"cell\w+proliferation"</output>		
+		<output>r"cell\w+proliferation"</output>		
+		<output>r"binding\w+sites?\w+\d+"</output>		
+	</pattern-rule>
+
+	<pattern-rule name="Test-56">
+		<input>{a}:= r"ab\"", r"\"ab", r'\"ab';</input>
+		<output>r"ab\""</output>		
+		<output>r"\"ab"</output>
+		<output>r"\"ab"</output>
+	</pattern-rule>
+	
+	<!-- These tests require the newspaper Protege project -->
+	
+	<pattern-rule name="Test-301">
+		<input>{a}:= {Manager};</input>
+		<output>{Manager}</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-302">
+		<input>{a}:= {Employee};</input>
+		<output>{Employee}</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-303">
+		<input>{a}:= {Manager} supervises {Employee};</input>
+		<output>({Manager} "supervises" {Employee})</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-304">
+		<input>{a}:= {Manager}+ supervises|{Employee}*;</input>
+		<output>({Manager}+ ("supervises" | {Employee}*))</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-305" fail="true">
+		<input>{a}:= {{Employee}};</input>
+	</pattern-rule>
+
+	<pattern-rule name="Test-306" fail="true">
+		<input>{a}:= {"Employee"};</input>
+	</pattern-rule>
+
+	<pattern-rule name="Test-307">
+		<input>{a}:= {Manager Supervision Relation};</input>
+		<output>{Manager Supervision Relation}</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-308">
+		<input>{Editor}:= [name] edits [sections];</input>
+		<output>([name] "edits" [sections])</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-309">
+		<input>{Editor}:= [name]* edits? [sections]+;</input>
+		<output>([name]* "edits"? [sections]+)</output>
+	</pattern-rule>
+
+	<pattern-rule name="Test-310">
+		<input>{Editor}:= [name] edits|writes [sections];</input>
+		<output>([name] ("edits" | "writes") [sections])</output>
+	</pattern-rule>
+
+		<pattern-rule name="Test-311">
+		<input>{Editor}:= [name] edits | (writes [sections]);</input>
+		<output>([name] ("edits" | ("writes" [sections])))</output>
+	</pattern-rule>
+
+</test-suite>

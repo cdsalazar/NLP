@@ -1,0 +1,111 @@
+; Thu Dec 01 15:01:49 MST 2005
+; 
+;+ (version "3.0")
+;+ (build "Build 141")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot patterns
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass STANDARD-CLASS-WITH-PATTERNS
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(multislot patterns
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass c-cellular-component
+	(is-a USER)
+	(role concrete))
+
+(defclass c-membrane
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-plasma-membrane
+	(is-a c-membrane)
+	(role concrete))
+
+(defclass c-mitochondrial-membrane
+	(is-a c-membrane)
+	(role concrete))
+
+(defclass c-mitochondrial-inner-membrane
+	(is-a c-membrane)
+	(role concrete))
+
+(defclass c-mitochondrial-outer-membrane
+	(is-a c-membrane)
+	(role concrete))
+
+(defclass c-cell-surface
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-cytoplasm
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-cytosol
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-extracellular-space
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-cytoskeleton
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-cytoplasmic-vesicle
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-golgi-apparatus
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-golgi-cis-face
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-golgi-trans-face
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-er-golgi-intermediate-compartment
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-endoplasmic-reticulum
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-endosome
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-early-endosome
+	(is-a c-endosome)
+	(role concrete))
+
+(defclass c-late-endosome
+	(is-a c-endosome)
+	(role concrete))
+
+(defclass c-lysosome
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-mitochondrion
+	(is-a c-cellular-component)
+	(role concrete))
+
+(defclass c-nucleus
+	(is-a c-cellular-component)
+	(role concrete))

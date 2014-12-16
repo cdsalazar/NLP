@@ -1,0 +1,644 @@
+<?xml version="1.0"?>
+<!DOCTYPE test-suite>
+
+<!-- Tests of JJTree pattern parsing and pattern -->
+<!-- normalization and prediction.               -->
+
+<!-- R. James Firby                              -->
+<!-- July 2005                                   -->
+		
+<test-suite name="Pattern Tests">
+	
+	<test-context>edu.uchsc.ccp.dmap.test.ParserTestContext</test-context>
+	<test-type name="pattern">edu.uchsc.ccp.dmap.test.PatternTest</test-type>
+
+	<protege-project>dmap-test-config/projects/newspaper/newspaper.pprj</protege-project>
+
+	<pattern name="Test-1">
+		<input>Kelly</input>
+		<output>"Kelly" . "Kelly"</output>
+	</pattern>
+
+	<pattern name="Test-3">
+		<input>Kelly Mary</input>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+	</pattern>
+	
+	<pattern name="Test-4">
+		<input>Kelly+</input>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Kelly" . ("Kelly" "Kelly"+)</output>
+	</pattern>
+	
+	<pattern name="Test-4a">
+		<input>Kelly*</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Kelly" . ("Kelly" "Kelly"+)</output>
+	</pattern>
+
+	<pattern name="Test-5">
+		<input>(Kelly Mary)+</input>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+		<output>"Kelly" . (("Kelly" "Mary") ("Kelly" "Mary")+)</output>
+	</pattern>
+
+	<pattern name="Test-5a">
+		<input>(Kelly Mary)*</input>
+		<output></output>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+		<output>"Kelly" . (("Kelly" "Mary") ("Kelly" "Mary")+)</output>
+	</pattern>
+
+	<pattern name="Test-6">
+		<input>Kelly Mary+</input>
+		<output>"Kelly" . ("Kelly" "Mary"+)</output>
+	</pattern>
+
+	<pattern name="Test-7">
+		<input>Kelly+ Mary</input>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) "Mary")</output>
+	</pattern>
+
+	<pattern name="Test-7a">
+		<input>Kelly* Mary</input>
+		<output>"Mary" . "Mary"</output>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) "Mary")</output>
+	</pattern>
+
+	<pattern name="Test-8">
+		<input>Kelly+ Mary+</input>
+		<output>"Kelly" . ("Kelly" "Mary"+)</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) "Mary"+)</output>
+	</pattern>
+
+	<pattern name="Test-8a">
+		<input>Kelly* Mary+</input>
+		<output>"Mary" . "Mary"</output>
+		<output>"Mary" . ("Mary" "Mary"+)</output>
+		<output>"Kelly" . ("Kelly" "Mary"+)</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) "Mary"+)</output>
+	</pattern>
+
+	<pattern name="Test-8b">
+		<input>Kelly* Mary*</input>
+		<output></output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Mary" . ("Mary" "Mary"+)</output>
+		<output>"Kelly" . ("Kelly" "Mary"*)</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) "Mary"*)</output>
+	</pattern>
+
+	<pattern name="Test-9">
+		<input>Kelly Mary Bob</input>
+		<output>"Kelly" . ("Kelly" "Mary" "Bob")</output>
+	</pattern>
+
+	<pattern name="Test-10">
+		<input>Kelly (Mary Bob)</input>
+		<output>"Kelly" . ("Kelly" ("Mary" "Bob"))</output>
+	</pattern>
+
+	<pattern name="Test-11">
+		<input>Kelly (Mary Bob)+</input>
+		<output>"Kelly" . ("Kelly" ("Mary" "Bob")+)</output>
+	</pattern>
+
+	<pattern name="Test-12">
+		<input>(Kelly (Mary) Bob)+</input>
+		<output>"Kelly" . ("Kelly" "Mary" "Bob")</output>
+		<output>"Kelly" . (("Kelly" "Mary" "Bob") ("Kelly" "Mary" "Bob")+)</output>
+	</pattern>
+
+	<pattern name="Test-13">
+		<input>(Kelly (Mary)+ Bob)</input>
+		<output>"Kelly" . ("Kelly" "Mary"+ "Bob")</output>
+	</pattern>
+
+	<pattern name="Test-14">
+		<input>(Kelly Mary)* Bob</input>
+		<output>"Bob" . "Bob"</output>
+		<output>"Kelly" . (("Kelly" "Mary") "Bob")</output>
+		<output>"Kelly" . ((("Kelly" "Mary") ("Kelly" "Mary")+) "Bob")</output>
+	</pattern>
+
+	<pattern name="Test-14a">
+		<input>(Kelly Mary)+ Bob</input>
+		<output>"Kelly" . (("Kelly" "Mary") "Bob")</output>
+		<output>"Kelly" . ((("Kelly" "Mary") ("Kelly" "Mary")+) "Bob")</output>
+	</pattern>
+
+	<pattern name="Test-15">
+		<input>(Kelly Mary)* Bob+</input>
+		<output>"Bob" . "Bob"</output>
+		<output>"Bob" . ("Bob" "Bob"+)</output>
+		<output>"Kelly" . (("Kelly" "Mary") "Bob"+)</output>
+		<output>"Kelly" . ((("Kelly" "Mary") ("Kelly" "Mary")+) "Bob"+)</output>
+	</pattern>
+
+	<pattern name="Test-15a">
+		<input>(Kelly Mary)* Bob*</input>
+		<output></output>
+		<output>"Bob" . "Bob"</output>
+		<output>"Bob" . ("Bob" "Bob"+)</output>
+		<output>"Kelly" . (("Kelly" "Mary") "Bob"*)</output>
+		<output>"Kelly" . ((("Kelly" "Mary") ("Kelly" "Mary")+) "Bob"*)</output>
+	</pattern>
+
+	<pattern name="Test-17">
+		<input>(Kelly*)+</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Kelly" . ("Kelly" "Kelly"+)</output>
+		<output>"Kelly" . ("Kelly" ("Kelly"*)+)</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) ("Kelly"*)+)</output>
+	</pattern>
+	
+	<pattern name="Test-18">
+		<input>(Kelly*)*</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Kelly" . ("Kelly" "Kelly"+)</output>
+		<output>"Kelly" . ("Kelly" ("Kelly"*)+)</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) ("Kelly"*)+)</output>
+	</pattern>
+	
+	<pattern name="Test-19">
+		<input>(Kelly+)*</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Kelly" . ("Kelly" "Kelly"+)</output>
+		<output>"Kelly" . ("Kelly" ("Kelly"+)+)</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) ("Kelly"+)+)</output>
+	</pattern>
+	
+	<pattern name="Test-19a">
+		<input>(Kelly+)+</input>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Kelly" . ("Kelly" "Kelly"+)</output>
+		<output>"Kelly" . ("Kelly" ("Kelly"+)+)</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) ("Kelly"+)+)</output>
+	</pattern>
+	
+	<pattern name="Test-20">
+		<input>Kelly?</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+	</pattern>
+	
+	<pattern name="Test-21">
+		<input>Kelly? Mary?</input>
+		<output></output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Kelly" . ("Kelly" "Mary"?)</output>
+	</pattern>
+
+	<pattern name="Test-22">
+		<input>Kelly Mary?</input>
+		<output>"Kelly" . ("Kelly" "Mary"?)</output>
+	</pattern>
+
+	<pattern name="Test-23">
+		<input>Kelly? Mary</input>
+		<output>"Mary" . "Mary"</output>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+	</pattern>
+
+	<pattern name="Test-24">
+		<input>(Kelly?)?</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+	</pattern>
+
+	<pattern name="Test-24a">
+		<input>(Kelly?)+</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+	  <output>"Kelly" . ("Kelly" ("Kelly"?)+)</output>
+	</pattern>
+
+	<pattern name="Test-24b">
+		<input>(Kelly?)*</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+	  <output>"Kelly" . ("Kelly" ("Kelly"?)+)</output>
+	</pattern>
+
+	<pattern name="Test-24c">
+		<input>(Kelly+)?</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+	  <output>"Kelly" . ("Kelly" "Kelly"+)</output>
+	</pattern>
+
+	<pattern name="Test-24d">
+		<input>(Kelly*)?</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+	  <output>"Kelly" . ("Kelly" "Kelly"+)</output>
+	</pattern>
+
+	<pattern name="Test-25">
+		<input>(((Kelly?)*)+)?</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Kelly" . ("Kelly" (("Kelly"?)*)+)</output>
+		<output>"Kelly" . ("Kelly" ("Kelly"?)+)</output>
+		<output>"Kelly" . (("Kelly" ("Kelly"?)+) (("Kelly"?)*)+)</output>
+	</pattern>
+
+	<pattern name="Test-26">
+		<input>Kelly | Mary</input>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+	</pattern>
+	
+	<pattern name="Test-27">
+		<input>Kelly? | Mary+</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Mary" . ("Mary" "Mary"+)</output>
+	</pattern>
+
+	<pattern name="Test-28">
+		<input>(Kelly? | Mary)+</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Kelly" . ("Kelly" ("Kelly"? | "Mary")+)</output>
+		<output>"Mary" . ("Mary" ("Kelly"? | "Mary")+)</output>
+	</pattern>
+
+	<pattern name="Test-29">
+		<input>(Kelly? | Mary | Bob)+</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Bob" . "Bob"</output>
+		<output>"Kelly" . ("Kelly" ("Kelly"? | "Mary" | "Bob")+)</output>
+		<output>"Mary" . ("Mary" ("Kelly"? | "Mary" | "Bob")+)</output>
+		<output>"Bob" . ("Bob" ("Kelly"? | "Mary" | "Bob")+)</output>
+	</pattern>
+
+	<pattern name="Test-29a">
+		<input>(Kelly | Mary? | Bob)+</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Bob" . "Bob"</output>
+		<output>"Kelly" . ("Kelly" ("Kelly" | "Mary"? | "Bob")+)</output>
+		<output>"Mary" . ("Mary" ("Kelly" | "Mary"? | "Bob")+)</output>
+		<output>"Bob" . ("Bob" ("Kelly" | "Mary"? | "Bob")+)</output>
+	</pattern>
+
+	<pattern name="Test-29b">
+		<input>(Kelly | Mary | Bob?)+</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Bob" . "Bob"</output>
+		<output>"Kelly" . ("Kelly" ("Kelly" | "Mary" | "Bob"?)+)</output>
+		<output>"Mary" . ("Mary" ("Kelly" | "Mary" | "Bob"?)+)</output>
+		<output>"Bob" . ("Bob" ("Kelly" | "Mary" | "Bob"?)+)</output>
+	</pattern>
+	
+	<pattern name="Test-29c">
+		<input>(Kelly? | Mary? | Bob?)+</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Bob" . "Bob"</output>
+		<output>"Kelly" . ("Kelly" ("Kelly"? | "Mary"? | "Bob"?)+)</output>
+		<output>"Mary" . ("Mary" ("Kelly"? | "Mary"? | "Bob"?)+)</output>
+		<output>"Bob" . ("Bob" ("Kelly"? | "Mary"? | "Bob"?)+)</output>
+	</pattern>
+
+	<pattern name="Test-29d">
+		<input>(Kelly? | Mary? | Bob?)*</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Bob" . "Bob"</output>
+		<output>"Kelly" . ("Kelly" ("Kelly"? | "Mary"? | "Bob"?)+)</output>
+		<output>"Mary" . ("Mary" ("Kelly"? | "Mary"? | "Bob"?)+)</output>
+		<output>"Bob" . ("Bob" ("Kelly"? | "Mary"? | "Bob"?)+)</output>
+	</pattern>
+
+	<pattern name="Test-30">
+		<input>(Kelly? | (Mary | Bob)+)</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Bob" . "Bob"</output>
+		<output>"Mary" . ("Mary" ("Mary" | "Bob")+)</output>
+		<output>"Bob" . ("Bob" ("Mary" | "Bob")+)</output>
+	</pattern>
+
+	<pattern name="Test-31">
+		<input>(Kelly? | (Mary | Bob))+</input>
+		<output></output>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Bob" . "Bob"</output>
+		<output>"Kelly" . ("Kelly" ("Kelly"? | ("Mary" | "Bob"))+)</output>
+		<output>"Mary" . ("Mary" ("Kelly"? | ("Mary" | "Bob"))+)</output>
+		<output>"Bob" . ("Bob" ("Kelly"? | ("Mary" | "Bob"))+)</output>
+	</pattern>
+
+	<pattern name="Test-32">
+		<input>Kelly | Mary Bob</input>
+		<output>"Kelly" . ("Kelly" "Bob")</output>
+		<output>"Mary" . ("Mary" "Bob")</output>
+	</pattern>
+
+	<pattern name="Test-33">
+		<input>Kelly Mary | Bob</input>
+		<output>"Kelly" . ("Kelly" ("Mary" | "Bob"))</output>
+	</pattern>
+
+	<pattern name="Test-34">
+		<input>Kelly | Mary | Bob</input>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Bob" . "Bob"</output>
+	</pattern>
+
+	<pattern name="Test-35">
+		<input>(Kelly | Mary) Bob</input>
+		<output>"Kelly" . ("Kelly" "Bob")</output>
+		<output>"Mary" . ("Mary" "Bob")</output>
+	</pattern>
+
+	<pattern name="Test-36">
+		<input>Kelly +</input>
+		<output>"Kelly" . "Kelly"</output>
+		<output>"Kelly" . ("Kelly" "Kelly"+)</output>
+	</pattern>
+
+	<pattern name="Test-37">
+		<input>(Kelly | Mary)? Bob</input>
+		<output>"Bob" . "Bob"</output>
+		<output>"Kelly" . ("Kelly" "Bob")</output>
+		<output>"Mary" . ("Mary" "Bob")</output>
+	</pattern>
+
+	<pattern name="Test-38">
+		<input>"Kelly" "Mary"</input>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+	</pattern>
+
+	<pattern name="Test-39">
+		<input>"Kelly"+ "Mary"</input>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) "Mary")</output>
+	</pattern>
+
+	<pattern name="Test-40">
+		<input>"Kelly""Mary"</input>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+	</pattern>
+
+	<pattern name="Test-41">
+		<input>"Kelly"?"Mary"</input>
+		<output>"Mary" . "Mary"</output>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+	</pattern>
+
+	<pattern name="Test-42">
+		<input>"Kelly"?""Mary""</input>
+		<output>"Mary" . "Mary"</output>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+	</pattern>
+
+	<pattern name="Test-43">
+		<input>"Kelly"?"""Mary"""</input>
+		<output>"Mary" . "Mary"</output>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+	</pattern>
+
+	<pattern name="Test-44">
+		<input>"Kelly Mary"</input>
+		<output>"Kelly Mary" . "Kelly Mary"</output>
+	</pattern>
+
+	<pattern name="Test-46">
+		<input>("Kelly Mary"?)+</input>
+		<output></output>
+		<output>"Kelly Mary" . "Kelly Mary"</output>
+		<output>"Kelly Mary" . ("Kelly Mary" ("Kelly Mary"?)+)</output>
+	</pattern>
+
+	<pattern name="Test-47">
+		<input>"Kelly?"</input>
+		<output>"Kelly?" . "Kelly?"</output>
+	</pattern>
+
+	<pattern name="Test-48">
+		<input>"Kelly?, Mary | Bob"</input>
+		<output>"Kelly?, Mary | Bob" . "Kelly?, Mary | Bob"</output>
+	</pattern>
+
+	<pattern name="Test-49">
+		<input>"Kelly ([foo] {bar})"</input>
+		<output>"Kelly ([foo] {bar})" . "Kelly ([foo] {bar})"</output>
+	</pattern>
+
+	<pattern name="Test-50">
+		<input>"Kelly ([foo] {bar})"</input>
+		<output>"Kelly ([foo] {bar})" . "Kelly ([foo] {bar})"</output>
+	</pattern>
+	
+	<pattern name="Test-51">
+	  <input>"cell proliferation" | 'cell proliferation' | "Krohn's disease" | 'Krohn\'s disease'</input>
+	  <output>"cell proliferation" . "cell proliferation"</output>
+	  <output>"cell proliferation" . "cell proliferation"</output>
+	  <output>"Krohn's disease" . "Krohn's disease"</output>
+	  <output>"Krohn's disease" . "Krohn's disease"</output>
+	</pattern>
+
+	<pattern name="Test-52">
+	  <input>'so-called "cryrogentic" techniques' 'Groucho said, "I have Krohn\'s disease, and he has mine."'</input>
+	  <output>"so-called \"cryrogentic\" techniques" . ("so-called \"cryrogentic\" techniques" "Groucho said, \"I have Krohn's disease, and he has mine.\"")</output>
+	</pattern>
+	
+	<pattern name="Test-53">
+		<input>"\141\142\143\n\\\015"</input>
+		<output>"abc\n\\r" . "abc\n\\r"</output>
+	</pattern>
+	
+	<pattern name="Test-54">
+		<input>r"abc"</input>
+		<output>r"abc" . r"abc"</output>		
+	</pattern>
+
+	<pattern name="Test-55">
+		<input>r"cell\w+proliferation"+</input>
+		<output>r"cell\w+proliferation" . r"cell\w+proliferation"</output>		
+		<output>r"cell\w+proliferation" . (r"cell\w+proliferation" r"cell\w+proliferation"+)</output>		
+	</pattern>
+
+	<pattern name="Test-56">
+		<input>r"ab\""* r"\"ab" r'\"ab'</input>
+		<output>r"ab\"" . (r"ab\"" r"\"ab" r"\"ab")</output>		
+		<output>r"\"ab" . (r"\"ab" r"\"ab")</output>
+		<output>r"ab\"" . ((r"ab\"" r"ab\""+) r"\"ab" r"\"ab")</output>		
+	</pattern>
+	
+	<pattern name="Test-57" fail="true">
+		<input></input>
+	</pattern>
+	
+	<pattern name="Test-58">
+		<input>5 (6 * 7 *) * 8</input>
+		<output>"5" . ("5" ("6"* "7"*)* "8")</output>
+	</pattern>
+
+	<pattern name="Test-58a">
+		<input>(6 * 7 *) * 8</input>
+		<output>"6" . (("6" "7"*) "8")</output>
+		<output>"6" . ((("6" "6"+) "7"*) "8")</output>
+		<output>"6" . ((("6" "7"*) ("6"* "7"*)+) "8")</output>
+		<output>"6" . (((("6" "6"+) "7"*) ("6"* "7"*)+) "8")</output>
+		<output>"7" . ("7" "8")</output>
+		<output>"7" . (("7" "7"+) "8")</output>
+		<output>"7" . (("7" ("6"* "7"*)+) "8")</output>
+		<output>"7" . ((("7" "7"+) ("6"* "7"*)+) "8")</output>
+		<output>"8" . "8"</output>
+	</pattern>
+	
+	<pattern name="Test-58b">
+		<input>(7 *) 8</input>
+		<output>"7" . ("7" "8")</output>
+		<output>"7" . (("7" "7"+) "8")</output>
+		<output>"8" . "8"</output>
+	</pattern>
+	
+	<pattern name="Test-58c">
+		<input>(6+ (7 *)) 8</input>
+		<output>"6" . (("6" "7"*) "8")</output>
+		<output>"6" . ((("6" "6"+) "7"*) "8")</output>
+	</pattern>
+
+	<pattern name="Test-58d">
+		<input>((("7"*) ("6"* "7"*)+) "8")</input>
+		<output>"6" . (("6" "7"*) "8")</output>
+		<output>"6" . ((("6" "6"+) "7"*) "8")</output>
+		<output>"6" . ((("6" "7"*) ("6"* "7"*)+) "8")</output>
+		<output>"6" . (((("6" "6"+) "7"*) ("6"* "7"*)+) "8")</output>
+		<output>"7" . (("7" ("6"* "7"*)+) "8")</output>
+		<output>"7" . ((("7" "7"+) ("6"* "7"*)+) "8")</output>
+		<output>"7" . ("7" "8")</output>
+		<output>"7" . (("7" "7"+) "8")</output>
+		<output>"7" . (("7" ("6"* "7"*)+) "8")</output>
+		<output>"7" . ((("7" "7"+) ("6"* "7"*)+) "8")</output>
+		<output>"8" . "8"</output>
+	</pattern>
+	
+	<!-- Some clause set test -->
+	
+	<pattern name="Test-201">
+		<input>Kelly @ Mary</input>
+		<output>"Kelly" . ("Kelly" "Mary")</output>
+		<output>"Mary" . ("Mary" "Kelly")</output>
+	</pattern>
+
+	<pattern name="Test-202">
+		<input>Kelly @ Mary @ Kim</input>
+		<output>"Kelly" . ("Kelly" ("Mary" @ "Kim"))</output>
+		<output>"Mary" . ("Mary" ("Kelly" @ "Kim"))</output>
+		<output>"Kim" . ("Kim" ("Kelly" @ "Mary"))</output>
+	</pattern>
+	
+	<pattern name="Test-203">
+		<input>Kelly | Mary @ Kim</input>
+		<output>"Kelly" . ("Kelly" "Kim")</output>
+		<output>"Mary" . ("Mary" "Kim")</output>
+		<output>"Kim" . ("Kim" ("Kelly" | "Mary"))</output>
+	</pattern>
+
+	<pattern name="Test-204">
+		<input>Kelly* @ Kim</input>
+		<output>"Kelly" . ("Kelly" "Kim")</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) "Kim")</output>
+		<output>"Kim" . "Kim"</output>
+		<output>"Kim" . ("Kim" "Kelly"*)</output>
+		<output></output>
+	</pattern>
+
+	<pattern name="Test-205">
+		<input>Kelly* @ Mary @ Kim</input>
+		<output>"Kelly" . ("Kelly" ("Mary" @ "Kim"))</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) ("Mary" @ "Kim"))</output>
+		<output>"Mary" . ("Mary" "Kim")</output>
+		<output>"Kim" . ("Kim" "Mary")</output>
+		<output>"Mary" . ("Mary" ("Kelly"* @ "Kim"))</output>
+		<output>"Kim" . ("Kim" ("Kelly"* @ "Mary"))</output>
+		<output></output>
+	</pattern>
+
+	<!-- These tests require the newspaper Protege project -->
+	
+	<pattern name="Test-301">
+		<input>{Manager}</input>
+		<output>{Manager} . {Manager}</output>
+	</pattern>
+
+	<pattern name="Test-302">
+		<input>{Employee}</input>
+		<output>{Employee} . {Employee}</output>
+	</pattern>
+
+	<pattern name="Test-303">
+		<input>{Manager} supervises {Employee};</input>
+		<output>{Manager} . ({Manager} "supervises" {Employee})</output>
+	</pattern>
+
+	<pattern name="Test-304">
+		<input>{Manager}+ supervises|{Employee}*</input>
+		<output>{Manager} . ({Manager} ("supervises" | {Employee}*))</output>
+		<output>{Manager} . (({Manager} {Manager}+) ("supervises" | {Employee}*))</output>
+	</pattern>
+
+	<pattern name="Test-307">
+		<input>{Manager Supervision Relation}</input>
+		<output>{Manager Supervision Relation} . {Manager Supervision Relation}</output>
+	</pattern>
+
+	<pattern name="Test-308">
+		<frame>Editor</frame>
+		<input>[responsible_for] writes [sections]</input>
+		<output>[responsible_for] . ([responsible_for] "writes" [sections])</output>
+	</pattern>
+
+	<pattern name="Test-309">
+		<frame>Editor</frame>
+		<input>[responsible_for]* writes? [sections]+</input>
+		<output>[sections] . [sections]</output>
+		<output>[sections] . ([sections] [sections]+)</output>
+		<output>"writes" . ("writes" [sections]+)</output>
+		<output>[responsible_for] . ([responsible_for] "writes"? [sections]+)</output>
+		<output>[responsible_for] . (([responsible_for] [responsible_for]+) "writes"? [sections]+)</output>
+	</pattern>
+
+	<pattern name="Test-310">
+		<frame>Editor</frame>
+		<input>[responsible_for] edits|writes [sections]</input>
+		<output>[responsible_for] . ([responsible_for] ("edits" | "writes") [sections])</output>
+	</pattern>
+
+	<pattern name="Test-311">
+		<frame>Editor</frame>
+		<input>[responsible_for] edits | (writes [sections])</input>
+		<output>[responsible_for] . ([responsible_for] ("edits" | ("writes" [sections])))</output>
+	</pattern>
+
+	<pattern name="Test-312" fail="true">
+		<frame>Editor</frame>
+		<input>[name] edits [sections]</input>
+		<output></output>
+	</pattern>
+
+</test-suite>

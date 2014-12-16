@@ -1,0 +1,183 @@
+; Sat May 06 17:20:01 CDT 2006
+; 
+;+ (version "3.1")
+;+ (build "Build 210")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot count
+		(type INTEGER)
+		(default 1)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot %3APATTERN
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes Object)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference
+		(type INSTANCE)
+;+		(allowed-classes ObjectRef)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot color
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot patient
+		(type INSTANCE)
+;+		(allowed-classes Object)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot radio
+		(type INSTANCE)
+;+		(allowed-classes Radio)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot version
+		(type FLOAT)
+		(default 1.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass %3ADMAP-CONCEPT
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(multislot %3APATTERN
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass Object
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TV
+	(is-a Object)
+	(role concrete)
+	(single-slot color
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Radio
+	(is-a Object)
+	(role concrete)
+	(single-slot color
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Blender
+	(is-a Object)
+	(role concrete)
+	(single-slot color
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Property
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Color
+	(is-a Property)
+	(role concrete))
+
+(defclass ObjectRef
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot count
+		(type INTEGER)
+		(default 1)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes Object)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot version
+		(type FLOAT)
+		(default 1.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Language
+	(is-a USER)
+	(role concrete))
+
+(defclass Terminate-Word
+	(is-a Language)
+	(role concrete))
+
+(defclass Action
+	(is-a USER)
+	(role concrete))
+
+(defclass Terminate
+	(is-a Action)
+	(role concrete)
+	(single-slot reference
+		(type INSTANCE)
+;+		(allowed-classes ObjectRef)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TurnOn
+	(is-a Action)
+	(role concrete)
+	(single-slot patient
+		(type INSTANCE)
+;+		(allowed-classes Object)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TuneIn
+	(is-a Action)
+	(role concrete)
+	(single-slot radio
+		(type INSTANCE)
+;+		(allowed-classes Radio)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Test
+	(is-a USER)
+	(role concrete))
+
+(defclass ClassA
+	(is-a Test)
+	(role concrete))
+
+(defclass ClassB
+	(is-a Test)
+	(role concrete))

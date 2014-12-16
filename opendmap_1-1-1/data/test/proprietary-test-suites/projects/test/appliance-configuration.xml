@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<configuration>
+	
+	<retaincase>true</retaincase>
+
+	<ProtegeProject name="OpenDMAP Test Project">
+		<ProjectFile>test.pprj</ProjectFile>
+		<PatternFile>appliance.patterns</PatternFile>
+		<PatternSlot>:PATTERN</PatternSlot>
+	</ProtegeProject>
+	
+</configuration>

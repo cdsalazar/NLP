@@ -1,0 +1,56 @@
+// Generif patterns
+
+// Language "grammar" patterns
+
+{g-np} := the? [: object];
+//{g-np} := the? [: object -g-np -g-pp-source -g-pp-destination -g-pp-agent];
+//{g-np} := the? [: object -g-np -g-pp-source -g-pp-destination] "(" [synonym] ")";
+
+//{g-np-conjunct} := the? [: object] (("," | and) the? [object])+;
+//{g-np-disjunct} := the? [: object] (("," | or) the? [object])+;
+
+{g-pp-agent}       := by [: object g-np];
+//{g-pp-patient}     := of? [: object];
+{g-pp-source}      := from [: object g-np];
+{g-pp-destination} := (to|toward|towards|into) [: object g-np];
+//{g-pp-location}    := (on|at|to) [: object g-np];
+
+// Bioprocess patterns
+
+{c-transport} := [agent g-np] [verb w-transport] (of? [patient g-np])?
+                  @ [source +g-pp-source] 
+                  @ [destination +g-pp-destination];
+
+{c-transport} := [patient g-np] {w-is} [verb w-transport-p]
+                  @ [agent +g-pp-agent]
+                  @ [source +g-pp-source] 
+                  @ [destination +g-pp-destination];
+
+{c-transport-two-way} := [agent g-np] [verb w-transport-two-way] (of? [patient g-np])?
+                          between [source g-np] 
+                          and [destination g-np];
+                          
+{c-transport-two-way} := [patient g-np] {w-is} [verb w-transport-two-way-p]
+                          (between [source g-np] and [destination g-np])?
+                          @ [agent +g-pp-agent];
+
+//{i-nuclear-export} := nuclear export (of? [patient])?;
+//{i-nuclear-export} := [patient] nuclear export;
+
+//{i-nuclear-import} := nuclear translocation (of? [patient])?;
+//{i-nuclear-import} := [patient] nuclear translocation;
+
+//{c-anchor} := {w-anchor} [patient]? 
+//               [location];
+//{c-anchor} := [patient] {w-is}? {w-anchor} 
+//               [location];
+//{c-anchor} := [location] is where [patient]
+//               {w-is}? {w-anchor};
+
+//{c-grow} := [cell] growth, growth of [cell], 
+//             [cell] to grow;
+
+//{c-activate} := {w-activate} [patient], 
+//                 [patient]? {w-activate};
+
+

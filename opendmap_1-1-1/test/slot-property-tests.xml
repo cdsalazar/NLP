@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE test-suite>
+
+<!-- Tests parsing various things                -->
+
+<!-- R. James Firby                              -->
+<!-- September 2005                              -->
+
+<!-- 
+	The detailed syntax for writing tests is likely to
+	change as DMAP evolves.  In particular, the output
+	format for printed references will have to change.
+-->
+		
+<test-suite name="Slot Property Tests">
+
+	<test-context>edu.uchsc.ccp.opendmap.test.ParserTestContext</test-context>
+	<test-type name="test">edu.uchsc.ccp.opendmap.test.ParserTest</test-type>
+
+	<configuration>../test/projects/test/appliance-configuration.xml</configuration>
+	
+	<!-- Some simple slot tests -->
+	
+	<test name="Test-1" includeSubsumed="false">
+		<input>television</input>
+		<output>{ObjectRef [object]={TV}} from 0 to 0</output>
+	</test>
+
+	<test name="Test-2" includeSubsumed="true">
+		<input>red</input>
+		<output>{Red} from 0 to 0</output>
+	</test>
+	
+	<test name="Test-3" includeSubsumed="false">
+		<input>red tv</input>
+		<output>{ObjectRef [object]={TV [color]={Red}}} from 0 to 1</output>
+	</test>
+
+	<test name="Test-4" includeSubsumed="false">
+		<input>the green tvs</input>
+		<output>{ObjectRef [object]={TV [color]={Green}}} from 0 to 2</output>
+	</test>
+	
+	<!-- Slot value tests -->
+	
+	<test name="Test-5" includeSubsumed="false">
+		<input>the thing</input>
+		<output>{ObjectRef [object]={Object}} from 0 to 1</output>
+	</test>
+
+	<test name="Test-6" includeSubsumed="false">
+		<input>the thing called Fred</input>
+		<output>{ObjectRef [object]={Object} [name]="Fred"} from 0 to 3</output>
+	</test>
+
+	<test name="Test-7" includeSubsumed="false">
+		<input>the 4 things called Fred</input>
+		<output>{ObjectRef [count]="4" [object]={Object} [name]="Fred"} from 0 to 4</output>
+	</test>
+	
+	<test name="Test-8" includeSubsumed="false">
+		<input>the tv called Fred</input>
+		<output>{ObjectRef [object]={TV} [name]="Fred"} from 0 to 3</output>
+	</test>
+
+	<test name="Test-8a" includeSubsumed="false">
+		<input>the red tv called Fred</input>
+		<output>{ObjectRef [object]={TV [color]={Red}} [name]="Fred"} from 0 to 4</output>
+	</test>
+
+	<test name="Test-9" includeSubsumed="false">
+		<input>the red tv version 0.56</input>
+		<output>{ObjectRef [object]={TV [color]={Red}} [version]="0.56"} from 0 to 4</output>
+	</test>
+
+	<test name="Test-10" includeSubsumed="false">
+		<input>the red tv version 0.56 called Bob</input>
+		<output>{ObjectRef [object]={TV [color]={Red}} [version]="0.56" [name]="Bob"} from 0 to 6</output>
+	</test>
+
+	<test name="Test-10a" includeSubsumed="false">
+		<input>the green tv called Bob version 12.</input>
+		<output>{ObjectRef [object]={TV [color]={Green}} [name]="Bob" [version]="12."} from 0 to 6</output>
+	</test>
+
+	<test name="Test-11" includeSubsumed="false">
+		<input>terminate the green tv called Bob</input>
+		<output>{Terminate [reference]={ObjectRef [object]={TV [color]={Green}} [name]="Bob"}} from 0 to 5</output>
+	</test>
+
+	<test name="Test-12" includeSubsumed="false">
+		<input>turn on the green tv called Bob</input>
+		<output>{TurnOn [patient]={TV [color]={Green} [name]="Bob" | ObjectRef}} from 0 to 6</output>
+	</test>
+
+	<test name="Test-12a" includeSubsumed="false">
+		<input>turn on the green radio called Bob</input>
+		<output>{TurnOn [patient]={Radio [color]={Green} [name]="Bob" | ObjectRef}} from 0 to 6</output>
+	</test>
+
+	<test name="Test-13" includeSubsumed="false">
+		<input>tune in the green radio called Bob</input>
+		<output>{TuneIn [radio]={Radio [color]={Green} [name]="Bob" | ObjectRef}} from 0 to 6</output>
+	</test>
+
+	<test name="Test-13a" includeSubsumed="false" fail="true">
+		<input>tune in the green tv called Bob</input>
+		<output>{TuneIn [radio]={TV [color]={Green} [name]="Bob" | ObjectRef}} from 0 to 6</output>
+	</test>
+	
+	<!-- Patterns in Protege Slots -->
+	
+	<test name="Test-14" includeSubsumed="false">
+		<input>red blender</input>
+		<output>{ObjectRef [object]={Blender [color]={Red}}} from 0 to 1</output>
+	</test>
+
+		<test name="Test-15" includeSubsumed="false">
+		<input>blenders</input>
+		<output>{ObjectRef [object]={Blender}} from 0 to 0</output>
+	</test>
+	
+	<test name="Test-16" includeSubsumed="false">
+		<input>turn on the green blender called Bob</input>
+		<output>{TurnOn [patient]={Blender [color]={Green} [name]="Bob" | ObjectRef}} from 0 to 6</output>
+	</test>
+
+</test-suite>

@@ -1,0 +1,9 @@
+{John}  := John ; 
+{Mary}  := Mary ;
+{Charlie} := Charlie ;
+{Chris} := Chris ;
+{Employee} := clerk ;
+{Employee} := secretary ;
+{Person} := anybody ;
+{Person} := somebody ;
+{Loves} := [lover] loves [beloved] immensely?;

@@ -1,0 +1,81 @@
+// Generif Entity Patterns
+
+// Proteins
+
+//{c-protein} := protein, proteins;
+
+{i-cdk2-cyclin-a} := Cyclin A/Cdk2, Cdk2-Cyclin A, cdk2/Cyclin A;
+{i-cdk2-cyclin-e} := Cyclin E/Cdk2, Cdk2-Cyclin E, cdk2/Cyclin E;
+{i-clathrin} := Clathrin;
+{i-crm1} := crm1, chromosome region maintenance 1;
+{i-daxx} := daxx;
+{i-dnup214} := dnup214, Drosophila nucleoporin 214;
+{i-dnup88} := dnup88, Drosophila nucleoporin 88;
+{i-gs15} := gs15;
+{i-gs28} := gs28;
+{i-kdel} := kdel;
+{i-limitin} := limitin;
+{i-mkl1} := mkl1, megakaryoblastic (leukemia-1 | (leukemia 1));
+{i-mnk} := mnk, atp7a, Menkes disease? protein;
+{i-mt1-mmp} := mt1-mmp;
+{i-src} := src;
+{i-syntaxin4} := syntaxin4, syntaxin-4, syntaxin 4;
+{i-syntaxin5} := syntaxin5, syntaxin-5, syntaxin 5;
+{i-tyk2} := tyk2, tyrosine kinase 2;
+{i-ykt6} := ykt6;
+{i-nes} := nes;
+{i-lim-kinase} := LIM-kinase 1;
+{i-p57kip2} := p57kip2;
+{i-yy1-factor} := YY1 factor;
+{i-coligin} := cofilin;
+{i-cytochrome-c} := cytochrome c;
+{i-imp1} := IMP1;
+{i-pkcdelta} := PKCdelta;
+{i-mcl1} := Mcl-1;
+{i-bclxl} := Bcl-xL;
+{i-rela} := RelA;
+{i-hif-1alpha} := HIF-1alpha;
+{i-exportin5} := exportin-5;
+{i-jaz} := JAZ;
+{i-pag608} := PAG608;
+{i-tfii-i} := TFII-I;
+{i-nrf-2alpha} := NRF-2alpha;
+{i-nrf-2beta} := NRF-2beta;
+{i-crel} := c-rel;
+{i-calmodulin} := calmodulin;
+{i-pxr} := PXR;
+{i-car} := CAR;
+
+{i-deaf1} := deaf1, deaf-1, deformed epidermal autoregulatory factor 1 homolog;
+
+// Protein receptors
+
+{c-protein-receptor} := [protein c-protein] protein? receptor;
+{c-protein-receptor} := receptor for|of [protein];
+{c-protein-receptor} := receptor for|of the [protein] protein;
+
+// Cell types
+
+{c-cell-type} := cell type;
+
+{i-b-cell} := b cell, b cells, b-cell, b-cells;
+{i-hela-cell} := HeLa cell, HeLa cells;
+
+// Cell components
+
+//{c-cell-component} := cell component;
+
+//{i-nucleus} := nucleus;
+//{i-cytoplasm} := cytoplasm;
+//{i-nuclear-envelope} := nuclear envelope, envelope of the nucleus;
+//{i-nuclear-envelope} := wall of the nucleus, nuclear wall;
+//{i-nuclear-envelope} := nuclear membrane, membrane of the nucleus;
+//{i-golgi-apparatus} := golgi, golgi apparatus;
+//{i-endoplasmic-reticulum} := endoplasmic reticulum, er;
+//{i-plasma-membrane} := plasma membrane;
+
+// Locales
+
+//{i-cell-interior} := intracellular;
+//{i-cell-exterior} := extracellular;
+

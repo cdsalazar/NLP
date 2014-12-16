@@ -1,0 +1,49 @@
+; Tue Jul 26 10:15:28 MDT 2005
+; 
+;+ (version "3.0")
+;+ (build "Build 141")
+
+([Charlie] of  Employee
+)
+
+([Chris] of  Employee
+)
+
+([John] of  Person
+)
+
+([KB_202586_Instance_13] of  Loves
+
+	(beloved [Pat])
+	(lover [Mary]))
+
+([KB_202586_Instance_14] of  Loves
+
+	(beloved [John])
+	(lover [Pat]))
+
+([KB_202586_Instance_15] of  Hates
+
+	(hated [Pat])
+	(hater [John]))
+
+([KB_202586_Instance_16] of  Hates
+
+	(hated [Mary])
+	(hater [Pat]))
+
+([KB_202586_Instance_17] of  Hates
+
+	(hated [John])
+	(hater [Mary]))
+
+([KB_202586_Instance_9] of  Loves
+
+	(beloved [Mary])
+	(lover [John]))
+
+([Mary] of  Person
+)
+
+([Pat] of  Person
+)

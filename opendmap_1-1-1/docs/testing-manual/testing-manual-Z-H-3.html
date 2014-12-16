@@ -1,0 +1,348 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<!--
+
+
+Generated from TeX source by tex2page, v 4p4k5
+(running on MzScheme 202, windows), 
+(c) Dorai Sitaram, 
+http://www.ccs.neu.edu/~dorai/tex2page/tex2page-doc.html
+
+
+-->
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<title>
+Testing Manual
+</title>
+<link rel="stylesheet" type="text/css" href="uchsc.css" title=default>
+<meta name=robots content="noindex,follow">
+</head>
+<body>
+<div class=navigation>[Go to <span><a href="testing-manual.html">first</a>, <a href="testing-manual-Z-H-2.html">previous</a></span><span>, <a href="testing-manual-Z-H-4.html">next</a></span> page<span>; &nbsp;&nbsp;</span><span><a href="testing-manual.html#%_toc_start">contents</a></span><span><span>; &nbsp;&nbsp;</span><a href="testing-manual-Z-H-5.html#%_index_start">index</a></span>]</div>
+<p></p>
+<a name="%_sec_4"></a>
+<h1><a href="testing-manual.html#%_toc_%_sec_4">4&nbsp;&nbsp;Building a Custom Testing
+Framework</a></h1>
+<p>When building an application that uses O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP, the testing
+framework can be expanded and customized to test the new
+application end-to-end.</p>
+<p>
+The testing framework consists of several pieces in the Java
+package <i>edu.uchsc.ccp.testing</i>:
+</p>
+<ul>
+<li>
+<p>The Test Manager
+</p>
+<li>
+<p>Test Suites
+</p>
+<li>
+<p>Test Contexts
+</p>
+<li>
+<p>Test Classes
+</p>
+<li>
+<p>Test Suite XML Files
+</p>
+</ul>
+<p></p>
+<p>
+There are two key components that can to be extended to create a
+custom testing framework:
+</p>
+<ul>
+<li>
+<p>A Test Context Java class
+</p>
+<li>
+<p>One or more Test Java classes
+</p>
+</ul>
+<p></p>
+<p>
+One test context object is created and initialized for each test
+suite and it is passed to each test run in that suite.  The test
+context is used to hold any shared state that is required between
+tests.</p>
+<p>
+A test class defines a <i>type</i> of test that can appear in a
+test suite.  An instance of a test class is created for each test
+that appears in the test suite.  Different types of test require
+different test classes.</p>
+<p>
+</p>
+<a name="%_sec_4.1"></a>
+<h2><a href="testing-manual.html#%_toc_%_sec_4.1">4.1&nbsp;&nbsp;Creating a Test Context</a></h2>
+<p>A <tt>TestContext</tt><a name="%_idx_60"></a> contains any global state that should be
+shared across the tests in a test suite.  For example, for most
+OpenDMAP test suites the test context holds a shared
+<tt>Parser</tt><a name="%_idx_62"></a> object. This parser is created and initialized once
+and then used by every test in the suite.</p>
+<p>
+A Java class to be used as a test context must include a
+constructor with no arguments and implement the
+<tt>TestContext</tt><a name="%_idx_64"></a> interface:
+</p>
+<pre class=verbatim> edu.uchsc.ccp.testing.TestContext
+</pre>
+<p>
+which defines the two methods <tt>initialize</tt><a name="%_idx_66"></a>
+and <tt>terminate</tt><a name="%_idx_68"></a>:
+</p>
+<pre class=verbatim> public boolean initialize(TestSuite suite, Collection&lt;Object&gt; errors);
+ public boolean terminate(Collection&lt;Object&gt; errors);
+</pre>
+<p></p>
+<p>
+When the testing framework is ready to run a test suite, it
+creates an instance of the test context and calls the
+<tt>initialize</tt><a name="%_idx_70"></a> method.  This method should set
+up any state that tests within the suite will need to run.</p>
+<p>
+The <i>suite</i> argument to <tt>initialize</tt><a name="%_idx_72"></a>
+is a <tt>TestSuite</tt><a name="%_idx_74"></a> holding the test suite that is about to
+run. Any context values defined in the test suite XML file can be
+extracted from the <i>suite</i> using the methods
+<tt>getValue</tt><a name="%_idx_76"></a> and <tt>getValues</tt><a name="%_idx_78"></a>:
+</p>
+<pre class=verbatim> suite.getValue(name)  =&gt; string value
+ suite.getValues(name) =&gt; collection of string values
+</pre>
+<p>
+The first method can be used to fetch the first value with that
+name defined in the XML file and the second method returns all
+values with that name defined in the XML file.</p>
+<p>
+These values are available so that initialization of the testing
+state can be customized for different suites.  For example, the
+DMAP test context gets the appropriate Prot&eacute;g&eacute; project name
+and pattern files to load into the parser using these methods.</p>
+<p>
+The <i>errors</i> argument to <tt>initialize</tt><a name="%_idx_80"></a>
+and <tt>terminate</tt><a name="%_idx_82"></a> is a collection that errors
+should be added to if encountered.  These errors will be reported
+in the test suite transcript.</p>
+<p>
+The <tt>initialize</tt><a name="%_idx_84"></a> method should return
+<i>true</i> if the test context can now be used to run tests.
+The <tt>terminate</tt><a name="%_idx_86"></a> method should return
+<i>true</i> if it succeeds.</p>
+<p>
+</p>
+<a name="%_sec_4.2"></a>
+<h2><a href="testing-manual.html#%_toc_%_sec_4.2">4.2&nbsp;&nbsp;Creating a Test Class</a></h2>
+<p>A test class does two things:
+</p>
+<ul>
+<li>
+<p>It parses the XML description of itself, and
+</p>
+<li>
+<p>It runs the test defined by that XML.
+</p>
+</ul>
+<p></p>
+<p>
+A new Java test class must extend the <tt>Test</tt><a name="%_idx_88"></a> class found in:
+</p>
+<pre class=verbatim> edu.uchsc.ccp.testing.Test
+</pre>
+<p></p>
+<p>
+This abstract class requires the definition of the three methods
+<tt>startElement</tt><a name="%_idx_90"></a>, <tt>endElement</tt><a name="%_idx_92"></a>, and
+<tt>run</tt><a name="%_idx_94"></a>:
+</p>
+<pre class=verbatim> boolean startElement(String uri, String localName, String qName,
+                      Attributes atts) throws SAXException
+ boolean endElement(String uri, String localName, String qName)
+          throws SAXException;
+ boolean run(TestContext context, PrintStream stream)
+</pre>
+<p></p>
+<p>
+The first two of these are used when the test is being read from
+an XML file.  The third one is used to run the test.</p>
+<p>
+</p>
+<a name="%_sec_Temp_3"></a>
+<h3><a href="testing-manual.html#%_toc_%_sec_Temp_3">Parsing an XML Test Definition</a></h3>
+<p>When a test is read from an XML test suite file, several things
+happen. First, the test suite uses the XML definition of the test
+to determine the <i>type</i> of test being read.  Second, the
+test suite creates a new instance of the Java test class for that
+<i>type</i> of test.  Third, that instance is used to parse the
+XML elements internal to the XML test definition.  This is done by
+calling <tt>startElement</tt><a name="%_idx_96"></a> when each internal element
+begins and <tt>endElement</tt><a name="%_idx_98"></a> when each internal element is
+closed. Finally, when the test definition itself is closed, the
+test suite saves away the test instance to be run later.  The
+instance is responsible for saving any state it needs from its XML
+definition.</p>
+<p>
+The <tt>startElement</tt><a name="%_idx_100"></a> and <tt>endElement</tt><a name="%_idx_102"></a>
+methods are patterned after the methods with the same names in the
+Java SAX
+<a href="http://java.sun.com/j2se/1.5.0/docs/api/org/xml/sax/helpers/DefaultHandler.html">DefaultHandler</a>lass. The differences are:
+</p>
+<ul>
+<li>
+<p>These methods are only called within the definition of a single test.
+The larger context of the XML test suite file is managed by the
+test suite reading the file.
+</p>
+<li>
+<p>These methods should return <i>true</i> if they consume the XML element.
+If the XML element is not valid for this test, or comes out of
+order, these methods should return <i>false</i> so appropriate
+error messages can be generated.
+</p>
+</ul>
+<p></p>
+<p>
+To aid in processing the XML elements within a test, the
+<tt>Test</tt><a name="%_idx_104"></a> abstract class includes the methods
+<tt>startBuffering</tt><a name="%_idx_106"></a> and <tt>getBuffer</tt><a name="%_idx_108"></a>:
+</p>
+<pre class=verbatim> this.startBuffering() =&gt; <i>void</i>
+ this.getBuffer() =&gt; <i>string</i> containing all characters read since startBuffering
+</pre>
+<p></p>
+<p>
+These methods can be called to start and stop gathering the
+characters read between XML elements.</p>
+<p>
+A <tt>Test</tt><a name="%_idx_110"></a> derived class may also define a constructor
+with the following signature:
+</p>
+<pre class=verbatim> Test(String kind, Attributes attributes) throws SAXException
+</pre>
+<p>
+The <i>kind</i> argument will be passed the XML element name
+used in the test suite file to define this test.  (See
+Section&nbsp;<a href="#%_sec_4.2">4.2</a> below on writing an XML test
+suite file).</p>
+<p>
+The <i>attributes</i> argument will hold the attributes
+specified for the XML element defining this test.  The default
+constructor extracts the attributes &#8220;<tt>name</tt>&#8221; and
+&#8220;<tt>fail</tt>&#8221; and makes them available through the
+<tt>Test</tt><a name="%_idx_112"></a> class methods <tt>getName</tt><a name="%_idx_114"></a> and
+<tt>isFailTest</tt><a name="%_idx_116"></a>:
+</p>
+<pre class=verbatim> getName() =&gt; <i>name string</i>
+ isFailTest() =&gt; <i>boolean</i> true if this test is supposed to fail
+</pre>
+<p></p>
+<p>
+If a test class defines its own constructor, it may extract any
+additional attributes that the test needs.</p>
+<p>
+</p>
+<a name="%_sec_Temp_4"></a>
+<h3><a href="testing-manual.html#%_toc_%_sec_Temp_4">Running a Test</a></h3>
+<p></p>
+<p>
+When a test suite runs a test instance, it calls the
+<tt>run</tt><a name="%_idx_118"></a> method defined for that test:
+</p>
+<pre class=verbatim> boolean run(TestContext context, PrintStream stream)
+</pre>
+<p>
+This method is passed the test <i>context</i> object created for
+this test suite and a print <i>stream</i> where this test can
+describe the reason that a test failed (if it does).</p>
+<p>
+This method should run the test that it defines.  It may access
+state made available by the context object (such as an O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP
+parser to process an input string) to run the test.  It must then
+decide if the test succeeded or failed.  If it succeeds then
+nothing should be output and the method should return
+<i>true</i>. If the test fails, then a descriptive message
+should be written to <i>stream</i> so that the user will know
+why the test failed, and the method should return <i>false</i>.</p>
+<p>
+A trick to remember here is that the XML test suite may define
+tests that are expected to fail.  If a test fails and it supposed
+to, then the <tt>run</tt><a name="%_idx_120"></a> method should not generate any
+output and it should return <i>true</i>.  The <tt>run</tt><a name="%_idx_122"></a>
+method can check whether it is supposed to fail using the
+<tt>isFailTest</tt><a name="%_idx_124"></a> method defined by its parent
+<tt>Test</tt><a name="%_idx_126"></a> class.</p>
+<p>
+</p>
+<a name="%_sec_4.3"></a>
+<h2><a href="testing-manual.html#%_toc_%_sec_4.3">4.3&nbsp;&nbsp;Input Output Tests</a></h2>
+<p>A great many tests used in natural language processing systems
+consist of parsing an input string and then checking that the
+correct results are generated.  To simplify the definition of
+custom tests of this sort, the testing framework includes a
+subclass of <tt>Test</tt><a name="%_idx_128"></a> called <tt>InputOutputTest</tt><a name="%_idx_130"></a> in the
+package:
+</p>
+<pre class=verbatim> edu.uchsc.ccp.testing.InputOutputTest
+</pre>
+<p>
+This class extends <tt>Test</tt><a name="%_idx_132"></a> to include
+<tt>InputOutputTest</tt><a name="%_idx_134"></a>startElement and
+<tt>InputOutputTest</tt><a name="%_idx_136"></a>endElement methods that look for one
+<code class=verbatim>&lt;input&gt;</code> and any number of <code class=verbatim>&lt;output&gt;</code> elements in a
+test definition.</p>
+<p>
+It also includes a definition for the <tt>InputOutputTest</tt><a name="%_idx_138"></a>run
+method that runs a test on the input and decides if it succeeds by
+comparing the output it generates with the output strings in the
+test.  If all test strings are generated and no other strings are
+generated, then the test succeeds.  If the test fails, it prints
+out a complete list of expected versus generated strings.</p>
+<p>
+This <tt>InputOutputTest</tt><a name="%_idx_140"></a>run method expects that the test
+class will define a method called <tt>InputOutputTest</tt><a name="%_idx_142"></a>runTest
+with the signature:
+</p>
+<pre class=verbatim> String runTest(TestContext context, String input, Collection&lt;String&gt; output)
+</pre>
+<p>
+This method should run the test given the test suite
+<i>context</i> and the test &lt;<i>input</i> string.  It should
+then write a string representing each output from the test into
+the <i>output</i> collection.  These strings will be compared
+verbatim to the strings supplied in the <code class=verbatim>&lt;output&gt;</code> XML
+elements defining the test.</p>
+<p>
+The <tt>InputOutputTest</tt><a name="%_idx_144"></a>runTest method should return
+<i>null</i> if the test succeeds and an informative error string
+if the test fails.  This method need not worry about whether or
+not the test was supposed to fail, that processing will be managed
+by the <tt>InputOutputTest</tt><a name="%_idx_146"></a> <tt>InputOutputTest</tt><a name="%_idx_148"></a>run
+method.</p>
+<p>
+To create a new test class based on the <tt>InputOutputTest</tt><a name="%_idx_150"></a>
+class, create a Java class that extends <tt>InputOutputTest</tt><a name="%_idx_152"></a>
+and implements the <tt>InputOutputTest</tt><a name="%_idx_154"></a>runTest method. If
+desired, the new class can also implement
+<tt>startElement</tt><a name="%_idx_156"></a> and <tt>endElement</tt><a name="%_idx_158"></a> methods
+to capture additional elements with the test definition.</p>
+<p>
+All of the O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP standard test classes extend the
+<tt>InputOutputTest</tt><a name="%_idx_160"></a> class.  They can be found as examples in
+the Java package:
+</p>
+<pre class=verbatim> edu.uchsc.ccp.dmap.test
+</pre>
+<p>
+In addition, some O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP example classes extend the
+<tt>InputOutputTest</tt><a name="%_idx_162"></a> class.  See for example:
+</p>
+<pre class=verbatim> edu.uchsc.ccp.dmap.example.LoveHateTester
+</pre>
+<p></p>
+<p>
+</p>
+<div class=navigation>[Go to <span><a href="testing-manual.html">first</a>, <a href="testing-manual-Z-H-2.html">previous</a></span><span>, <a href="testing-manual-Z-H-4.html">next</a></span> page<span>; &nbsp;&nbsp;</span><span><a href="testing-manual.html#%_toc_start">contents</a></span><span><span>; &nbsp;&nbsp;</span><a href="testing-manual-Z-H-5.html#%_index_start">index</a></span>]</div>
+<p></p>
+</body>
+</html>

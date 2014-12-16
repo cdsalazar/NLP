@@ -1,0 +1,30 @@
+if variable 'a' is less than 0, then add 2 to variable 'a'.
+if variable 'a' is less than 0, then increment variable 'a' by 2.
+if variable 'a' is less than 0, then increase variable 'a' by 2.
+for each element in variable 'a'. find 2.
+loop through array 'a'. find 2.
+look for 2 in array 'a'.
+add 2 to variable 'a'.
+decrement variable 'a' by variable 'a' modulo 2.
+search through list 'a'. if 'i' equals 5, then 'x' equals 'i' modulo 5. else increment 'q' by 1
+import numpy.
+from person import person.
+pass into fibinocci 'a'. 
+call 'func1' with perameters 'a' 'b' 'c'.
+if 'a' is less than or equal to 5, then print hello.
+loop through list 'a'. given that 'i' is greater than or equal to 'limit', then 'limit' equals 'i'. else increase 'x' by 4.
+while there are still elements in the queue 'a'. pop an element off 'a'. if the element is less than 5, then print pass. otherwise print fail.
+for each variable 'i' in 'a'. print 'i'.
+create variable 'a'. set 'a' equal to 5 times 5. create variable 'c'. set 'c' equal to 'a'.
+instantiate 'a' equal to 0. add 1 to 'a'. if 'a' equals 1, then print hello. otherwise print goodbye.
+if 'a' is at least 5, then print foo. otherwise print moo.
+if 'a' is at most 5, then print foo. otherwise print moo.
+if 'a' is exactly 5, then print foo. otherwise print moo.
+create variable 'a' equal to array. append 3 to 'a'.
+make variable 'a' equal to array. append 5 to 'a'. append 6 to 'a'. remove 3 from 'a'.
+make array 'a'. append 5 to 'a'. remove 5 from 'a'.
+iterate over list 'a'. check 'i' equals 5, then print 5. otherwise print not 5.
+initialize 'i' to 0. while 'i' is less than 5. 'i' plus plus.
+initialize dictionary 'a' equal to map 'b' to 5. print the value of key 'b'.
+search through list 'a'. if the current element in 'a' is greater then 0, then add 2 to this element and add 4 to 'q'.
+if 'a' is bigger than 5, then add 5 to 'a', and if 'a' equals 10, then print success. otherwise set 'a' equal to 5, and print 'a'.

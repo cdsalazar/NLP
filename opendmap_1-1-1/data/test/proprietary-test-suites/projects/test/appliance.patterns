@@ -1,0 +1,19 @@
+{Object} := (thing | things);
+
+{TV} := [color]? (tv | television | tvs | televisions);
+{Radio} := [color]? (radio | radios);
+
+{Blue}  := blue;
+{Green} := green;
+{Red}   := red;
+
+{ObjectRef} := the? [: object] ((called [name]) | (version [version]))*;
+{ObjectRef} := the? [count] [: object] ((called [name]) | (version [version]))*;
+
+{Terminate-Word} := terminate, end, stop, finish, complete;
+
+{Terminate} := {Terminate-Word} [reference];
+
+{TurnOn} := turn on [patient];
+
+{TuneIn} := tune in [radio];

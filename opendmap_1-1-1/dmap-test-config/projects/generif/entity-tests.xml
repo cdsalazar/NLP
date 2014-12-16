@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<!DOCTYPE test-suite>
+
+<!-- Some tests for the generif entity ontology  -->
+
+<!-- R. James Firby                              -->
+<!-- September 2005                              -->
+
+<test-suite name="genrif-entity-tests">
+
+	<test-context>edu.uchsc.ccp.dmap.test.ParserTestContext</test-context>
+	<test-type name="test">edu.uchsc.ccp.dmap.test.ParserTest</test-type>
+
+	<protege-project>test/projects/generif/generif.pprj</protege-project>
+	<pattern-file>test/projects/generif/generif-entity.patterns</pattern-file>
+	
+	<!-- Proteins -->
+	
+	<test name="Protein-1" includeSubsumed="false">
+		<input>Cyclin A/Cdk2</input>
+		<output>{i-cdk2-cyclin-a} from 0 to 1</output>
+	</test>
+
+	<test name="Protein-1a" includeSubsumed="false">
+		<input>Cdk2-Cyclin A</input>
+		<output>{i-cdk2-cyclin-a} from 0 to 1</output>
+	</test>
+
+	<test name="Protein-1b" includeSubsumed="false">
+		<input>cdk2/Cyclin A</input>
+		<output>{i-cdk2-cyclin-a} from 0 to 1</output>
+	</test>
+
+	<test name="Protein-2" includeSubsumed="false">
+		<input>Cyclin E/Cdk2</input>
+		<output>{i-cdk2-cyclin-e} from 0 to 1</output>
+	</test>
+
+	<test name="Protein-2a" includeSubsumed="false">
+		<input>Cdk2-Cyclin E</input>
+		<output>{i-cdk2-cyclin-e} from 0 to 1</output>
+	</test>
+
+	<test name="Protein-2b" includeSubsumed="false">
+		<input>cdk2/Cyclin E</input>
+		<output>{i-cdk2-cyclin-e} from 0 to 1</output>
+	</test>
+
+	<test name="Protein-3" includeSubsumed="false">
+		<input>clathrin</input>
+		<output>{i-clathrin} from 0 to 0</output>
+	</test>
+
+	<test name="Protein-4" includeSubsumed="false">
+		<input>crm1</input>
+		<output>{i-crm1} from 0 to 0</output>
+	</test>
+
+	<test name="Protein-4a" includeSubsumed="false">
+		<input>chromosome region maintenance 1</input>
+		<output>{i-crm1} from 0 to 3</output>
+	</test>
+
+	<test name="Protein-5" includeSubsumed="false">
+		<input>daxx</input>
+		<output>{i-daxx} from 0 to 0</output>
+	</test>
+
+	<test name="Protein-6" includeSubsumed="false">
+		<input>dnup214</input>
+		<output>{i-dnup214} from 0 to 0</output>
+	</test>
+
+	<test name="Protein-6a" includeSubsumed="false">
+		<input>drosophila nucleoporin 214</input>
+		<output>{i-dnup214} from 0 to 2</output>
+	</test>
+
+	<test name="Protein-7" includeSubsumed="false">
+		<input>mkl1</input>
+		<output>{i-mkl1} from 0 to 0</output>
+	</test>
+
+	<test name="Protein-7a" includeSubsumed="false">
+		<input>megakaryoblastic leukemia-1</input>
+		<output>{i-mkl1} from 0 to 1</output>
+	</test>
+
+	<test name="Protein-7b" includeSubsumed="false">
+		<input>megakaryoblastic leukemia 1</input>
+		<output>{i-mkl1} from 0 to 2</output>
+	</test>
+
+	<test name="Protein-8" includeSubsumed="false">
+		<input>mnk</input>
+		<output>{i-mnk} from 0 to 0</output>
+	</test>
+
+	<test name="Protein-8a" includeSubsumed="false">
+		<input>atp7a</input>
+		<output>{i-mnk} from 0 to 0</output>
+	</test>
+
+	<test name="Protein-8b" includeSubsumed="false">
+		<input>Menkes disease protein</input>
+		<output>{i-mnk} from 0 to 2</output>
+	</test>
+
+	<test name="Protein-8c" includeSubsumed="false">
+		<input>Menkes protein</input>
+		<output>{i-mnk} from 0 to 1</output>
+	</test>
+	
+	<!-- Protein parent -->
+		
+	<test name="Protein-900" includeSubsumed="false">
+		<input>syntaxin-4 protein</input>
+		<output>{i-syntaxin4} from 0 to 0</output>
+		<output>{c-protein} from 1 to 1</output>
+	</test>
+	
+	<!-- Protein receptor -->
+	
+	<test name="Receptor-1" includeSubsumed="false">
+		<input>syntaxin 5 receptor</input>
+		<output>{c-protein-receptor [protein]={i-syntaxin5}} from 0 to 2</output>
+	</test>
+
+	<test name="Receptor-1a" includeSubsumed="false">
+		<input>syntaxin 5 receptor</input>
+		<output>{c-protein-receptor [protein]={i-syntaxin5}} from 0 to 2</output>
+	</test>
+
+	<test name="Receptor-2" includeSubsumed="false">
+		<input>kdel protein receptor</input>
+		<output>{c-protein-receptor [protein]={i-kdel}} from 0 to 2</output>
+	</test>
+
+	<test name="Receptor-3" includeSubsumed="false">
+		<input>receptor for mt1-mmp</input>
+		<output>{c-protein-receptor [protein]={i-mt1-mmp}} from 0 to 2</output>
+	</test>
+
+	<test name="Receptor-4" includeSubsumed="false">
+		<input>receptor for the tyrosine kinase 2 protein</input>
+		<output>{c-protein-receptor [protein]={i-tyk2}} from 0 to 6</output>
+	</test>
+	
+	<!-- Cell types -->
+	
+	<test name="Cell-1" includeSubsumed="false">
+		<input>B cell</input>
+		<output>{i-b-cell} from 0 to 1</output>
+	</test>
+	
+	<test name="Cell-1a" includeSubsumed="false">
+		<input>B-cell</input>
+		<output>{i-b-cell} from 0 to 0</output>
+	</test>
+	
+	<test name="Cell-2" includeSubsumed="false">
+		<input>HeLa cells</input>
+		<output>{i-hela-cell} from 0 to 1</output>
+	</test>
+	
+	<!-- Cell components -->
+	
+	<test name="Cell-Component-1" includeSubsumed="false">
+		<input>golgi apparatus</input>
+		<output>{i-golgi-apparatus} from 0 to 1</output>
+	</test>
+	
+	<test name="Cell-Component-1a" includeSubsumed="false">
+		<input>golgi</input>
+		<output>{i-golgi-apparatus} from 0 to 0</output>
+	</test>
+
+	<test name="Cell-Component-2" includeSubsumed="false">
+		<input>er</input>
+		<output>{i-endoplasmic-reticulum} from 0 to 0</output>
+	</test>
+	
+
+</test-suite>

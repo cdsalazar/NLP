@@ -1,0 +1,35 @@
+// Patterns that test Kleene Star recognition
+
+{ClassA} := A * B C;
+{ClassA} := D E * F;
+{ClassA} := G H I *;
+{ClassA} := J * K * L;
+{ClassA} := M N * O *;
+{ClassA} := (P Q) * R S;
+{ClassA} := (T * U) * V W;
+{ClassA} := (X Y *) * Z 0;
+{ClassA} := 1 (2 * 3) * 4;
+{ClassA} := 5 (6 * 7 *) * 8;
+{ClassA} := 9 (10 11) *;
+{ClassA} := 12 (13 14 *) *;
+
+// Patterns that test Optional recognition
+
+{ClassB} := A ? B C;
+{ClassB} := D E ? F;
+{ClassB} := G H I ? ;
+{ClassB} := J ? K ? L;
+{ClassB} := M N ? O ?;
+{ClassB} := (P Q) ? R S;
+{ClassB} := (T ? U) ? V W;
+{ClassB} := (X Y ?) ? Z 0;
+{ClassB} := 1 (2 ? 3) ? 4;
+{ClassB} := 5 (6 ? 7 ?) ? 8;
+
+//pattern 11
+//{ClassB} := 9 ?;
+
+//pattern 12
+//{ClassB} := 10?;
+
+

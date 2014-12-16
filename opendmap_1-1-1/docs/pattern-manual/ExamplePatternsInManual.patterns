@@ -1,0 +1,78 @@
+// Examples 1, 2, 4, 5
+{protein} := "brca1";
+{protein} := brca1;
+
+// Example 3
+{protein} := "brca1", "brca-1", "brca 1";
+
+// Example 6
+{protein} := brca1"," 2;
+
+// Example 7 
+{protein} := braca1","2;
+
+// Example 8 
+{trasnport-verb} := transported;
+{protein-transport} := [transporter] {transport-verb} [transported];
+
+// Example 9
+{interact-verb} := associates, binds, interacts, phosphorylates;
+{protein-protein interaction} := [protein1] {interact-verb} [protein2];
+
+// Example 10
+{interact-noun} := interaction;
+{interact-verb} := interact, interacts, interacted;
+{interact-predicate} := {interact-noun}, {interact-verb};
+{protein-protein interaction} := [protein1]{interact-predicate} with [protein2];
+
+// Example 11
+{interact-verb} := associates, binds, interacts, phosphorylates;
+{determiner} := a, the;
+{preposition} := in, on, to, by, with;
+{aux-verb} := is, are, was, were;
+{protein-protein interaction} := [protein1] {aux-verb} {interact-verb} {preposition} {determiner} [protein2];
+
+// Example 12, 13
+{protein-protein interaction} := [protein1] binds with [protein2];
+{protein} := imp1, imp2, imp3;
+{protein} := brca1, brca-1, brca 1;
+
+// Example 14
+// not included here because it requires other resources (syntactic depedency parser)
+
+// Example 15
+{protein} := r'imp[0-9]';
+
+// Example 16
+{interact-verb} := r'associat(e|es|ed)', r'bin(d|ds)', r'interac(t|ts|ted)', r'phosphorylat(e|es|ed)';
+
+// Example 17
+{protein-protein interaction} := [protein1] binds with+ [protein2];
+{protein-protein interaction} := [protein1] binds r'with+' [protein2];
+
+// Example 18
+{protein} := mkl1, megakaryoblastic (leukemia-1|(leukemia 1));
+
+// Example 19
+{interact-verb} := phosphorylates, binds, activates;
+{interact-noun} := phosphorylation, binding, activation;
+{protein-protein interaction} := [protein1] ({interact-verb}|{interact-noun}) {preposition}? [protein2];
+
+// Example 20
+{protein transport} := [transporter] {transport-verb} [transported] (from the [source])? (to the [destination])?
+
+// Example 21
+{protein-protein interaction} := [protein1] _ interact with [protein2];
+
+// Example 22
+{protein-protein interaction} := interacts @ imp3;
+
+// Examples 23, 24
+{protein-protein interaction} := interacts directly @ (the [protein1]);
+
+// Example 25
+{protein transport} := {aux-verb} {transport-verb} [transported] @ (from the [source]) @ (to the [destination]);
+
+// Example 26
+{transport-verb} := translocates;
+{protein transport} := {transport-verb} [transported] _ @ (from the [source]) _ @ (to the [destination]);

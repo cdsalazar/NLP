@@ -1,0 +1,198 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<!--
+
+
+Generated from TeX source by tex2page, v 4p4k5
+(running on MzScheme 202, windows), 
+(c) Dorai Sitaram, 
+http://www.ccs.neu.edu/~dorai/tex2page/tex2page-doc.html
+
+
+-->
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<title>
+Testing Manual
+</title>
+<link rel="stylesheet" type="text/css" href="uchsc.css" title=default>
+<meta name=robots content="index,follow">
+</head>
+<body>
+
+<p>
+
+
+</p>
+<p>
+</p>
+<p>
+               </p>
+<p>
+                                              </p>
+<p>
+</p>
+<p>
+ </p>
+<p>
+           </p>
+<p>
+                  </p>
+<p>
+</p>
+<p>
+</p>
+<p>
+         </p>
+<p>
+</p>
+<p>
+
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+
+
+
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+
+
+
+</p>
+<p>
+</p>
+<p>
+
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+
+</p>
+<p>
+</p>
+<p>
+
+</p>
+<p>
+
+
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+
+</p>
+<p>
+</p>
+<p>
+
+</p>
+<p>
+
+
+
+
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+
+
+</p>
+<p>
+</p>
+<p>
+<img src="manual.gif" alt="" align="left" border="0" vspace="0" hspace="0" style="margin-right: 15px; margin-left: -15px;"></p>
+<div class="title">Testing Manual</div>
+
+<p></p>
+<div class="author">
+OpenDMAP Project</div><div class="date">May 2006</div>
+
+<p></p>
+<div align=left><table><tr><td>
+
+This manual is preliminary and for informational purposes only.
+</td></tr></table></div>
+
+<br><br><br><br>
+<p>
+</p>
+<a name="%_sec_Temp_1"></a>
+<h1>Contents</h1>
+<p><a name="%_toc_start"></a></p>
+<p><b>
+&nbsp; &nbsp; <a name="%_toc_%_sec_1" href="testing-manual-Z-H-1.html#%_sec_1">1&nbsp;&nbsp;Introduction</a></b><br>
+</p>
+<p><b>
+&nbsp; &nbsp; <a name="%_toc_%_sec_2" href="testing-manual-Z-H-1.html#%_sec_2">2&nbsp;&nbsp;Testing O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP</a></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_2.1" href="testing-manual-Z-H-1.html#%_sec_2.1">2.1&nbsp;&nbsp;Supplied O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP Test Suites</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_2.2" href="testing-manual-Z-H-1.html#%_sec_2.2">2.2&nbsp;&nbsp;Adding New O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP Tests</a><br>
+</p>
+<p><b>
+&nbsp; &nbsp; <a name="%_toc_%_sec_3" href="testing-manual-Z-H-2.html#%_sec_3">3&nbsp;&nbsp;Running Test Suites</a></b><br>
+</p>
+<p><b>
+&nbsp; &nbsp; <a name="%_toc_%_sec_4" href="testing-manual-Z-H-3.html#%_sec_4">4&nbsp;&nbsp;Building a Custom Testing
+Framework</a></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_4.1" href="testing-manual-Z-H-3.html#%_sec_4.1">4.1&nbsp;&nbsp;Creating a Test Context</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_4.2" href="testing-manual-Z-H-3.html#%_sec_4.2">4.2&nbsp;&nbsp;Creating a Test Class</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_Temp_3" href="testing-manual-Z-H-3.html#%_sec_Temp_3">Parsing an XML Test Definition</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_Temp_4" href="testing-manual-Z-H-3.html#%_sec_Temp_4">Running a Test</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_4.3" href="testing-manual-Z-H-3.html#%_sec_4.3">4.3&nbsp;&nbsp;Input Output Tests</a><br>
+</p>
+<p><b>
+&nbsp; &nbsp; <a name="%_toc_%_sec_5" href="testing-manual-Z-H-4.html#%_sec_5">5&nbsp;&nbsp;Creating a Custom XML Test Suite File</a></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_5.1" href="testing-manual-Z-H-4.html#%_sec_5.1">5.1&nbsp;&nbsp;Specifying the Test Context</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_5.2" href="testing-manual-Z-H-4.html#%_sec_5.2">5.2&nbsp;&nbsp;Specifying the Test Types</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_5.3" href="testing-manual-Z-H-4.html#%_sec_5.3">5.3&nbsp;&nbsp;Declaring Context Values</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="%_toc_%_sec_5.4" href="testing-manual-Z-H-4.html#%_sec_5.4">5.4&nbsp;&nbsp;Writing the Tests</a><br>
+</p>
+<p><b>
+&nbsp; &nbsp; <a name="%_toc_%_sec_Temp_5" href="testing-manual-Z-H-5.html#%_sec_Temp_5">Index</a></b><br>
+</p>
+<p>
+</p>
+<div class=navigation>[Go to <span class=disable>first, previous</span><span><span class=disable>, </span><a href="testing-manual-Z-H-1.html">next</a></span> page<span>; &nbsp;&nbsp;</span><span class=disable>contents</span><span><span class=disable>; &nbsp;&nbsp;</span><a href="testing-manual-Z-H-5.html#%_index_start">index</a></span>]</div>
+<p></p>
+<div class=smallprint>
+Created: Tues, May 9, 2006, 3:03 pm using <a href="http://www.ccs.neu.edu/~dorai/tex2page/tex2page-doc.html">TeX2page </a></div>
+</body>
+</html>

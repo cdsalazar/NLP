@@ -1,0 +1,288 @@
+
+/* The only non-default here is 'UNICODE_INPUT'; we want to support general Unicode character streams */
+options {
+   USER_TOKEN_MANAGER = false;
+   USER_CHAR_STREAM = false;
+   JAVA_UNICODE_ESCAPE = false;
+   UNICODE_INPUT = true;
+   /* jjtree */
+    MULTI=true;
+}
+PARSER_BEGIN(DMAPPatternParser)
+package edu.uchsc.ccp.dmap.pattern;
+
+import edu.uchsc.ccp.dmap.Pattern;
+
+public class DMAPPatternParser {
+
+  public static String trimName(String name) {
+  	return name.substring(1,name.length()-1);
+  }
+  public static String trimName(String name, int start) {
+  	return name.substring(start,name.length()-1);
+  }
+  
+  public static void main(String args[]) throws ParseException {
+    System.out.println("Reading from standard input...");
+    DMAPPatternParser parser = new DMAPPatternParser(System.in);
+    try {
+      ASTDMAPRuleSet n = parser.DMAPRuleSet();
+      n.dump(""); 
+      System.out.println("Thank you.");
+    } catch (Exception e) {
+      System.out.println("Oops.");
+      System.out.println(e.getMessage());
+      e.printStackTrace();
+    } 
+  }
+
+}
+
+PARSER_END(DMAPPatternParser)
+
+/* Skip white space (except in some cases, like strings) */
+SKIP :
+{
+  " "
+| "\t"
+| "\n"
+| "\r"
+| "\f"
+}
+
+/* "Real" Tokens -- strings, SYMBOLs (i.e., non-quoted strings), regexs, frame names */
+
+TOKEN :
+{
+ < REGEX1:
+      "r'"
+      (~["\'","\n","\r"])*
+      "'"
+  >
+|< REGEX2:
+      "r\""
+      ( (~["\"","\n","\r"]) | ("\\" "\"") )*
+      "\""
+  >
+| < SYMBOL: (<LETTER>|<DIGIT>|["'","_","-",":","/"])+ >
+| < FRAME_NAME:
+      "{"
+      (   (~["\"","\\","\n","\r","{"])
+        | ("\\"
+            ( ["n","t","b","r","f","\\","'","\"","{"]
+            | ["0"-"7"] ( ["0"-"7"] )?
+            | ["0"-"3"] ["0"-"7"] ["0"-"7"]
+            )
+          )
+      )*
+      "}"
+  >
+ | < STRING1:
+      "\""
+      (   (~["\"","\\","\n","\r"])
+        | ("\\"
+            ( ["n","t","b","r","f","\\","'","\""]
+            | ["0"-"7"] ( ["0"-"7"] )?
+            | ["0"-"3"] ["0"-"7"] ["0"-"7"]
+            )
+          )
+      )*
+      "\""
+  >
+ | < STRING2:
+      "'"
+      (   (~["\'","\\","\n","\r"])
+        | ("\\"
+            ( ["n","t","b","r","f","\\","'","\""]
+            | ["0"-"7"] ( ["0"-"7"] )?
+            | ["0"-"3"] ["0"-"7"] ["0"-"7"]
+            )
+          )
+      )*
+      "'"
+  >
+|
+  < #LETTER:
+      [
+       "\u0024",
+       "\u0041"-"\u005a",
+       "\u005f",
+       "\u0061"-"\u007a",
+       "\u00c0"-"\u00d6",
+       "\u00d8"-"\u00f6",
+       "\u00f8"-"\u00ff",
+       "\u0100"-"\u1fff",
+       "\u3040"-"\u318f",
+       "\u3300"-"\u337f",
+       "\u3400"-"\u3d2d",
+       "\u4e00"-"\u9fff",
+       "\uf900"-"\ufaff"
+      ]
+  >
+|
+  < #DIGIT:
+      [
+       "\u0030"-"\u0039",
+       "\u0660"-"\u0669",
+       "\u06f0"-"\u06f9",
+       "\u0966"-"\u096f",
+       "\u09e6"-"\u09ef",
+       "\u0a66"-"\u0a6f",
+       "\u0ae6"-"\u0aef",
+       "\u0b66"-"\u0b6f",
+       "\u0be7"-"\u0bef",
+       "\u0c66"-"\u0c6f",
+       "\u0ce6"-"\u0cef",
+       "\u0d66"-"\u0d6f",
+       "\u0e50"-"\u0e59",
+       "\u0ed0"-"\u0ed9",
+       "\u1040"-"\u1049"
+      ]
+  >
+}
+
+/* COMMENTS */
+
+TOKEN :
+{
+  <COMMENT: "//" (~["\n","\r"])* ("\n"|"\r"|"\r\n")>
+}
+
+
+/* SEPARATORS */
+
+TOKEN :
+{
+  < LBRACKET: "[" >
+| < RBRACKET: "]" >
+| < SEMICOLON: ";" >
+| < ARROW:     ":=" >
+| < COMMA:     "," >
+| < LPAREN:   "(" >
+| < RPAREN:   ")" >
+| < CLAUSE:   "@" >
+}
+
+/* Kleene operators */
+
+TOKEN :
+{
+  < KLEENE_STAR: "*" >
+| < KLEENE_PLUS: "+" >
+| < ALTERNATION: "|" >
+| < OPTIONAL:    "?" >
+
+}
+
+/* Production rules. */
+
+/* A DMAPRuleSet is a set of DMAP rules */
+ASTDMAPRuleSet DMAPRuleSet ():
+{}
+{  (DMAPRule() | Comment())*  
+   { return jjtThis; } 
+}
+
+/* A Comment is a comment token up to line end */
+ASTComment Comment () :
+{}
+{
+	( <COMMENT> )
+	{ return jjtThis; }
+}
+
+/* A DMAPRule is a frame name, arrow, a set of patterns, ending with a semicolon */
+/* 	  | Patterns() <SEMICOLON> ) */
+ASTDMAPRule DMAPRule () :
+{Token t = null;}
+{
+	( t = <FRAME_NAME> {jjtThis.setBase(trimName(t.image));} <ARROW> Patterns() <SEMICOLON> )
+
+	{ return jjtThis; }
+}
+
+/* A set of patterns is one or more patterns separated by commas */
+ASTPatterns Patterns() :
+{}
+{
+	( Pattern() (<COMMA> Pattern())* )
+	{ return jjtThis; }
+}
+
+/* Pattern => PatternHead (& Clause)* */
+ASTPattern Pattern () :
+{}
+{
+	( PatternComponent() (<CLAUSE> PatternComponent())* )
+	{ return jjtThis; }
+}
+
+/* A Pattern is one or more entries */
+ASTPatternComponent PatternComponent () :
+{}
+{
+	(Entry())+ 
+	{ return jjtThis; }
+}
+
+/* An entry is a base element, plus possible post-fixed operators or alternations. Optionally, surrounded by parens.*/
+ASTEntry Entry () :
+{}
+{ 
+	(OperatorEntry() [ (<ALTERNATION> OperatorEntry())+ {jjtThis.setOperatorType(Pattern.Operator.ALTERNATION);}
+	                 ] )
+	{ return jjtThis; }
+}
+
+ASTEntry OperatorEntry () :
+{}
+{ 
+	(SimpleEntry() [ (   <KLEENE_STAR> {jjtThis.setOperatorType(Pattern.Operator.STAR);} 
+	                   | <KLEENE_PLUS> {jjtThis.setOperatorType(Pattern.Operator.PLUS);}
+	                   | <OPTIONAL> {jjtThis.setOperatorType(Pattern.Operator.OPTIONAL);}
+	                  ) ] )
+	{ return jjtThis; }
+}
+
+ASTEntry SimpleEntry () :
+{}
+{ 
+	( (BaseElement() {jjtThis.setOperatorType(Pattern.Operator.BASE);} ) |
+	  ( <LPAREN> (Entry())+ <RPAREN> ) {jjtThis.setOperatorType(Pattern.Operator.SEQUENCE);} )
+	{ return jjtThis; }
+}
+
+/* Base element is a string, symbol, regular expression, frame name, or path */
+ASTBaseElement BaseElement () :
+{ Token t = null;}
+{ 
+	( t = <STRING1> {jjtThis.setEntryType(ASTBaseElement.EntryType.STRING);
+	                jjtThis.setImage(trimName(t.image));}
+	| t = <STRING2> {jjtThis.setEntryType(ASTBaseElement.EntryType.STRING);
+	                jjtThis.setImage(trimName(t.image));}
+	| t = <SYMBOL> {jjtThis.setEntryType(ASTBaseElement.EntryType.STRING);
+	                jjtThis.setImage(t.image);}
+	| t = <REGEX1>  {jjtThis.setEntryType(ASTBaseElement.EntryType.REGEX);
+	                jjtThis.setImage(trimName(t.image,2));}
+  | t = <REGEX2>  {jjtThis.setEntryType(ASTBaseElement.EntryType.REGEX);
+	                jjtThis.setImage(trimName(t.image,2));}
+	| t = <FRAME_NAME> {jjtThis.setEntryType(ASTBaseElement.EntryType.FRAME_NAME);
+	                jjtThis.setImage(trimName(t.image));}
+	| Path() {jjtThis.setEntryType(ASTBaseElement.EntryType.PATH);} )
+    { return jjtThis; }
+}
+
+ASTSlotName SlotName () : 
+{ Token t = null; }
+{  ( t = <SYMBOL> {jjtThis.setName(t.image);} )
+  {return jjtThis; }
+}
+/* A path is one or more slot names  surrounded by brackets */
+ASTPath Path () :
+{ }
+{
+  ( <LBRACKET> SlotName() (SlotName() | ("+" SlotName()))* <RBRACKET> )
+  { return jjtThis; }
+}
+
+

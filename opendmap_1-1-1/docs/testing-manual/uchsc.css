@@ -1,0 +1,107 @@
+body, p, td {font-family: san-serif, verdana, arial, sans-serif;}
+li {font-family: san-serif, verdana, arial, sans-serif;}
+blockquote {font-family: san-serif, verdana, arial, sans-serif; margin-left:10%; margin-right:10%;}
+code, pre, tt {font-family: monospace, "courier new", courier, sans-serif;}
+h1, h2 {font: bold larger verdana, arial, sans-serif;}
+h3, h4, h5, h6 {font: bold larger verdana, arial, sans-serif;}
+
+A { COLOR: #6666cc; TEXT-DECORATION: none} 
+A:visited { COLOR: #6666cc; TEXT-DECORATION: none} 
+A:hover { COLOR: #339900; TEXT-DECORATION: none}
+
+body {
+   color: black;
+/*   background-color: #e5e5e5;*/
+  background-color: #ffffff;
+/*background-color: beige;*/
+   margin-top: 2em;
+   margin-left: 8%;
+   margin-right: 8%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+   margin-top: .5em;
+}
+
+tr {text-align: left;}
+
+.partheading {
+   font-size: 100%;
+}
+
+.chapterheading {
+   font-size: 100%;
+}
+
+pre {
+    margin-left: 2em;
+}
+
+ol {
+   list-style-type: decimal;
+}
+
+ol ol {
+   list-style-type: lower-alpha;
+}
+
+ol ol ol {
+   list-style-type: lower-roman;
+}
+
+ol ol ol ol {
+   list-style-type: upper-alpha;
+}
+
+.verbatim {
+   color: brown;
+}
+
+.xmlrpc {
+   color: darkblue;
+}
+
+
+.navigation {
+   font: 90%/120% verdana, arial, sans-serif;
+   text-align: right;
+   font-style: italic;
+}
+
+.disable {
+   /* color: #e5e5e5; */
+color: gray;
+}
+
+.smallcaps {
+ /* font-size: 75%; */
+}
+
+.smallprint {
+   font: 60%/120% verdana, arial, sans-serif;
+   color: gray;
+   text-align: right;
+}
+
+.smallprint hr {
+   text-align: left;
+   width: 40%;
+}
+
+.author {
+  margin-top: 10px;
+  font-size: 140%;
+  font-weight: bold;
+  color: #336699;
+}
+
+.title {
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.date {
+  margin-top: 5px;
+  font-size: 75%;
+  margin-bottom: 30px;
+}

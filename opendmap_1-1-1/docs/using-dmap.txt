@@ -1,0 +1,60 @@
+Using OpenDMAP
+--------------
+
+Create a parser
+ 
+ Parser()
+ Parser(boolean retainCase)
+ Parser(Level level)
+ Parser(boolean retainCase, Level level)
+
+Load in patterns.
+
+ addPatternsFromString(String patterns, KnowledgeBase kb)
+ addPatternsFromFile(String filename, KnowledgeBase kb)
+ 
+Parse input
+
+ parse(String input)
+
+The result is a collection of references.
+
+Accessing References
+--------------------
+
+ getReferences()
+ 
+ getWordReferences()
+ getFrameReferences()
+ 
+ getWordReferences(String word)
+ getFrameReferences(String ancestor)
+ 
+ getSpanningReferences()
+ 
+ hasWordReference(String word)
+ hasFrameReference(String ancestor)
+ 
+Dealing with a Reference
+------------------------
+
+  isInstance()
+
+  isa(String ancestor)
+  
+  getText()
+  
+  getConsistentInstances()
+  
+  getSlotValue()
+  
+  getItem()
+  
+  
+  
+ 
+ 
+ 
+
+ 
+ 

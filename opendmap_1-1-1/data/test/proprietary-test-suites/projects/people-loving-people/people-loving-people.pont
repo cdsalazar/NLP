@@ -1,0 +1,77 @@
+; Tue Jul 26 10:15:28 MDT 2005
+; 
+;+ (version "3.0")
+;+ (build "Build 141")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot lover
+		(type INSTANCE)
+;+		(allowed-classes Person)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot First+Name
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot hated
+		(type INSTANCE)
+;+		(allowed-classes Person)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot beloved
+		(type INSTANCE)
+;+		(allowed-classes Person)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot hater
+		(type INSTANCE)
+;+		(allowed-classes Person)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Person
+	(is-a USER)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Employee
+	(is-a Person)
+	(role concrete))
+
+(defclass Action
+	(is-a USER)
+	(role concrete))
+
+(defclass Loves
+	(is-a Action)
+	(role concrete)
+	(single-slot lover
+		(type INSTANCE)
+;+		(allowed-classes Person)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot beloved
+		(type INSTANCE)
+;+		(allowed-classes Person)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Hates
+	(is-a Action)
+	(role concrete)
+	(single-slot hated
+		(type INSTANCE)
+;+		(allowed-classes Person)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot hater
+		(type INSTANCE)
+;+		(allowed-classes Person)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

@@ -1,0 +1,14 @@
+; Tue Aug 16 14:17:18 MDT 2005
+; 
+;+ (version "3.0")
+;+ (build "Build 141")
+
+([firby-transport_Instance_20005] of  test
+)
+
+([firby-transport_Instance_50017] of  sample
+
+	(funny-slot "asdfASasd")
+	(funny-subslot "asdfASDFASDFasdf")
+	(funny-subsubslot "asdfasdf")
+	(funny-subsubsubslot "asdf"))

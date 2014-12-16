@@ -1,0 +1,22 @@
+// Transport words
+
+{c-action-transport-two-way} := translocate, translocated, translocates, translocating, translocation;
+{c-action-transport-two-way} := to translocate;
+
+{c-action-transport-two-way-passive} := translocated;
+
+// Spelling correction
+
+{c-action-transport-two-way-passive} := translocted;
+
+// Bioprocess patterns
+
+{c-transport} := [destination] [action c-action-transport] _ (of the? [patient])? (by the? [agent])?;
+{c-transport} := [patient dep:x]? _ [destination] [action c-action-transport head:x] (by the? [agent])?;
+
+{c-transport} := [action c-action-transport] @ (of the? [patient]) @ (by the? [agent]) @ (from the? [source]) @ (to|toward|towards|into the? [destination]);
+
+{c-transport} := [patient dep:x] _ [action c-action-transport head:x] @ (by the? [agent]) @ (from the? [source]) @ (to|toward|towards|into the? [destination]);
+
+{c-transport} := [patient] is|are|was|were [action c-action-transport-passive] @ (by the? [agent]) @ (from the? [source]) @ (to|toward|towards|into the? [destination]);
+

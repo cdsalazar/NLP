@@ -1,0 +1,346 @@
+; Tue Aug 16 14:17:18 MDT 2005
+; 
+;+ (version "3.0")
+;+ (build "Build 141")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot case_study
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot revisit
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot entrez_gene_id
+		(type INTEGER)
+		(range -1 %3FVARIABLE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot entrez_official_name
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot entrez_official_symbol
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot constituent_molecules
+		(type INSTANCE)
+;+		(allowed-classes molecule)
+		(create-accessor read-write))
+	(multislot entrez_alias
+		(type STRING)
+		(create-accessor read-write))
+	(multislot generif_entrez_gene
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot transport_origin
+		(type INSTANCE)
+;+		(allowed-classes cellular+component)
+;+		(cardinality 0 1)
+;+		(subslot-of transport_location)
+		(create-accessor read-write))
+	(single-slot transport_destination
+		(type INSTANCE)
+;+		(allowed-classes cellular+component)
+;+		(cardinality 0 1)
+;+		(subslot-of transport_location)
+		(create-accessor read-write))
+	(multislot transported_entities
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(subslot-of transport_participants)
+		(create-accessor read-write))
+	(multislot transporters
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(subslot-of transport_participants)
+		(create-accessor read-write))
+	(single-slot entrez_species
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot generif_pmid
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot transport_participants
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+		(create-accessor read-write))
+	(multislot transport_location
+		(type INSTANCE)
+;+		(allowed-classes cellular+component)
+		(create-accessor read-write))
+	(single-slot silly-slot
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot silly-subslot
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+;+		(subslot-of silly-slot)
+		(create-accessor read-write))
+	(single-slot silly-subsubslot
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+;+		(subslot-of silly-subslot)
+		(create-accessor read-write))
+	(single-slot silly-subsubsubslot
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+;+		(subslot-of silly-subsubslot)
+		(create-accessor read-write))
+	(single-slot funny-slot
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot funny-subslot
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of funny-slot)
+		(create-accessor read-write))
+	(single-slot funny-subsubslot
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of funny-subslot)
+		(create-accessor read-write))
+	(single-slot funny-subsubsubslot
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(subslot-of funny-subsubslot)
+		(create-accessor read-write)))
+
+(defclass biological+entity
+	(is-a USER)
+	(role concrete))
+
+(defclass cellular+component
+	(is-a biological+entity)
+	(role concrete))
+
+(defclass cell+surface "GO:0009986"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass chloroplast "GO:0009507"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass cytoplasm "GO:0005737"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass cytosol
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass extracellular+space "GO:0005615"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass Golgi+apparatus "GO:0005794"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass Golgi+cis-face "GO:0048193"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass Golgi+trans+face "GO:0005802"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass endoplasmic+reticulum "GO:0005783"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass endoplasmic+reticulum+lumen "GO:0005788"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass endoplasmic+reticulum+membrane "GO:0005789"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass endosome "GO:0005768"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass early+endosome "GO:0005769"
+	(is-a endosome)
+	(role concrete))
+
+(defclass late+endosome "GO:0005770"
+	(is-a endosome)
+	(role concrete))
+
+(defclass lysosome "GO:0005764"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass mitochondrial+inner+membrane "GO:0005743"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass mitochondrial+matrix "GO:0005759"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass mitochondrial+outer+membrane "GO:0005741"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass mitochondrion "GO:0005739"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass nucleus "GO:0005634"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass peroxisome "GO:0005777"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass peroxisome+matrix "GO:0005782"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass peroximal+membrane "GO:0005778"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass plasma+membrane "GO:0005886"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass vacuole "GO:0005773"
+	(is-a cellular+component)
+	(role concrete))
+
+(defclass transport "The directed movement of a set of molecules and/or molecular complexes into, out of, or within a cell or between cells."
+	(is-a biological+entity)
+	(role concrete)
+	(single-slot transport_origin
+		(type INSTANCE)
+;+		(allowed-classes cellular+component)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot transport_destination
+		(type INSTANCE)
+;+		(allowed-classes cellular+component)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot transported_entities
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+		(create-accessor read-write))
+	(multislot transporters
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+		(create-accessor read-write)))
+
+(defclass gated+nuclear+transport "The transport of one molecule or molecular complex between the cytosol and nucleus through a nuclear pore."
+	(is-a transport)
+	(role concrete)
+	(single-slot transported_entities
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass transmembrane+transport "The transport of one molecule or molecular complex between the cytosol and a compartment that is topologically distinct from the cytosol and that involves the crossing of a membrane."
+	(is-a transport)
+	(role concrete)
+	(single-slot transported_entities
+		(type INSTANCE)
+;+		(allowed-classes molecule+or+molecular+complex)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass vesicular+transport "The transport of one or more types of molecules and/or molecular complexes from one location to another via a membrane-enclosed transport intermediate."
+	(is-a transport)
+	(role concrete))
+
+(defclass endocytosis "The transport of one or more types of molecules and/or molecular complexes from the extracellular space to an internal cellular compartment via a membrane-enclosed vesicle."
+	(is-a vesicular+transport)
+	(role concrete))
+
+(defclass molecule+or+molecular+complex "A molecule or molecular complex."
+	(is-a biological+entity)
+	(role concrete))
+
+(defclass molecular+complex "A set of two or more molecules that are noncovalently bound together."
+	(is-a molecule+or+molecular+complex)
+	(role concrete)
+	(multislot constituent_molecules
+		(type INSTANCE)
+;+		(allowed-classes molecule)
+		(create-accessor read-write)))
+
+(defclass molecule "A set of atoms joined together by covalent bonds."
+	(is-a molecule+or+molecular+complex)
+	(role concrete))
+
+(defclass macromolecule "A molecule that is formed from units of monomers, such as a nucleic acid, a protein, or a polysaccharide."
+	(is-a molecule)
+	(role concrete))
+
+(defclass protein "A macromolecule whose monomers are amino acids."
+	(is-a macromolecule)
+	(role concrete)
+	(single-slot entrez_gene_id
+		(type INTEGER)
+		(range -1 %3FVARIABLE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass nucleic+acid "A macromolecule whose monomers are nucleotides."
+	(is-a macromolecule)
+	(role concrete))
+
+(defclass DNA "A nucleic acid whose monomers are deoxyribonucleotides."
+	(is-a nucleic+acid)
+	(role concrete))
+
+(defclass RNA "A nucleic acid whose monomers are ribonucleotides."
+	(is-a nucleic+acid)
+	(role concrete))
+
+(defclass small+molecule "A molecule that is not a chain of linked monomeric units."
+	(is-a molecule)
+	(role concrete))
+
+(defclass test
+	(is-a biological+entity)
+	(role concrete)
+	(single-slot silly-slot
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot silly-subslot
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass sample
+	(is-a biological+entity)
+	(role concrete)
+	(single-slot funny-slot
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

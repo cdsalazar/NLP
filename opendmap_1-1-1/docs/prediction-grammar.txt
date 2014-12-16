@@ -1,0 +1,275 @@
+DMAP-for-Protege recognition rules 
+
+Introduction
+============
+
+A DMAP-for-Protege recognition rule consists of two parts: a base
+class and a (non-empty) set of patterns. The set of patterns will be
+placed on a class in the Protege database, but we might want to
+support a direct textual format.
+
+
+Examples
+========
+
+A Simple Ontology, 
+
+Thing
+ Person
+  John
+  Mary
+ Action
+   Loves: lover:Person beloved:Person % slots for Love with constraints
+    love-1 lover:John beloved:Mary    % an instance of Loves, with slot values)
+   Hates: hater:Person hated:Person   % slots for Hates with constraints
+
+DMAP Rules:
+
+{John}  := John ; 
+{Mary}  := Mary ;
+{Loves} := [lover] r'loves|d' [beloved] , 
+           [beloved] is|was loved by [lover] ;
+
+{Hates} := [hater] r'hates|d' [hated] , 
+           [hated] is|was hated by [hater] ;
+
+Input sentence: "John loves Mary."
+Tokenization:   ["John" "loves" "Mary"]
+Result of parsing: 
+ spanning instances found: {love-1 from 0 to 2}
+ information: a reference to
+  <Loves> from 0:2 with {[lover]:<John> from 0:0, [beloved]:<Mary> from 2:2}
+
+Input sentence: "John is hated by Mary."
+Tokenization:  ["John" "is" "hated" "by" "Mary"]
+Result of parsing: 
+ spanning instances: {} 
+ information: a reference to
+  <Hates> from 0:4 with {[hater]:<Mary> from 4:4,[hated]:<John> from 0:0}
+
+
+Another simple ontology, with Patterns attached to entries. All the
+biology is completely made up, I'm afraid. 
+
+Thing
+ Protein : proteins
+   Munc18b : Munch18b               
+   Gamma-adaptin :  Gamma adaptin
+ Transport : transport ; traficking
+   VesicularTransport: vesicle [parent]
+   MembranalTransport: membranal|membrane [parent]
+ Regulation: [actor] regulates [recipient] ; [actor] may play a role in [recipient]
+   ProteinTransportRegulation 
+     actor:Protein           % slot constraint
+     recipient:Transport     % slot constraint
+ 
+Input phrase: "Munc18b regulates vesicle transport"
+Result of parsing:
+  spanning instances: {}
+  information: a reference to
+  <ProteinTransportRegulation> from 0:4 with
+   {[actor]:<Munc18b> from 0:0, [recipient]:<VesicularTransport> from 2:3
+
+Input phrase "Gamma-adaptin may play a role in membrane trafficking"
+Tokenization: ["Gamma" "adaptin" "may" "play" "a" "role" "in" "membrane" "trafficking"]
+Results of parsing:
+  spanning instances: {}
+  information: a reference to:
+  <ProteinTransportRegulation> 0:9
+   {[actor]:<Gamma-adaptin> from 0:1, [recipient]: <MembranalTransport> from 8:9}
+
+
+Syntax
+======
+
+We give an annotated grammar for recognition rules. Operators within
+single quotation marks are elements of the rule grammar; operators
+without such marks are elements of the CFG. Thus, "X -> A | B" means X
+is either A or B; "X -> A '|' B" means X is the concatenation of A,
+the operator '|', and B.
+
+Rules
+-----
+
+The root of the grammar is Rule:
+
+Rule -> Base-class ':=' Pattern (',' Pattern)* ';'
+
+where 'Base-class' is a class name for the base class (syntax given
+below), and 'Pattern' is described below. Note that a Base-class can
+have one or more patterns associated with it; these are separated by
+',', and the rule itself is terminated by a ';'.
+
+Question: Again, should the 'class name' be the Protege ID in the case
+of Classes, and the value of the name slot for instances?
+
+
+Patterns
+--------
+
+A pattern is one or more pattern entries.
+
+Pattern -> Entry+                   
+
+Entry ->   SimpleEntry |
+           SimpleEntry '?' |              % optional BaseElement
+           SimpleEntry '+' |              % one or more BaseElement
+           SimpleEntry '*' |              % zero or more BaseElement
+           Entry '|' Entry                % alternation
+           
+SimpleEntry -> BaseElement |
+               '(' Entry+ ')'             % sequence of Entry
+
+Although empty patterns are allowed by this grammar, they're not very
+useful.
+
+A pattern BaseElement is a string, regular expression, class
+reference, path, or lexical bundle.
+
+BaseElement -> String | RE | Class | Path | LexicalBundle
+
+
+String
+------
+A *string* begins and ends with either double or single quotes. Double
+or single  quotes in a string may be escaped with a backslash. The
+point of allowing either single or double quotes is to minimize the
+need for escapes. The content of the string can be any Unicode
+character supported by Java.
+
+Examples:
+
+"cell proliferation"
+'cell proliferation'
+"Krohn's disease"
+'so-called "cryrogentic" techniques'
+'Groucho said, "I have Krohn\'s disease, and I have his."'
+
+Alternatively, the quotation marks are not required.
+
+
+Regular Expressions (REs)
+------------------------
+
+The syntax of a regular expression is the same as a string, but
+prefixed with a lower-case 'r'. The syntax for the content of the
+string is the Java regular expression syntax:
+
+<http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html>
+
+Examples:
+
+r"cell\w+proliferation"
+r'cell\w+proliferation'
+r"binding\w+sites?\w+\d+"
+
+
+Class References
+----------------
+
+A *class reference* is bracketed with '<' and '>'. If '<' or '>' occur in a
+class name, they can be escaped with a backslash. 
+
+The content of a class reference--i.e., the text between the
+brackets--consists of a name of a class.
+
+ClassRef -> '{' ClassName '}'
+
+The meaning of a class reference is that a reference to something
+which 'isa' that class (i.e., an instance of the class, a subclass, or
+the class itself) occurs at this point in the text, but it is not used
+subsequently for 'instance finding.' (Note: it is somewhat unusual to
+have a direct class reference in a pattern).
+
+Examples
+--------
+
+{CellProliferation}
+{Transport}
+
+Question: Should the 'class name' be the Protege ID in the case of
+Classes, and the value of the name slot for instances?
+
+
+Paths
+-----
+
+A Path is either a *simple path* or a *complex path*:
+
+Path -> SimplePath | ComplexPath 
+
+
+A *simple path* is bracketed with '[' and ']'. If '[' or ']' occur as part of
+a path, they can be escaped with a backslash. It consists of one or
+more slot names:
+
+SimplePath -> '[' Slot-name+ ']'
+
+The meaning of a simple path is two-fold. First, it indicates that a
+reference to a class that fills the path for the base class occurs at
+this point in the text. To 'fill the path' for the base class can be
+defined recursively. Given a base class, F, and slots s_1, s_2
+... s_n, a class fills the path [s_1] for F if it meets the type
+constraints of s_1 for F. A class fills the path [s_1 s_2 ... s_n] if
+it meets the type constraints of a class that fills the path [s_1 s_2
+... s_{n-1}]. 
+
+So, in the Newspaper ontology, given the base class <Article>, the
+path [published_in] indicates that a reference to someething which
+'isa' <Newspaper> is at the current location in the text. Given the
+path [published_in date], it indicates that a reference to a String
+representing the date of somethat that 'isa' <Newspaper>.
+
+Second, the simple path is used for instance finding after parsing. 
+
+Again, the simplest and in some sense normal case is to have only one
+slot in the path. 
+
+A *complex path* is also bracketed with '[' and ']', and consists of
+two or more simple paths.
+
+ComplexPath -> '[' SimplePath SimplePath+ ']'
+
+The meaning of a complex path is that a reference to a class that
+fills every simple path for the base class occurs at this location in
+the text. To the extent that we add linguistic constraints, these will
+most likely be added as complex paths. 
+
+The meaning of the operators ? (optional), + (one or more), * (zero or
+more), and | (alternation) for paths and class references is the
+natural one: optional at this point in the text, one or more of these
+reference occur at this point in the text; zero of more of these
+references occur at this point in the text; either of these references
+occur at this point in the text.
+
+
+
+Lexical bundles
+---------------
+
+This is experimeental. A lexical bundle is really just a set of
+attributes and values.  This is an XML element 'lex', where in which
+the XML attribute corresponds to the bundle attribute, and the value
+of the XML attribute corresponds to the bundle attribute value.
+
+Examples:
+
+<lex base="dog" pos="vrb" />
+<lex form="dogs" base="dog" number="pl" pos="N" />
+
+
+DMAPRuleSet ::= 	DMAPRule*
+DMAPRule 	::= 	<FRAME_NAME> <COLON> Patterns <SEMICOLON>
+Patterns 	::= 	Pattern [<COMMA> Patterns]
+Pattern 	::= 	Entry+
+Entry 		::= 	BaseElement [<KLEENE_STAR> | <KLEENE_PLUS> | <OPTIONAL> | Alternations] | 
+                    <LPAREN> Entry <RPAREN>
+Alternations ::= 	<ALTERNATION> BaseElement [Alternations]
+BaseElement ::= 	<STRING> | <SYMBOL> | <REGEX> | <FRAME_NAME> | Path 
+SlotName 	::= 	<SYMBOL>
+Path 		::= 	<LBRACKET> SlotName+ <RBRACKET>
+
+
+$Id: prediction-grammar.txt,v 1.3 2005/07/25 16:49:52 firby Exp $
+
+

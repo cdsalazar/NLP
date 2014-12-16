@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE test-suite>
+
+<!-- Slot instance bug from Philip Ogren         -->
+
+<!-- R. James Firby                              -->
+<!-- July 2005                                   -->
+
+<!-- 
+	The detailed syntax for writing tests is likely to
+	change as DMAP evolves.  In particular, the output
+	format for printed references will have to change.
+-->
+		
+<test-suite name="Slot Tests">
+
+	<test-context>edu.uchsc.ccp.dmap.test.ParserTestContext</test-context>
+	<test-type name="test">edu.uchsc.ccp.dmap.test.ParserTest</test-type>
+
+	<retain-case>true</retain-case>
+	<protege-project>dmap-test-config/projects/people-loving-people/people-loving-people.pprj</protege-project>
+	<pattern-file>dmap-test-config/projects/people-loving-people/people-test.patterns</pattern-file>
+	
+	<test name="Test-1" includeText="true" includeSubsumed="true">
+		<input>John loves Mary</input>
+		<output>"John" from 0 to 0</output>
+		<output>{John} from 0 to 0</output>
+		<output>"loves" from 1 to 1</output>
+		<output>"Mary" from 2 to 2</output>
+		<output>{Mary} from 2 to 2</output>
+		<output>{Loves [lover]={John} [beloved]={Mary}} from 0 to 2</output>
+	</test>
+
+	<test name="Test-2" includeSubsumed="true">
+		<input>Charlie loves Mary</input>
+		<output>{Charlie} from 0 to 0</output>
+		<output>{Mary} from 2 to 2</output>
+		<output>{Loves [lover]={Charlie} [beloved]={Mary}} from 0 to 2</output>
+	</test>
+
+	<test name="Test-3">
+		<input>Charlie loves Chris</input>
+		<output>{Loves [lover]={Charlie} [beloved]={Chris}} from 0 to 2</output>
+	</test>
+
+	<test name="Test-4" includeText="true" includeSubsumed="true">
+		<input>anybody loves somebody</input>
+		<output>"anybody" from 0 to 0</output>
+		<output>{Person} from 0 to 0</output>
+		<output>"loves" from 1 to 1</output>
+		<output>"somebody" from 2 to 2</output>
+		<output>{Person} from 2 to 2</output>
+		<output>{Loves [lover]={Person} [beloved]={Person}} from 0 to 2</output>
+	</test>
+	
+	<test name="Test-5" includeSubsumed="true">
+		<input>clerk loves secretary</input>
+		<output>{Employee} from 0 to 0</output>
+		<output>{Employee} from 2 to 2</output>
+		<output>{Loves [lover]={Employee} [beloved]={Employee}} from 0 to 2</output>
+	</test>
+
+	<test name="Test-6" includeSubsumed="true">
+		<input>anybody loves secretary</input>
+		<output>{Person} from 0 to 0</output>
+		<output>{Employee} from 2 to 2</output>
+		<output>{Loves [lover]={Person} [beloved]={Employee}} from 0 to 2</output>
+	</test>
+
+	<test name="Test-7" includeSubsumed="true">
+		<input>secretary loves anybody</input>
+		<output>{Person} from 2 to 2</output>
+		<output>{Employee} from 0 to 0</output>
+		<output>{Loves [lover]={Employee} [beloved]={Person}} from 0 to 2</output>
+	</test>
+
+	<!-- Non-matching case.  Perhaps this shouldn't fail? -->
+	<test name="Test-8" fail="true" includeText="true" includeSubsumed="true">
+		<input>John loves mary</input>
+		<output>"John" from 0 to 0</output>
+		<output>{John} from 0 to 0</output>
+		<output>"Loves" from 1 to 1</output>
+		<output>"Mary" from 2 to 2</output>
+		<output>{Mary} from 2 to 2</output>
+		<output>{Loves [lover]={John} [beloved]={Mary}} from 0 to 2</output>
+	</test>
+	
+	<!-- Test for optional value as last entry in pattern -->
+	<test name="Test-9">
+		<input>John loves Mary immensely</input>
+		<output>{Loves [lover]={John} [beloved]={Mary}} from 0 to 3</output>
+	</test>
+
+</test-suite>

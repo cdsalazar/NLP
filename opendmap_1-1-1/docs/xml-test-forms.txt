@@ -1,0 +1,295 @@
+Test Forms
+----------
+
+<test-suite name="name">
+
+	<test-context>edu.uchsc.ccp.dmap.test.ParserTestContext</test-context>
+
+	[<protege-project>filename</protege-project>]
+	
+	[<pattern-file>filename</pattern-file>*]
+
+	<test-type name="test">edu.uchsc.ssp.dmap.test.ParserTest</test-type>
+	
+  <test name="name" [fail="true"] [includeText="true"] [includeSubsumed="true"]>
+    <input>input-phrase</input>
+    <output>item from s to e [with slot-fillers]</output>*
+  </test>*
+
+	<test-type name="pattern-rule">edu.uchsc.ssp.dmap.test.PatternRuleTest</test-type>
+
+  <pattern-rule name="name" [fail="true"]>
+    <input>rule-string</input>
+    <output>pattern</output>*
+  </pattern-rule>*
+  
+ 	<test-type name="pattern">edu.uchsc.ssp.dmap.test.PatternTest</test-type>
+ 
+  <pattern name="name" [fail="true"]>
+    [<frame>protege-frame-name</frame>]
+    <input>pattern</input>
+    <output>item . normalized-pattern</output>*
+  </pattern>*
+  
+</test-suite>
+
+The overall test file format holds one <test-suite> declaration.  This
+declaration should include a name that distinguishes it from other test suites.
+If the TestMain class is used to load and run test suites, it will attempt to
+merge together test suites with the same name.  This allows a test suite to
+be split across multiple files if desired.
+
+The remainder of the file may include any mix of test definitions.  Each of these is 
+described below.
+
+Test Framework
+--------------
+
+The testing context used for running DMAP system tests is the ParserTestContext class
+declared in the test suite using:
+
+	<test-context>edu.uchsc.ccp.dmap.test.ParserTestContext</test-context>
+
+The parser test context initializes a parser and Protege project for use with the 
+test declarations in the test suite.  As such, this context expects that test suite
+to include value definitions for <protege-project> and <pattern-file>.
+
+	[<protege-project>filename</protege-project>]
+	
+	[<pattern-file>filename</pattern-file>*]
+
+To specify a Protege project, include the file name in a <protege-project>
+declaration.  This project will be the target for the test context.  Different test
+suites may be given different Protege projects.
+
+A test suite may also specify any number of <pattern-file> filenames.  Each pattern
+file will be read in and the rules will be applied to the Protege project for
+this test suite.
+
+Test Forms
+----------
+
+The most commonly used test form is:
+
+  <test name="name" [fail="true"] [includeText="true"] [includeSubsumed="true"]>
+    <input>input-phrase</input>
+    <output>item from s to e [with slot-fillers]</output>*
+  </test>
+
+The <test> form is enabled in the test framework with the declaration:
+
+  <test-type name="test">edu.uchsc.ssp.dmap.test.ParserTest</test-type>
+
+This form specifies a test of the DMAP parser.  The phrase in the <input> element
+is handed to the parser and the references that the parser finds in that phrase 
+are compared against those specified in the <output> elements.  If the references
+match the output elements the test passes.
+
+This is the usual way to test the patterns and Protege knowledge base used by a
+program that includes DMAP.
+
+Each test must be given a unique name within the test suite.  Multiple tests
+with the same name will generate an error.
+
+An example test is:
+
+	<test name="Test-1">
+		<input>John loves Mary</input>
+		<output>{Loves [lover]={John} [beloved]={Mary}} from 0 to 2</output>
+	</test>
+
+By default, a test only looks at the generated references that span the longest
+stretches of the input phrase.  Single words and frames that are "subsumes" (or
+completely fall within the span of another frame) are ignored by the test.
+
+A test can be told to check subsumed references as well by setting the
+'includeSubsumed' attribute to true.  In that case, all of the references that
+are not text will be included regardless of whether they are subsumed.  For
+example:
+
+	<test name="Test-2" includeSubsumed="true">
+		<input>John loves Mary</input>
+		<output>{John} from 0 to 0</output>
+		<output>{Mary} from 2 to 2</output>
+		<output>{Loves [lover]={John} [beloved]={Mary}} from 0 to 2</output>
+	</test>
+	
+A test can also be told to check all of the input text tokens (words, roughly) by
+setting the 'includeText" attribute to true.  For example:
+
+	<test name="Test-3" includeText="true" includeSubsumed="true">
+		<input>John loves Mary</input>
+		<output>"John" from 0 to 0</output>
+		<output>{John} from 0 to 0</output>
+		<output>"loves" from 1 to 1</output>
+		<output>"Mary" from 2 to 2</output>
+		<output>{Mary} from 2 to 2</output>
+		<output>{Loves [lover]={John} [beloved]={Mary}} from 0 to 2</output>
+	</test>
+	
+An input phrase is a sequence of characters exactly as it would be passed to a
+call to Parser.parse(phrase).  Typically this is a sequence of words.
+
+An output element is a string encoding of a DMAP reference.  This has the
+general form:
+
+  item-with-slot-fillers from start to end
+  
+'item' is the printed representation of a word (with quotes) or a frame 
+(with curly braces).  If the reference is to a frame and it includes 
+recognized slot fillers, then the output should include a list
+of slot=value pairs.  Typically, slots with be slot names (with square brackets)
+and values will be frames (with curly braces, and perhaps slot fillers).
+'start' is the position of the first token in the input phrase
+subsumed by the reference.  'end' is the position of the last subsumed token.
+
+Frames will be named using their internal Protege name followed by a "." and
+their Protege display name (if different).  Pattern rules must be attached to
+frames using the internal name (because it is unique) so it is important to
+show that.  However, internal names can be very human-unfriendly so the
+display name is tacked on for readability.
+
+For the test to pass, all if the specified output references must be generated 
+by the parse and all references generated by the parse (except for those ignored 
+by the test) must be included.
+
+If the 'fail' attribute is set to "true", then the test is expected to fail.  If
+it passes, then the test will fail.  (By convention, it is good to supply a comment
+near each 'fail' rule to explain why it is supposed to fail.)
+
+Pattern Rule Tests
+------------------
+
+The general form for a pattern rule test is:
+
+  <pattern-rule name="name" [fail="true"]>
+    <input>rule-string</input>
+    <output>pattern</output>*
+  </pattern-rule>
+
+Pattern rule tests are seldom used by DMAP users.  They are intended to test
+the DMAP code itself.
+
+The <pattern-rule> form is enabled in the test framework with the declaration:
+
+  <test-type name="pattern-rule">edu.uchsc.ssp.dmap.test.PatternRuleTest</test-type>
+
+A pattern rule must have an <input> element that includes one or more pattern
+rules exactly like they would appear in a pattern rule file or a pattern rule
+string to be passed to the parser.  The syntax for pattern rules is described
+in prediction-grammar.txt.
+
+Each <output> element should be the printed version of a single DMAP pattern.
+There should be one <output> element for each pattern in the <input> string.
+
+A pattern rule test processes the input string and encodes them into the 
+internal pattern structures used by DMAP.  They are then each printed to a
+string and compared to the output elements.  If all patterns generated match
+output elements and all output elements match generated patterns then the
+test passes.
+
+An example pattern rule test is:
+
+	<pattern-rule name="Test-4">
+		<input>{a} := Kelly, Mary;</input>
+		<output>"Kelly"</output>
+		<output>"Mary"</output>
+	</pattern-rule>
+	
+A pattern rule test may also be specified as failing by including the 'fail'
+attribute and setting it to "true".
+
+Pattern Tests
+-------------
+
+The general form of a pattern test is:
+
+  <pattern name="name" [fail="true"]>
+    [<frame>protege-frame-name</frame>]
+    <input>pattern</input>
+    <output>item . normalized-pattern</output>*
+  </pattern>
+
+Pattern tests are intended to test the internals of DMAP code and should never
+be used by normal users.
+
+The <pattern> form is enabled in the test framework with the declaration:
+
+  <test-type name="pattern">edu.uchsc.ssp.dmap.test.PatternTest</test-type>
+
+A pattern test must be given a unique name like all other tests.
+
+A pattern test expects a single DMAP pattern (without a target frame) as input.
+It processes that pattern into an internal DMAP pattern structure and then
+normalizes that pattern to generate a set of patterns that each have a unique
+first token.  This is the basis of the prediction method used by DMAP.
+
+Each output element is expected to be of the form:
+
+  item . pattern
+  
+Where the 'item' is the printed representation of the single DMAP item that a
+prediction for this pattern would be waiting for.  The is typically a text string,
+a frame, a slot, or a regex.  This head item is separated by a space and a dot and
+then followed by the printed representation of the pattern to be recognized.  The
+head should be the unambiguous first element in this pattern.  
+
+If a pattern is optional, then is will be empty and should be encoded as:
+
+  <output></output>
+  
+When the input pattern includes slot references, the Protege target frame for the
+pattern must be included in a <frame> element.
+
+Some example pattern tests are:
+
+	<pattern name="Test-8b">
+		<input>Kelly* Mary*</input>
+		<output></output>
+		<output>"Mary" . "Mary"</output>
+		<output>"Mary" . ("Mary" "Mary"+)</output>
+		<output>"Kelly" . ("Kelly" "Mary"*)</output>
+		<output>"Kelly" . (("Kelly" "Kelly"+) "Mary"*)</output>
+	</pattern>
+
+	<pattern name="Test-309">
+		<frame>Editor</frame>
+		<input>[responsible_for]* writes? [sections]+</input>
+		<output>[sections] . [sections]</output>
+		<output>[sections] . ([sections] [sections]+)</output>
+		<output>"writes" . ("writes" [sections]+)</output>
+		<output>[responsible_for] . ([responsible_for] "writes"? [sections]+)</output>
+		<output>[responsible_for] . (([responsible_for] [responsible_for]+) "writes"? [sections]+)</output>
+	</pattern>
+
+A pattern test can also be declared as failing using the 'fail'
+attribute.
+
+Running Test Suites
+-------------------
+
+Test suites are run using the test.TestMain class.  The main method in this
+class expected to be passed a set of test suite file names.  It reads each
+tests suite into memory and then runs all the tests.  It prints out a summary
+of each suite once it runs.  
+
+A test suite summary includes the number of tests run, the number that passed,
+the number that failed, and for each failing test a description of why it failed.
+
+For example,
+
+  edu.uchsc.ccp.dmap.test.TestMain tests/parse-tests1.xml tests/pattern-tests.xml
+  
+will run the test suites described in 'test/parse-tests1.xml' and 
+'tests/pattern-tests.xml' and print the results.
+
+This program can also be given the command line switch '-b' which tells it to
+stop as soon as it encounters a test that fails.  This can make the output a
+lot easier to understand when debugging things.  For example:
+
+  edu.uchsc.ccp.dmap.test.TestMain -b tests/parse-tests1.xml
+  
+will run the test suite in the file but stop at the first test that fails.
+
+
+

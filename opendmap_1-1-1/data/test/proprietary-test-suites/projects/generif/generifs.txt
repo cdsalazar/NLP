@@ -1,0 +1,5 @@
+Data indicate that growth factors are unable to initiate the nuclear translocation of androgen receptors in the absence of androgens or to induce ligand-independent transcriptional activity.
+IGF-I causes nuclear translocation of IRS-1 in mouse embryo fibroblasts
+LIM-kinase 1 is translocated to the nucleus after being bound by p57kip2
+the YY1 factor is translocted to the cytoplasm of vaccinia virus infected macrophages
+Limitin suppresses B-cell growth through activation of Tyk2, resulting in the up-regulation and nuclear translocation of Daxx

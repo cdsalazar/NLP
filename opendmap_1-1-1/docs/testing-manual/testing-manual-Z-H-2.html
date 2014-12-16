@@ -1,0 +1,64 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<!--
+
+
+Generated from TeX source by tex2page, v 4p4k5
+(running on MzScheme 202, windows), 
+(c) Dorai Sitaram, 
+http://www.ccs.neu.edu/~dorai/tex2page/tex2page-doc.html
+
+
+-->
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<title>
+Testing Manual
+</title>
+<link rel="stylesheet" type="text/css" href="uchsc.css" title=default>
+<meta name=robots content="noindex,follow">
+</head>
+<body>
+<div class=navigation>[Go to <span><a href="testing-manual.html">first</a>, <a href="testing-manual-Z-H-1.html">previous</a></span><span>, <a href="testing-manual-Z-H-3.html">next</a></span> page<span>; &nbsp;&nbsp;</span><span><a href="testing-manual.html#%_toc_start">contents</a></span><span><span>; &nbsp;&nbsp;</span><a href="testing-manual-Z-H-5.html#%_index_start">index</a></span>]</div>
+<p></p>
+<a name="%_sec_3"></a>
+<h1><a href="testing-manual.html#%_toc_%_sec_3">3&nbsp;&nbsp;Running Test Suites</a></h1>
+<p>Test suites are run using the Java class <tt>TestMain</tt><a name="%_idx_56"></a>:
+</p>
+<pre class=verbatim>  edu.uchsc.ccp.testing.TestMain
+</pre>
+<p>
+The <tt>TestMain</tt><a name="%_idx_58"></a>main method in this class expects to be
+passed a set of test suite file names.  It reads each tests suite
+into memory and then runs all the tests.  It prints out a summary
+of each suite once it runs.</p>
+<p>
+A test suite summary includes the number of tests run, the number
+that passed, the number that failed, and for each failing test a
+description of why it failed.</p>
+<p>
+For example,
+</p>
+<pre class=verbatim>  edu.uchsc.ccp.testing.TestMain test/pattern-tests.xml test/slot-tests.xml
+</pre>
+<p>
+will run the test suites described in
+<tt>&#8217;test/pattern-tests.xml&#8217;</tt> and
+<tt>&#8217;test/slot-tests.xml&#8217;</tt> and print the results.</p>
+<p>
+This program can also be given the command line switch &#8217;-b&#8217; which
+tells it to stop as soon as it encounters a test that fails.  This
+can make the output a lot easier to understand when debugging
+things.  For example:
+</p>
+<pre class=verbatim>  edu.uchsc.ccp.testing.TestMain -b test/slot-tests.xml
+</pre>
+<p>
+will run the test suite in the file but stop at the first test
+that fails.</p>
+<p>
+</p>
+<div class=navigation>[Go to <span><a href="testing-manual.html">first</a>, <a href="testing-manual-Z-H-1.html">previous</a></span><span>, <a href="testing-manual-Z-H-3.html">next</a></span> page<span>; &nbsp;&nbsp;</span><span><a href="testing-manual.html#%_toc_start">contents</a></span><span><span>; &nbsp;&nbsp;</span><a href="testing-manual-Z-H-5.html#%_index_start">index</a></span>]</div>
+<p></p>
+</body>
+</html>

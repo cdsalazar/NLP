@@ -1,0 +1,19 @@
+{Editor} := the editor of [sections];
+
+{Person} := the person named [name];
+{Employee} := the employee named [name];
+
+{newspaper_00013} := Mary; 
+{newspaper_00020} := Kelly; 
+{newspaper_00021} := r"K.m"; 
+
+{Manager Supervision Relation} := I think [:FROM] manages [:TO];
+
+// This is a comment
+// The lines below give names to the various newspaper sections
+
+{instance_00024} := Local News;
+{instance_00032} := Automotive, r"frank";
+
+{instance_00034} := LifeStyle;
+{instance_00040} := Sports, LifeStyle;

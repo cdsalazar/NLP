@@ -1,0 +1,83 @@
+; Thu Dec 01 15:01:49 MST 2005
+; 
+;+ (version "3.0")
+;+ (build "Build 141")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot patterns
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass STANDARD-CLASS-WITH-PATTERNS
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(multislot patterns
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass c-loop
+	(is-a USER)
+	(role concrete))
+
+(defclass c-for
+	(is-a c-loop)
+	(role concrete))
+
+(defclass c-while
+	(is-a c-loop)
+	(role concrete))
+
+(defclass c-do
+	(is-a c-loop)
+	(role concrete))
+
+(defclass c-conditional
+	(is-a USER)
+	(role concrete))
+
+(defclass c-if
+	(is-a c-conditional)
+	(role concrete))
+
+(defclass c-math-operation
+	(is-a USER)
+	(role concrete))
+
+(defclass c-add
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-subtract
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-multiply
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-divide
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-less-than
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-greater-than
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-less-than-equal
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-greater-than-equal
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-modulo
+	(is-a c-math-operation)
+	(role concrete))

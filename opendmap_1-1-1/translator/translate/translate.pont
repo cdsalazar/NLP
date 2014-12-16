@@ -1,0 +1,155 @@
+; Sun Dec 14 15:35:13 MST 2014
+; 
+;+ (version "3.4.1")
+;+ (build "Build 537")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot patterns
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass STANDARD-CLASS-WITH-PATTERNS
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(multislot patterns
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass c-translate
+	(is-a USER)
+	(role concrete))
+
+(defclass c-conditional
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-if
+	(is-a c-conditional)
+	(role concrete))
+
+(defclass c-else
+	(is-a c-conditional)
+	(role concrete))
+
+(defclass c-else-if
+	(is-a c-conditional)
+	(role concrete))
+
+(defclass c-loop
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-for-each
+	(is-a c-loop)
+	(role concrete))
+
+(defclass c-while
+	(is-a c-loop)
+	(role concrete))
+
+(defclass c-for
+	(is-a c-loop)
+	(role concrete))
+
+(defclass c-math-operation
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-add
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-subtract
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-multiply
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-divide
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-less-than
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-greater-than
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-less-than-equal
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-greater-than-equal
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-equal
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-modulo
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-dot-operator
+	(is-a c-math-operation)
+	(role concrete))
+
+(defclass c-array
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-list
+	(is-a c-array)
+	(role concrete))
+
+(defclass c-list-operation
+	(is-a c-array)
+	(role concrete))
+
+(defclass c-dictionary
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-dict
+	(is-a c-dictionary)
+	(role concrete))
+
+(defclass c-dict-operation
+	(is-a c-dictionary)
+	(role concrete))
+
+(defclass c-function
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-import
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-perameters
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-variable
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-print
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-call
+	(is-a c-translate)
+	(role concrete))
+
+(defclass c-indent
+	(is-a c-translate)
+	(role concrete))

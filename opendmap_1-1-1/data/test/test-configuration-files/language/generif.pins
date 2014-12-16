@@ -1,0 +1,254 @@
+; Mon Jan 30 20:07:31 GMT-06:00 2006
+; 
+;+ (version "3.1")
+;+ (build "Build 210")
+
+([i-b-cell] of  c-cell-type
+
+	(english-plural "B cells")
+	(english-singular "B cell"))
+
+([i-bclxl] of  c-protein
+)
+
+([i-belief-false] of  c-belief-type
+
+	(english-plural "false"))
+
+([i-belief-maybe] of  c-belief-type
+
+	(english-plural "uncertain"))
+
+([i-belief-true] of  c-belief-type
+
+	(english-plural "true"))
+
+([i-c2c12-cell] of  c-cell-type
+
+	(english-plural "C2C12 cells")
+	(english-singular "C2C12 cell"))
+
+([i-calmodulin] of  c-protein
+)
+
+([i-car] of  c-protein
+)
+
+([i-cdk2-cyclin-a] of  c-protein
+
+	(english-singular "cyclin A/Cdk2"))
+
+([i-cdk2-cyclin-e] of  c-protein
+
+	(english-singular "cyclin E/Cdk2"))
+
+([i-cell-exterior] of  c-locale
+
+	(english-singular "extracellular"))
+
+([i-cell-interior] of  c-locale
+
+	(english-singular "intracellular"))
+
+([i-clathrin] of  c-protein
+
+	(english-singular "clathrin"))
+
+([i-coligin] of  c-protein
+)
+
+([i-crel] of  c-protein
+)
+
+([i-crm1] of  c-protein
+
+	(english-singular "CRM1"))
+
+([i-cytochrome-c] of  c-protein
+)
+
+([i-daxx] of  c-protein
+
+	(english-singular "Daxx"))
+
+([i-deaf1] of  c-protein
+
+	(english-singular "DEAF1"))
+
+([i-dnup214] of  c-protein
+
+	(english-singular "DNup214"))
+
+([i-dnup88] of  c-protein
+
+	(english-singular "DNup88"))
+
+([i-exportin5] of  c-protein
+)
+
+([i-frequency-always] of  c-frequency-type
+
+	(english-singular "continuous"))
+
+([i-frequency-never] of  c-frequency-type
+
+	(english-singular "never"))
+
+([i-frequency-sometimes] of  c-frequency-type
+
+	(english-singular "sometimes"))
+
+([i-gs15] of  c-protein
+
+	(english-singular "GS15"))
+
+([i-gs28] of  c-protein
+
+	(english-singular "GS28"))
+
+([i-hela-cell] of  c-cell-type
+
+	(english-plural "HeLa cells")
+	(english-singular "HeLa cell"))
+
+([i-hif-1alpha] of  c-protein
+)
+
+([i-imp1] of  c-protein
+)
+
+([i-jaz] of  c-protein
+)
+
+([i-kdel] of  c-protein
+
+	(english-singular "KDEL"))
+
+([i-lim-kinase] of  c-protein
+)
+
+([i-limitin] of  c-protein
+
+	(english-singular "limitin"))
+
+([i-mcl1] of  c-protein
+)
+
+([i-mkl1] of  c-protein
+
+	(english-singular "MKL1"))
+
+([i-mnk] of  c-protein
+
+	(english-singular "MNK"))
+
+([i-mt1-mmp] of  c-protein
+
+	(english-singular "MT1-MMP"))
+
+([i-nes] of  c-protein
+
+	(english-singular "NES"))
+
+([i-nrf-2alpha] of  c-protein
+)
+
+([i-nrf-2beta] of  c-protein
+)
+
+([i-nuclear-export] of  c-transport
+)
+
+([i-nuclear-import] of  c-transport
+)
+
+([i-p57kip2] of  c-protein
+)
+
+([i-pag608] of  c-protein
+)
+
+([i-pkcdelta] of  c-protein
+)
+
+([i-pxr] of  c-protein
+)
+
+([i-rela] of  c-protein
+)
+
+([i-role-disable] of  c-process-role-type
+
+	(english-plural "disables")
+	(english-singular "disable"))
+
+([i-role-enable] of  c-process-role-type
+
+	(english-plural "enables")
+	(english-singular "enable"))
+
+([i-role-inhibit] of  c-process-role-type
+
+	(english-plural "inhibits")
+	(english-singular "inhibit"))
+
+([i-role-initiate] of  c-process-role-type
+
+	(english-plural "initiates")
+	(english-singular "initiate"))
+
+([i-role-mediate] of  c-process-role-type
+
+	(english-plural "mediates")
+	(english-singular "mediate"))
+
+([i-role-participate] of  c-process-role-type
+
+	(english-plural "participates in")
+	(english-singular "participate in"))
+
+([i-role-perform] of  c-process-role-type
+
+	(english-plural "performs")
+	(english-singular "perform"))
+
+([i-role-regulate] of  c-process-role-type
+
+	(english-plural "regulates")
+	(english-singular "regulate"))
+
+([i-role-stimulate] of  c-process-role-type
+
+	(english-plural "stimulates")
+	(english-singular "stimulate"))
+
+([i-role-terminate] of  c-process-role-type
+
+	(english-plural "terminates")
+	(english-singular "terminate"))
+
+([i-src] of  c-protein
+
+	(english-singular "src"))
+
+([i-syntaxin4] of  c-protein
+
+	(english-singular "syntaxin 4"))
+
+([i-syntaxin5] of  c-protein
+
+	(english-singular "syntaxin 5"))
+
+([i-tfii-i] of  c-protein
+)
+
+([i-tyk2] of  c-protein
+
+	(english-singular "Tyk2"))
+
+([i-ykt6] of  c-protein
+
+	(english-singular "Ykt6"))
+
+([i-yy1-factor] of  c-protein
+)

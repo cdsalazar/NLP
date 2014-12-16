@@ -1,0 +1,208 @@
+; Sun Dec 14 15:35:13 MST 2014
+; 
+;+ (version "3.4.1")
+;+ (build "Build 537")
+
+([c-add] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"add"
+		"increment"
+		"plus"
+		"increase"))
+
+([c-array] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "array structure"))
+
+([c-call] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "call"))
+
+([c-conditional] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"conditional"
+		"check"))
+
+([c-dict] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"dictionary"
+		"dict"))
+
+([c-dict-operation] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"map"
+		"value"
+		"key"
+		"get keys"
+		"get value of"))
+
+([c-dictionary] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "dictionary structure"))
+
+([c-divide] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "divide"))
+
+([c-dot-operator] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "dot"))
+
+([c-else] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "otherwise"))
+
+([c-else-if] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "else if"))
+
+([c-equal] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"equal"
+		"equals"))
+
+([c-for] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"loop through"
+		"search through"
+		"iterate through"
+		"iterate over"
+		"loop over"))
+
+([c-for-each] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "for each"))
+
+([c-function] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "function"))
+
+([c-greater-than] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"greater than"
+		"higher than"
+		"larger than"
+		"bigger than"))
+
+([c-greater-than-equal] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"greater than or equal to"
+		"higher than or equal to"
+		"larger than or equal to"
+		"bigger than or equal to"
+		"at least"))
+
+([c-if] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"if"
+		"once"
+		"as soon as"
+		"find"
+		"given that"
+		"given"
+		"check"))
+
+([c-import] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"import"
+		"from"))
+
+([c-indent] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "unindent"))
+
+([c-less-than] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"less than"
+		"lower than"
+		"smaller than"))
+
+([c-less-than-equal] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"less than or equal to"
+		"lower than or equal to"
+		"smaller than or equal to"
+		"at most"))
+
+([c-list] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"list"
+		"array"))
+
+([c-list-operation] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"append"
+		"insert"
+		"remove"))
+
+([c-loop] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "loop"))
+
+([c-math-operation] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"math operation"
+		"operation"))
+
+([c-modulo] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "modulo"))
+
+([c-multiply] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "multiply"))
+
+([c-perameters] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"perameters"
+		"pass in"))
+
+([c-print] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"print"
+		"output"
+		"put"))
+
+([c-subtract] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"subtract"
+		"decrease"
+		"decrement"
+		"minus"))
+
+([c-translate] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"translate"
+		"translator"))
+
+([c-variable] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns
+		"initialize"
+		"create"
+		"instantiate"
+		"make"
+		"set to"))
+
+([c-while] of  STANDARD-CLASS-WITH-PATTERNS
+
+	(patterns "while"))

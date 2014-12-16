@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<configuration>
+	<RetainCase>false</RetainCase>
+	<ProtegeProject name="language">
+		<ProjectFile>ontology/dmap-test-ontology.pprj</ProjectFile>
+		<!-- PatternFile>generif/language/generif.patterns</PatternFile -->
+	</ProtegeProject>
+</configuration>

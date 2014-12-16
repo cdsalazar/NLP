@@ -1,0 +1,53 @@
+3_1|We show that brca1 plays a role in DNA-repair.
+3_2|We show that brca-1 plays a role in DNA-repair.
+3_3|We show that brca 1 plays a role in DNA-repair.
+4_1|We show that BRCA1 exists in a distinct SNARE complex.
+5_1|BRCA1 exists in a distinct SNARE complex.
+5_2|BRCA1, GS28 and Ykt6 exist in a distinct SNARE complex.
+5_3|BRCA1 in a distinct SNARE was detected. 
+5_4|BRCA1a exists in a distinct SNARE complex.			
+5_5|BRCA1-2 exists in a distinct SNARE complex.
+6_1|The proteins brca1, 2 is associated with cancer. 
+7_1|brca1,2
+8_1|Our study found that Imp3 transported BRCA1. 						  
+9_1|Our study shows that IMP3 phosphorylates BRCA1.
+10_1|Our study showed that Brca1 interacted with imp3.
+11_1|Our study showed that Imp3 is associated with BRCA1.
+12_1|Imp3 binds with BRCA1.
+14_1|Brca1, a ring finger protein, interacts with imp3.
+15_1|IMP3 is a novel biomarker for adenocarcinoma.
+16_1|IMP3 interacts with brca1.
+17_1|IMP3 binds with with with GS15.
+17_2|IMP3 binds withhh GS15.
+18_1|Megakaryoblastic leukemia 1 is a myocardin-related transcription factor.
+18_2|Megakaryoblastic leukemia-1 is a myocardin-related transcription factor.					
+19_1|BRCA1 phosphorylates imp3.
+19_2|BRCA1 phosphorylation of imp3 is noted in several experiments.
+20_1|IMP3 transports BRCA1 from the golgi to the nucleus. 
+20_2|IMP3 transports BRCA1 to the nucleus. 
+20_3|IMP3 transports BRCA1 from the golgi. 
+20_4|IMP3 transports BRCA1. 
+21_1|Brca1 and IMP3 interact with mk11.
+21_2|Brca1 and IMP3 interact with mk11.
+21_3|Brca1 was shown to interact with mk11.
+21_4|Brca1 does not interact with mk11.
+22_1|imp3 interacts.
+23_1|The imp3 interacts directly in vitro. 
+23_2|Interacts directly the imp3 in vitro.
+23_3|Interacts the imp3 directly in vitro.
+24_1|imp3 interacts directly in vitro.
+25_1|Brca1 is transported to the nucleus from the golgi.
+25_2|Brca1 is transported from the golgi to the nucleus.
+25_3|From the golgi brca1 is transported to the nucleus.
+25_4|To the nucleus brca1 is transported from the golgi.
+25_5|From the golgi to the nucleus brca1 is transported.
+25_6|To the nucleus from the golgi brca1 is transported.
+25_7|Brca1 is transported.
+25_8|Brca1 is transported to the nucleus.	
+25_9|Brca1 is transported from the golgi.
+25_10|From the golgi brca1 is transported.
+25_11|To the nucleus brca1 is transported.
+26_1|Brca1 translocates to the nucleus in the absence of NHEJ factors from the golgi.
+
+
+

@@ -1,0 +1,265 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<!--
+
+
+Generated from TeX source by tex2page, v 4p4k5
+(running on MzScheme 202, windows), 
+(c) Dorai Sitaram, 
+http://www.ccs.neu.edu/~dorai/tex2page/tex2page-doc.html
+
+
+-->
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<title>
+Testing Manual
+</title>
+<link rel="stylesheet" type="text/css" href="uchsc.css" title=default>
+<meta name=robots content="noindex,follow">
+</head>
+<body>
+<div class=navigation>[Go to <span><a href="testing-manual.html">first</a>, <a href="testing-manual.html">previous</a></span><span>, <a href="testing-manual-Z-H-2.html">next</a></span> page<span>; &nbsp;&nbsp;</span><span><a href="testing-manual.html#%_toc_start">contents</a></span><span><span>; &nbsp;&nbsp;</span><a href="testing-manual-Z-H-5.html#%_index_start">index</a></span>]</div>
+<p> </p>
+<p>
+</p>
+<a name="%_sec_1"></a>
+<h1><a href="testing-manual.html#%_toc_%_sec_1">1&nbsp;&nbsp;Introduction</a></h1>
+<p>A relatively general testing framework has been created that
+allows the O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP code itself to be tested and also allows users
+to build their own tests for larger systems.  This framework does
+not rely on O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP and can be used for other projects as well.
+However, the testing framework is included in the O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP jar file
+so no additional libraries are required to run O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP tests.</p>
+<p>
+</p>
+<a name="%_sec_2"></a>
+<h1><a href="testing-manual.html#%_toc_%_sec_2">2&nbsp;&nbsp;Testing O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP</a></h1>
+<p>While internal unit tests are an effective means for testing and
+validating basic functionality in the O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP system, they are
+difficult to use when testing the highly recursive overall
+behavior of the system. Therefore O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP includes a regression
+testing system designed to run multiple suites of tests against
+the O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP library as a whole.</p>
+<p>
+Each regression test consists of an input phrase to be parsed by
+O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP and a set of expected responses encoded as serialized
+strings.  The test system initializes a parser and hands it each
+input phrase.  The parser results are then compared against those
+encoded in the test and discrepancies are noted.</p>
+<p>
+A number of test suites are included with the O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP system and
+others can be added easily.</p>
+<p>
+</p>
+<a name="%_sec_2.1"></a>
+<h2><a href="testing-manual.html#%_toc_%_sec_2.1">2.1&nbsp;&nbsp;Supplied O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP Test Suites</a></h2>
+<p>All test suites supplied with O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP are in the <tt>test</tt>
+directory.  This directory holds the test suites files and the
+Prot&eacute;g&eacute; projects and pattern files they require.</p>
+<p>
+The existing suites are:
+</p>
+<ul>
+<li>
+<p><code class=verbatim>pattern-tests.xml</code><br>
+This test suite includes a number of tests to check that
+O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP patterns are being read in properly.  These tests are
+aimed primarily at the &#8220;JavaCC&#8221; parser used internally to
+O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP.  If the pattern language is changed, additional tests
+should be added to this suite.
+</p>
+<li>
+<p><code class=verbatim>pattern-rule-tests.xml</code><br>
+This test suite goes a step beyond the pattern tests and makes
+sure that O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP is building its own internal pattern
+structures correctly from the pattern definitions supplied.
+These tests are aimed at the generation of anytime predictions
+within the O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP system.  If the basic pattern objects in
+the O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP Java code are changed, additional tests should be
+added to this suite.
+</p>
+<li>
+<p><code class=verbatim>basic-tests.xml</code><br>
+This test suite includes basic concept recognition tests.  It
+is aimed at making sure that O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP is recognizing complex
+patterns correctly (with no slots).  When new features are
+added to the pattern language or any of the internal O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP
+algorithms are changed, new tests should be added to this
+suite to cover changes to the basic pattern recognition
+process.
+</p>
+<li>
+<p><code class=verbatim>slot-tests.xml</code><br>
+This test suite includes tests of patterns that include simple
+slot references.  It is aimed at making sure that O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP is
+properly recognizing and binding slot fillers.  If those
+algorithms are ever changed new tests should be added to this
+suite.
+</p>
+<li>
+<p><code class=verbatim>slot-nesting-tests.xml</code><br>
+This test suite includes tests where recognition should
+generate slots fillers that include more complex concepts that
+in turn have their own slot fillers.  Then O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP algorithms
+for reference building are changed
+new tests should be added to this suite.
+</p>
+<li>
+<p><code class=verbatim>slot-property-tests.xml</code><br>
+This test suite is aimed at testing the additional property
+tags that can be attached to slots in patterns.  It also tests
+the use of denotation markers in patterns.  If these
+algorithms change, new tests should be added to this suite.
+</p>
+</ul>
+<p></p>
+<p>
+In addition, a customized test suite is included in the
+<tt>test/people-loving-people</tt> directory.  This test suite
+name:
+</p>
+<ul>
+<li>
+<p><code class=verbatim>love-hate-tests.xml</code><br>
+This test suite shows how the testing system can be customized
+to deal with the output from processing steps that come after
+O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP parsing.  In this case, expected the expected outputs
+are English sentences.
+</p>
+</ul>
+<p></p>
+<p>
+</p>
+<a name="%_sec_2.2"></a>
+<h2><a href="testing-manual.html#%_toc_%_sec_2.2">2.2&nbsp;&nbsp;Adding New O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP Tests</a></h2>
+<p>The O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP system comes with three different types of tests
+predefined: pattern tests, pattern rule tests, and parsing tests.
+Each one takes a different sort of input and generates a different
+sort of output.</p>
+<p>
+Pattern tests use the <tt>pattern</tt><a name="%_idx_2"></a> form:<a name="%_idx_4"></a>
+</p>
+<pre class=verbatim> &lt;pattern name=&quot;<i>name</i>&quot;&gt;
+   &lt;input&gt;<i>pattern component</i>&lt;/input&gt;
+   &lt;output&gt;<i>pattern expansion</i>&lt;/output&gt;
+   <i>... alternate pattern expansions ...</i>
+ &lt;/pattern&gt;
+</pre>
+<p>
+The <tt>name</tt><a name="%_idx_6"></a> attribute assigns this test a name to be used
+in output messages.  The <tt>input</tt><a name="%_idx_8"></a><a name="%_idx_10"></a> element holds a
+valid component from an O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP pattern.  This component can be as
+simple or as complex as desired.  The expected
+<tt>output</tt><a name="%_idx_12"></a><a name="%_idx_14"></a> elements are all of the different ways
+that this pattern component can be expanded and begin with a
+constant token.  Each output begins with the constant that needs
+to be recognized first for this expansion followed by the
+expansion itself.</p>
+<p>
+For example:<a name="%_idx_16"></a>
+</p>
+<pre class=verbatim>  &lt;pattern name=&quot;Test-7a&quot;&gt;
+    &lt;input&gt;Kelly* Mary&lt;/input&gt;
+    &lt;output&gt;&quot;Mary&quot; . &quot;Mary&quot;&lt;/output&gt;
+    &lt;output&gt;&quot;Kelly&quot; . (&quot;Kelly&quot; &quot;Mary&quot;)&lt;/output&gt;
+    &lt;output&gt;&quot;Kelly&quot; . ((&quot;Kelly&quot; &quot;Kelly&quot;+) &quot;Mary&quot;)&lt;/output&gt;
+  &lt;/pattern&gt;
+</pre>
+<p>
+The input for this test is a pattern that specifies zero or more
+&#8220;Kelly&#8221; tokens followed by a &#8220;Mary&#8221; token.  Internally, this
+is turned into three different expansions that start with a
+constant token.  The first one is just the pattern &#8220;Mary&#8221;.  The
+second is the pattern &#8220;Kelly&#8221; followed by &#8220;Mary&#8221; and the third
+is one &#8220;Kelly&#8221; followed by one or more &#8220;Kelly&#8221; tokens followed
+by a &#8220;Mary&#8221; token.<a name="call_footnote_Temp_2" href="#footnote_Temp_2"><sup><small>1</small></sup></a></p>
+<p>
+Pattern rule tests use the <tt>pattern-rule</tt><a name="%_idx_18"></a> the
+form:<a name="%_idx_20"></a>
+</p>
+<pre class=verbatim> &lt;pattern-rule name=&quot;<i>name</i>&quot;&gt;
+   &lt;input&gt;<i>complete pattern rule</i>&lt;/input&gt;
+   &lt;output&gt;<i>pattern expansion</i>&lt;/output&gt;
+   <i>... disjunctive pattern expansions ...</i>
+ &lt;/pattern-rule&gt;
+</pre>
+<p>
+The <tt>name</tt><a name="%_idx_22"></a> attribute assigns this test a name to be used
+in output messages.  The <tt>input</tt><a name="%_idx_24"></a><a name="%_idx_26"></a> element
+holds a complete O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP pattern as would appear in a pattern
+file. This component can be as simple or as complex as desired.
+The expected <tt>output</tt><a name="%_idx_28"></a><a name="%_idx_30"></a> elements are all of
+the disjunctive components of this pattern.</p>
+<p>
+For example:<a name="%_idx_32"></a>
+</p>
+<pre class=verbatim>  &lt;pattern-rule name=&quot;Test-4&quot;&gt;
+    &lt;input&gt;a := Kelly+;&lt;/input&gt;
+    &lt;output&gt;&quot;Kelly&quot;+&lt;/output&gt;
+  &lt;/pattern-rule&gt;
+</pre>
+<p>
+The input pattern rule says that frame &#8220;a&#8221; should be assigned
+the pattern &#8220;Kelly+&#8221;.  The output includes only one disjunctive
+component, which is the pattern itself.  If the pattern was
+several disjuncts separated by commas, each disjunct would show up
+as a separate output.</p>
+<p>
+Parser tests use the <tt>test</tt><a name="%_idx_34"></a> form:<a name="%_idx_36"></a>
+</p>
+<pre class=verbatim> &lt;test name=&quot;<i>name</i>&quot; [includeSubsumed=&quot;<i>false</i>&quot;] [includeText=&quot;<i>true</i>&quot;]&gt;
+   &lt;input&gt;<i>input sentence</i>&lt;/input&gt;
+   &lt;output&gt;<i>serialized output reference</i>&lt;/output&gt;
+   <i>... more serialized output references ...</i>
+ &lt;/test&gt;
+</pre>
+<p>
+The <tt>name</tt><a name="%_idx_38"></a> attribute assigns this test a name to be used
+in output messages.  The <tt>input</tt><a name="%_idx_40"></a><a name="%_idx_42"></a> element holds an
+input sentence to be parsed by O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP.  Each
+<tt>output</tt><a name="%_idx_44"></a><a name="%_idx_46"></a> element holds a reference recognized during
+the processing of this input sentence.  The
+<tt>includeSubsumed</tt><a name="%_idx_48"></a> attribute can be set to <i>false</i>
+which tells the testing program to only look at references that
+are not subsumed by other references.  The <tt>includeText</tt><a name="%_idx_50"></a>
+attribute can be set to <i>true</i> to tell the testing program
+to look at every individual text token recognized during
+processing of the input as well as recognized references.</p>
+<p>
+For example:<a name="%_idx_52"></a>
+</p>
+<pre class=verbatim>  &lt;test name=&quot;Test-2&quot; includeSubsumed=&quot;true&quot;&gt;
+    &lt;input&gt;Charlie loves Mary&lt;/input&gt;
+    &lt;output&gt;Charlie from 0 to 0&lt;/output&gt;
+    &lt;output&gt;Mary from 2 to 2&lt;/output&gt;
+    &lt;output&gt;Loves [lover]=Charlie [beloved]=Mary from 0 to 2&lt;/output&gt;
+  &lt;/test&gt;
+</pre>
+<p>
+The input is &#8220;Charlie loves Mary&#8221;.  The test says that after
+parsing this input, O<font size=-1>P</font><font size=-1>E</font><font size=-1>N</font>DMAP should have recognized a reference to
+the frame called <code class=verbatim>{Charlie}</code>, a reference to the frame called
+<code class=verbatim>{Mary}</code>, and a reference to the <code class=verbatim>Loves</code> frame where the
+<code class=verbatim>[lover]</code> slot is filled with <code class=verbatim>{Charlie}</code> and the
+<code class=verbatim>[beloved]</code> slot is filled by <code class=verbatim>{Mary}</code>.  The additional
+number supplied give the starting and ending token numbers for the
+input words used to recognize the reference.  Note that this test
+sets the <tt>includeSubsumed</tt><a name="%_idx_54"></a> to be <i>true</i> so that
+<code class=verbatim>{Charlie}</code> and <code class=verbatim>{Mary}</code> will be checked as separate
+outputs.  They are &#8220;subsumed&#8221; by the third output and would
+normally not be considered.</p>
+<p>
+</p>
+<div class=smallprint><hr></div>
+<p></p>
+<div class=footnote>
+<p><a name="footnote_Temp_2" href="#call_footnote_Temp_2"><sup><small>1</small></sup></a> A useful way to get these output
+patterns is to add a new test with no output and then run the test
+and see what the testing system says it produces.  If these make
+sense, then add them to the test as valid outputs.</p>
+</div>
+<div class=navigation>[Go to <span><a href="testing-manual.html">first</a>, <a href="testing-manual.html">previous</a></span><span>, <a href="testing-manual-Z-H-2.html">next</a></span> page<span>; &nbsp;&nbsp;</span><span><a href="testing-manual.html#%_toc_start">contents</a></span><span><span>; &nbsp;&nbsp;</span><a href="testing-manual-Z-H-5.html#%_index_start">index</a></span>]</div>
+<p></p>
+</body>
+</html>

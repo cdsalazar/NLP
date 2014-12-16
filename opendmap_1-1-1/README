@@ -1,0 +1,39 @@
+OpenDMAP 1-1 README 2010-01-10
+
+This release of OpenDMAP is a source release. It does not include dependent jars.
+They can be downloaded by running the get_jars.sh script in the ant directory, 
+described below.
+
+This release depends on a local install of Protege, available from: 
+Protege 3.4.2 is available at: http://protege.stanford.edu/.
+Edit the ant file ant/build.properties with the location  of the Protege install.
+
+
+Mac Users Note: this script uses wget which isn't installed on most systems.
+You will need to install Xcode from Apple. Then "macports" (google it).
+Finally, you will be able to install wget and its dependencies with the command:
+sudo port install wget
+see http://wget.darwinports.com/
+
+cd  ant
+./get_jars.sh
+
+They are then made available to the build by running the build_jars.sh script
+
+./build_jars.sh
+
+which unzips the downloads and extracts jars from tar files. The code is compiled
+with the default ant target:
+
+ant
+
+The ant run includes a run of unit tests.
+
+
+This build assembles it's own CLASSPATH variables. Some issues have been resolved by
+setting the variable to the empty string.
+
+The tests progress with warnings about duplicate patterns. Please ignore them.
+
+Post the forums, or email ccpsupport <at> ucdenver <dot> edu with any questions. 
+We are glad to help and would be happy to hear from you.

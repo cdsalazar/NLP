@@ -1,0 +1,128 @@
+<!--
+Changes:
+
+8/12/2005    pvo    updated compile-tests to include the java files in edu/uchsc/ccp/testing/*.java
+-->
+<project name="dmap" default="compile-project" basedir="..">
+
+    <property file="ant/build.properties"/>
+ 
+    <path id="compile.classpath">
+        <pathelement location="${protege.jar}"/>
+        <pathelement location="${protegex.jar}"/>
+        <pathelement location="${javacc.jar}"/>
+        <pathelement location="${dmap.jar}"/>
+    </path>
+
+    <target name="prepare" 
+            description="Creates the build and dist directory" >
+        <echo message="Creating the required directories...." />
+        <mkdir dir="${build}" />
+        <mkdir dir="${dist}" />
+    </target>
+
+    <target name="clean" 
+            description="Removes the build directory">
+        <delete dir="${build}" />
+    </target>
+
+    <target name="clean-javacc-generated-files" 
+            description="Removes the javacc generated files">
+    	
+    	<delete file="${src}/edu/uchsc/ccp/dmap/pattern/DMAPPatternParser.java"/>
+    	<delete file="${src}/edu/uchsc/ccp/dmap/pattern/DMAPPatternParserConstants.java"/>
+    	<delete file="${src}/edu/uchsc/ccp/dmap/pattern/DMAPPatternParserTokenManager.java"/>
+    	<delete file="${src}/edu/uchsc/ccp/dmap/pattern/DMAPPatternParserTreeConstants.java"/>
+    	<delete file="${src}/edu/uchsc/ccp/dmap/pattern/JJTDMAPPatternParserState.java"/>
+
+        <delete file="${src}/edu/uchsc/ccp/dmap/pattern/TokenMgrError.java"/>
+        <delete file="${src}/edu/uchsc/ccp/dmap/pattern/ParseException.java"/>
+        <delete file="${src}/edu/uchsc/ccp/dmap/pattern/Token.java"/>
+        <delete file="${src}/edu/uchsc/ccp/dmap/pattern/SimpleCharStream.java"/>
+        <delete file="${src}/edu/uchsc/ccp/dmap/pattern/ParseException.java"/>
+    </target>
+    
+	   <target name="create-pattern-files"
+	            depends="clean-javacc-generated-files"
+	            description="Calls javacc to generate the pattern grammar files">
+	        <echo message="Calling javacc...."/>
+	        <java classname="jjtree" 
+	              fork="true" 
+	              maxmemory="512m"
+	              dir="${src}/edu/uchsc/ccp/dmap/pattern">
+	            <classpath refid="compile.classpath"/>
+	            <arg value="DMAPPatternParser.jjt"/>
+	        </java>
+	        <java classname="javacc" 
+	              fork="true" 
+	              maxmemory="512m"
+	              dir="${src}/edu/uchsc/ccp/dmap/pattern">
+	            <classpath refid="compile.classpath"/>
+	            <arg value="DMAPPatternParser.jj"/>
+	        </java>
+	    </target>            
+	  
+   <target name="compile-project" depends="prepare, create-pattern-files"
+      		description="Compiles the Java source code">
+      	<echo message="Compiling the source code...."/>
+      	<javac srcdir="${src}"
+             destdir="${build}"
+             debug="true"
+             deprecation="on">
+      		<include name="edu/uchsc/ccp/dmap/*.java"/>
+            <classpath refid="compile.classpath"/>
+      	</javac>
+      	<javac srcdir="${src}"
+             destdir="${build}"
+             debug="true"
+             deprecation="on">
+       		<include name="edu/uchsc/ccp/dmap/pattern/*.java"/>
+            <classpath refid="compile.classpath"/>
+      	</javac>
+ 	</target>
+
+	<target name="compile-tests" depends="prepare"
+	      		description="Compiles the Java test source code">
+	      	<echo message="Compiling the test source code...."/>
+	      	<javac srcdir="${src}"
+	             destdir="${build}"
+	             debug="true"
+	             deprecation="on">
+	      		<include name="edu/uchsc/ccp/dmap/test/*.java"/>
+	      		<include name="edu/uchsc/ccp/testing/*.java"/>
+	            <classpath refid="compile.classpath"/>
+	      	</javac>
+	</target>
+	
+     <target name="build" 
+            depends="clean, create-pattern-files, compile-project, package"
+            description="Executes the targets needed to build the service.">
+    </target>
+
+
+    <target name="package" depends="compile-project"
+        description="Creates the jar file">
+        <echo message="Packaging the jar...."/>
+        <delete file="${dmap.jar}" />
+        
+        <jar jarfile="${dmap.jar}" >
+          <fileset dir="${build}" />
+        </jar>
+    </target>
+  
+    <target name="build-javadoc">
+        <javadoc
+            packagenames = "edu.uchsc.ccp.dmap.*"
+            sourcepath = "${src}"
+            destdir = "${docs}/api"
+            windowtitle = "OpenDMAP API"
+            linksource = "true"
+            classpath = "${protege.jar}">
+            <link href="http://protege.stanford.edu/doc/pdk/api/"/>
+            <link href="http://java.sun.com/j2se/1.5.0/docs/api/"/>
+            <doctitle><![CDATA[<h1>OpenDMAP API</h1>]]></doctitle>
+        </javadoc>
+    </target>
+   
+    
+</project>

@@ -1,0 +1,39 @@
+// Generif patterns
+
+// Bio function patterns
+
+{c-biofunction-simple} := [process];
+
+{c-biofunction-role} := [agent]? the? [role] 
+                          [cause c-biofunction-role];
+{c-biofunction-role} := [cause c-biofunction-role] (is [role])
+                          (by [agent g-np])?;
+
+{c-biofunction-agent} := [agent]?
+                          [cause c-biofunction agent null]
+                          [effect c-biofunction agent null]?;
+{c-biofunction-agent} := [agent]?
+                          [cause c-biofunction agent null] 
+                          and? (thereby | causing | having) [effect];
+{c-biofunction-agent} := [agent]?
+                          [cause c-biofunction agent null] 
+                          resulting in the? [effect];
+{c-biofunction-agent} := [agent]?
+                          [effect c-biofunction agent null] 
+                          through the? [cause c-biofunction agent null];
+
+
+
+// Bio belief patterns
+
+{c-biobelief-part} := [agent] [belief]? (has | have) [component];
+
+{c-biobelief-function} := [agent] 
+                           [belief]? [function c-biofunction agent null];
+{c-biobelief-function} := [function c-biofunction agent null] 
+                           ([belief] {w-is})? (by [agent])?;
+
+{c-biobelief-function} := (a | the) r'.*'? function of [agent] [belief]? 
+                           {w-is}? (to | the)?
+			   [function c-biofunction agent null];
+

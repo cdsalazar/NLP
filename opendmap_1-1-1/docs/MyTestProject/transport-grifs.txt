@@ -1,0 +1,66 @@
+Sec34 is implicated in traffic from the endoplasmic reticulum to the Golgi and exists in a complex with GTC-90 and ldlBp
+Src relocated the KDEL receptor (KDEL-R) from the Golgi apparatus to the endoplasmic reticulum
+Data characterize the retrograde transport of mannose 6-phosphate receptor MPR46 from endosomes to the trans-Golgi network by an in vitro transport assay using mouse fibroblast cell lines.
+Sec13 stably interacts with Nup96 at the NPC during interphase and the shuttling of Sec13 between the nucleus and the cytoplasm may couple and regulate functions between these two compartments
+SNX16 is a sorting nexin that may function in the trafficking of proteins between the early and late endosomal compartments
+Gamma-adaptin interacts directly with Rabaptin-5 through its ear domain.The interaction may play a role in membrane trafficking between the trans-Golgi network and endosomes.
+Nuclear transport factor 2, specifically required in the development of the eye and in the immune response
+Munc18b binds to syntaxins 1A, 2, and 3 and regulates vesicle transport to the apical plasma membrane
+syntaxin 4 is involved in the intracellular transport of MT1-MMP toward the plasma membrane
+role of IMP7 in nuclear transport of H1 histones
+Cloning and characterization of novel Rab6-interacting proteins involved in endosome-to-TGN transport [Rab6IP2A protein AND Rab6IP2B protein]
+results indicate that Tpr plays a critical role in the intranuclear dynamics of RNA pol II transcripts, including the processing, intranuclear transport and targeting, as well as their translocation through the NPC in mammalian cells
+Review. The newly identified NUP98 gene, located on chromosome 11p15.5, has been observed fused to 15 different partners. It encodes a 98 kD component of the nuclear pore complex, which mediates nucleo-cytoplasmic transport of protein and RNA.
+Cellular munc18c levels can modulate glucose transport rate and GLUT4 translocation in 3T3L1 cells.
+Data suggest that GS15 exists in a distinct SNARE complex that contains syntaxin5, GS28, and Ykt6, and may be involved in both ER-to-Golgi and intra-Golgi transport.
+Data show that extracellular glucose regulates a nuclear transport pathway by increasing the nuclear efflux and shuttling of karyopherin alpha2 in cells in which glucose can stimulate the transcription of sugar-responsive genes.
+Ran-GTPase may be involved in both nucleocytoplasmic transport and microtubule assembly, two critical events during the development of functional sperm.
+Results show that AP-4 can bind different types of cytosolic signals known to mediate basolateral transport in epithelial cells. Depletion of mu 4 results in the mis-sorting of several proteins in epithelial cells.
+recombinant antibodies specific to the GTP-bound conformation of Rab6 were generated and used to locate Rab6; Rab6 was in its GTP-bound conformation on the Golgi apparatus and transport intermediates
+ARF4L occurred on the plasma membrane after binding to GTP and into endosomes while binding to GDP; the inactive form of ARF4L causes localization of transferrin receptors to the endosomes while the active form causes transport to the plasma membrane.
+NTF2 coordinates the activity of Ran by binding Ran-GDP into a complex with nucleoporin-docked karyopherins during nuclear import of HIV-1 Matrix
+each Imp-alpha protein carries during Drosophila spermatogenesis distinct, albeit overlapping, functions that may involve nuclear import of proteins, microtubule organisation, and other yet unknown processes
+Nucleoporin CG1 (hCG1; nucleoporin-like protein 1; NLP-1) interacts with HIV-1 Vpr to mediate the docking of Vpr at the nuclear envelope which may contribute to the disruption of the nuclear envelope and to the nuclear import of viral DNA by Vpr
+Nuclear import of HIV-1 intracellular reverse transcription is mediated by IPO7.
+Data show that human nucleoporin CG1 participates in the docking of Vpr at the nuclear envelope, which may contribute to the disruption of the nuclear envelope and to the nuclear import of the viral DNA.
+nuclear import of the HPV16 E6 oncoprotein in digitonin-permeabilized HeLa cells could be mediated by Kap beta2
+L1 major capsid protein of human papillomavirus type 11 interacts with Kap beta3 nuclear import receptors
+Importin alpha/beta-mediated nuclear import machinery is regulated in a cell cycle-dependent manner through the modulation of interaction modes between importins alpha and beta.
+confirmed the role of KPNA-2 in nuclear import of Chk2
+1 major capsid protein of human papillomavirus type 11 interacts with Kap beta2 nuclear import receptor
+nuclear import of the HPV16 E6 oncoprotein in digitonin-permeabilized HeLa cells could be mediated by Kap beta1
+HPV16 L2 interacts via its NLSs with a network of karyopherins and can enter the nucleus via several import pathways mediated by Kapalpha(2)beta(1) heterodimers, Kapbeta(2), and Kapbeta(3).
+data suggest that HPV16 E7 translocates through the nuclear pores via a nonclassical Ran-dependent pathway, independent of the main cytosolic Kap beta import receptors
+Some reports indicate a possible role for the interactions between karyopherin alpha and beta with HIV-1 integrase in the nuclear import of HIV-1 preintegration complexes (PIC), while other reports indicate integrase is not involved in PIC nuclear import
+Nuclear import of HIV-1 preintegration complexes by karyopherin alpha is governed by phosphorylation of HIV-1 Matrix on tyrosine and serine, however the exact role of phosphorylation of the C-terminal tyrosine of Matrix has been debated
+HIV-1 Matrix increases intracellular ATP content, an effect hypothesized to support the ATP-dependent nuclear import of HIV-1 preintegration complexes by karyopherin alpha
+Karyopherin alpha and beta are reported to interact with HIV-1 integrase (IN) to facilitate nuclear import of IN, however a conflicting report indicates nuclear accumulation of IN does not involve karyopherin alpha, beta 1, or beta 2 mediated pathways
+This gene codes for the peroxin 7 receptor protein required for peroxisomal import of proteins containing a peroxisomal targeting signal type 2. Mutations may result in a broad clinical spectrum of Refsum disease.
+NLP-1 interacts with CRM-1 (exportin 1), one of the cellular factors that binds to Rev and is required for Rev-mediated nuclear export of HIV-1 mRNA
+nuclear export sequences regulate human TAP function in mRNA export by direct nuclear pore interactions
+Activation-induced deaminase is actively excluded from the nucleus by an exportin CRM1-dependent pathway.
+identify exportin 6 (Exp6) as a novel family member from higher eukaryotes and show that it mediates nuclear export of profilin.actin complexes
+A major function of DNup88 is to anchor DNup214 and CRM1 on the nuclear envelope and thereby attenuate NES-mediated nuclear export.
+The interphase form of Sec24Cp was O-N-acetylglucosamine modified, a feature lost upon entering into mitosis. This mitotic deglycosylation was coupled to Sec24p phosphorylation, a process which may contribute to observed mitotic ER-to-Golgi traffic block.
+The trafficking of SAPs is dependent on sortilin, demonstrating a novel lysosomal trafficking.
+identified a novel Golgi apparatus-specific protein, designated as GODZ, which may play a role in membrane protein trafficking (GODZ)
+pIgA-R traffics through postendosomal rab3D-, rab11a-, and syntaxin 2-associated compartments, implicating these proteins in the regulation of transcytosis.
+syntaxin 6 is involved in a membrane-trafficking step that sequesters Glut4 away from traffic destined for the plasma membrane
+Mint-3 regulates the retrieval of the internalized membrane-type matrix metalloproteinase, MT5-MMP, to the plasma membrane by binding to its carboxyl end motif EWV
+Cleavage of BAP31 leads to the generation of ER- localized, proapoptotic BAP20, which may mediate mitochondrion-ER cross talk through a Ca(2+)-dependent mechanism
+CASP8 cleavage product of BAP31 induces mitochondrial fission through endoplasmic reticulum calcium signals, enhancing cytochrome c release to the cytosol.
+HPV16 E6 interacts with the karyopherin alpha2 adapter and can enter the nucleus of hela cells via a classical Kap alpha2beta1-mediated pathway
+Pex13p has a role in determining the peroxisomal localization of Pex14p
+CRM1 binds to ERK3and promotes the cytoplasmic relocalization of ERK3. Enforced localization of ERK3 in the nucleus or cytoplasm markedly attenuates the ability of the kinase to induce cell cycle arrest in fibroblasts.
+SAP102 interacts with the PDZ-binding domain of Sec8, a member of the exocyst complex.  Interactions between the two proteins are involved in the delivery of N-methyl-D-aspartate receptors to the cell surface in heterologous cells and neurons.
+Interacts with tomosyn and plays a role in insulin-stimulated GLUT4 translocation.
+our data suggest that the mechanism by which glucosamine inhibits insulin-stimulated GLUT4 translocation involves modification of Munc18c.
+identification of RanBP2-mediated transport pathways with restricted neuronal and subcellular localization
+endocytosis and intracellular transport of memapsin 2, mediated by its cytosolic domain, may involve the binding of GGA1 and GGA2
+Data show that activin A activates IkappaB-alpha, and stimulates nuclear translocation of NFkappaB and receptor activator of nuclear factor-kappaB (RANK) expression for osteoclastogenesis, but not Akt/PKB survival signal transduction.
+PX domain-dependent/early endosomal association of SNX1 is important for its ability to regulate the targeting of internalized epidermal growth factor receptor for lysosomal degradation
+PNUTS has a role in protein kinase A-regulated targeting of PP1 to specific RNA-associated complexes in the nucleus
+The exocyst complex is required for targeting of Glut4 to the plasma membrane by insulin
+Sorting nexin 4 and amphiphysin 2 have roles in endocytosis and intracellular trafficking
+mVps16p has a potential roles in membrane trafficking
+encodes a homolog of the class C yeast vacuolar protein sorting gene, that contains a Sec1-like domain important in the regulation of vesicle-to-target SNARE complex formation and subsequent membrane fusion

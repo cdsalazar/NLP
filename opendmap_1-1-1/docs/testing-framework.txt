@@ -1,0 +1,56 @@
+General Testing Framework
+-------------------------
+
+A relatively general testing framework has been created that allows
+the DMAP code itself to be tested and also allows users to build their
+own tests for larger systems.  This framework does not rely on any 
+OpenDMAP code and can be used for other projects as well.
+
+The testing framework is in the Java package edu.uchsc.ccp.testing.
+
+Overview
+--------
+
+The testing framework consists of several pieces:
+<ul>
+<li>The Test Manager
+<li>Test Suites
+<li>Test Contexts
+<li>Test Classes
+<li>Test Suite XML Files
+</ul>
+
+Building a Testing Framework
+----------------------------
+
+There are two key components that need to be implemented to create a 
+custom testing framework:
+
+ - A Test Context Java class
+ - One or more Test Java classes
+
+One test context object is created and initialized for each test suite 
+and it is passed to each test run in the suite.  The test context is 
+used to hold any shared state that is required between tests.
+
+A test class defines a <i>type</i> of test that can appear in a test 
+suite.  An instance of a test class is created for each test that appears 
+in the test suite.  Different types of test require different test classes.
+
+===Creating a Test Context===
+
+===Creating a Test Class===
+
+===Input Output Tests===
+
+==Writing an XML Test Suite File==
+
+===Specifying the Test Context===
+
+===Specifying the Test Forms===
+
+===Declaring Context Values===
+
+===Writing the Tests===
+
+==Running Test Suites==
